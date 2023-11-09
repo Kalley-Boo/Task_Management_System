@@ -1,6 +1,5 @@
 package Models;
 
-import Models.Contracts.Comment;
 import Models.Contracts.Task;
 import Models.Enums.TaskStatus;
 import Models.Enums.TaskType;

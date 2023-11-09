@@ -1,6 +1,5 @@
 package Models;
 
-import Models.Contracts.Comment;
 import Models.Contracts.Feedback;
 
 import java.util.List;
