@@ -4,10 +4,18 @@ import Models.Enums.TaskStatus;
 import Models.Enums.TaskType;
 
 public interface Task{
+    int getId();
     String getTitle();
     String getDescription();
-    TaskType getType();
     TaskStatus getStatus();
-    String getAssignee();
-    String getInfo();
+    TeamMember getAssignee();
+    List<String> getComments();
+    List<String> getHistory();
+
+    void setTitle(String title);
+    void setDescription(String description);
+    void setStatus(TaskStatus status);
+    void setAssignee(TeamMember assignee);
+    void addComment(String comment);
+    void addChange(String change);
 }
