@@ -2,6 +2,9 @@ package Models.Contracts;
 
 import Models.Enums.TaskStatus;
 import Models.Enums.TaskType;
+import Models.TeamMember;
+
+import java.util.List;
 
 public interface Task{
     int getId();
