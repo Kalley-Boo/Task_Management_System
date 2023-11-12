@@ -14,7 +14,7 @@ public class TeamImpl  implements Team {
 
     private String name;
     private List<String> members;
-    private List<Board> boards;
+    private List<BoardImpl> boards;
 
     public TeamImpl(String name){
         setName(name);
@@ -57,7 +57,7 @@ public class TeamImpl  implements Team {
         members.add(member.getName());
     }
 
-    public void addBoard(Board board){
+    public void addBoard(BoardImpl board){
         if(board == null){
             throw new IllegalArgumentException(BOARD_CANT_BE_NUL);
         }

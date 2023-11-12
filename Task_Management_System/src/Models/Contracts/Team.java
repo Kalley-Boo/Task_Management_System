@@ -1,11 +1,11 @@
 package Models.Contracts;
 
-import Models.Board;
+import Models.BoardImpl;
 
 public interface Team {
      String getName();
      public void addMember(Person member);
-     public void addBoard(Board board);
+     public void addBoard(BoardImpl board);
      public void displayMembers();
      public void displayBoards();
 }

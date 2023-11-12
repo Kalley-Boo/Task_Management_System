@@ -1,6 +1,6 @@
 package core.contracts;
 
-import Models.Board;
+import Models.BoardImpl;
 import Models.Contracts.Person;
 import Models.Contracts.Task;
 import Models.Contracts.Team;
@@ -11,9 +11,11 @@ public interface BoardRepository {
 
     List<Task> getTasks();
     List<Person> getPeople();
-    List<Board> getBoards();
+    List<BoardImpl> getBoards();
     List<Team> getTeams();
-    void createTask();//finish when the tasks are implemented
+    void createBug();//finish when the tasks are implemented
+    void createStory();
+    void createFeedback();
     void createPerson(String name);
     void createBoard(String name);
     void createTeam(String name);
