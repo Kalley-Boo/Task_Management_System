@@ -17,12 +17,12 @@ public class CommentImpl implements Comment {
 
     @Override
     public String getContent() {
-        return null;
+        return content;
     }
 
     @Override
     public String getAuthor() {
-        return null;
+        return author;
     }
 
     public String toString() {
