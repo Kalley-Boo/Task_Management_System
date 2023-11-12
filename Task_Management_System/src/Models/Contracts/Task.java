@@ -1,8 +1,6 @@
 package Models.Contracts;
 
 import Models.Enums.TaskStatus;
-import Models.Enums.TaskType;
-import Models.TeamMember;
 
 import java.util.List;
 
@@ -11,14 +9,13 @@ public interface Task{
     String getTitle();
     String getDescription();
     TaskStatus getStatus();
-    TeamMember getAssignee();
-    List<String> getComments();
+    Person getAssignee();
     List<String> getHistory();
 
     void setTitle(String title);
     void setDescription(String description);
     void setStatus(TaskStatus status);
-    void setAssignee(TeamMember assignee);
+    void setAssignee(Person assignee);
     void addComment(String comment);
     void addChange(String change);
 }
