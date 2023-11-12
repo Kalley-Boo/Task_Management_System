@@ -1,4 +1,6 @@
 package core;
 
-public class ProductRepositoryImpl {
+import core.contracts.ProductRepository;
+
+public class ProductRepositoryImpl implements ProductRepository {
 }

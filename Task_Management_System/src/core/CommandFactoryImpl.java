@@ -1,4 +1,6 @@
 package core;
 
-public class CommandFactoryImpl {
+import core.contracts.CommandFactory;
+
+public class CommandFactoryImpl implements CommandFactory {
 }

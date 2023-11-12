@@ -1,4 +1,6 @@
 package core;
 
-public class EngineImpl {
+import core.contracts.Engine;
+
+public class EngineImpl implements Engine {
 }
