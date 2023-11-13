@@ -29,6 +29,11 @@ public class BoardImpl implements Board {
     }
 
     @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
     public List<Task> getTasks() {
         return this.getTasks();
     }
