@@ -1,5 +1,6 @@
 package Models;
 
+import Models.Contracts.Board;
 import Models.Contracts.Person;
 import Models.Contracts.Team;
 
@@ -40,10 +41,9 @@ public class TeamImpl  implements Team {
             System.out.println("No boards in team " + name);
         } else {
             System.out.println("Boards in team " + name + ":");
-//            Comment out when board.getName is made
-//            for (Board board : boards) {
-//                System.out.println(board.getName());
-//            }
+            for (Board board : boards) {
+                System.out.println(board.getName());
+            }
         }
     }
 
@@ -61,10 +61,9 @@ public class TeamImpl  implements Team {
         if(board == null){
             throw new IllegalArgumentException(BOARD_CANT_BE_NUL);
         }
-//        Uncomment line underneath when board.getName is made
-//        if(boards.contains(board.getName())){
-//            throw new IllegalArgumentException(BOARD_EXISTS);
-//        }
+        if(boards.contains(board.getName())){
+            throw new IllegalArgumentException(BOARD_EXISTS);
+        }
     }
 
     //-----------------------------------setters and getters----------------------------------------
