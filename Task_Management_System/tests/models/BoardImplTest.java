@@ -1,5 +1,6 @@
-package Models;
+package models;
 
+import Models.BoardImpl;
 import Models.Contracts.Board;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
