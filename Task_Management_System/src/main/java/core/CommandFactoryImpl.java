@@ -1,6 +1,7 @@
 package core;
 
 import commands.CommandType;
+import commands.CreatePersonCommand;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import core.contracts.CommandFactory;
@@ -19,7 +20,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case CREATETEAM:
                 //
             case CREATEPERSON:
-                //
+                return new CreatePersonCommand(boardRepository);
             case CTREATEBOARD:
                 //
             default:
