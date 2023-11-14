@@ -1,57 +1,68 @@
 package Models;
 
-import Models.Contracts.Bug;
-import Models.Contracts.Comment;
 import Models.Contracts.Person;
+import Models.Contracts.Task;
+import Models.Enums.Priority;
+import Models.Enums.Severity;
+import Models.Enums.StatusBug;
 import Models.Enums.TaskStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class BugImpl extends TaskImpl implements Bug {
+public class BugImpl extends TaskImpl {
+    private List<String> stepsToReproduce = new ArrayList<>();
+    private Priority priority;
+    private Severity severity;
+    private PersonImpl assignee;
+    private TaskStatus status;
 
-    @Override
-    public int getId() {
-        return 0;
+
+    public BugImpl(int id, String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history) {
+        super(id, title, description, comments, history);
+        setStepsToReproduce(stepsToReproduce);
+        setPriority(priority);
+        setSeverity(severity);
+        setStatus(status);
+        setAssignee(assignee);
     }
 
-    @Override
-    public String getTitle() {
-        return null;
+    public List<String> getStepsToReproduce() {
+        return stepsToReproduce;
     }
 
-    @Override
-    public String getDescription() {
-        return null;
+    public void setStepsToReproduce(List<String> stepsToReproduce) {
+        this.stepsToReproduce = stepsToReproduce;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public Severity getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(Severity severity) {
+        this.severity = severity;
     }
 
     @Override
     public TaskStatus getStatus() {
-        return null;
+        return status;
     }
 
-    @Override
     public Person getAssignee() {
-        return null;
-    }
-
-    @Override
-    public List<String> getHistory() {
-        return null;
-    }
-
-    @Override
-    public void setDescription(String description) {
-
+        return assignee;
     }
 
     @Override
     public void setStatus(TaskStatus status) {
-
-    }
-
-    @Override
-    public void setAssignee(Person assignee) {
-
+           this.status=status;
     }
 
     @Override
@@ -63,4 +74,10 @@ public class BugImpl extends TaskImpl implements Bug {
     public void addChange(String change) {
 
     }
+
+    public void setAssignee(PersonImpl assignee) {
+        this.assignee = assignee;
+    }
+
+
 }
