@@ -61,9 +61,10 @@ public class TeamImpl  implements Team {
         if(board == null){
             throw new IllegalArgumentException(BOARD_CANT_BE_NUL);
         }
-        if(boards.contains(board.getName())){
+        if(boards.contains(board)){
             throw new IllegalArgumentException(BOARD_EXISTS);
         }
+        boards.add(board);
     }
 
     //-----------------------------------setters and getters----------------------------------------

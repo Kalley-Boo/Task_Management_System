@@ -3,6 +3,7 @@ package models;
 import Models.Contracts.Person;
 import Models.PersonImpl;
 import Models.TeamImpl;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TeamImplTest {
     private TeamImpl team;
 
-    @BeforeEach
+    @Before
     public void setUp() {
         team = new TeamImpl("TestTeam");
     }
@@ -23,7 +24,7 @@ public class TeamImplTest {
 
     @Test
     public void testAddMember() {
-        Person person = new PersonImpl("John Doe"); // Assuming you have a PersonImpl class
+        Person person = new PersonImpl("John Doe");
         team.addMember(person);
         assertTrue(team.getMembers().contains("John Doe"));
     }
@@ -51,5 +52,5 @@ public class TeamImplTest {
         }
     }
 
-    @Test
+
 }
