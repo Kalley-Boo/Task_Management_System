@@ -24,7 +24,7 @@ public class StoryImpl extends TaskImpl {
         return priority;
     }
 
-    public void setPriority(Priority priority) {
+    private void setPriority(Priority priority) {
         this.priority = priority;
     }
 
@@ -32,7 +32,7 @@ public class StoryImpl extends TaskImpl {
         return size;
     }
 
-    public void setSize(TaskSize size) {
+    private void setSize(TaskSize size) {
         this.size = size;
     }
     public void setStatus(TaskStatus status ){
@@ -51,7 +51,7 @@ public class StoryImpl extends TaskImpl {
     public Person getAssignee() {
         return assignee;
     }
-    public void setAssignee(PersonImpl assignee) {
+    private void setAssignee(PersonImpl assignee) {
         this.assignee = assignee;
     }
     public TaskStatus getStatus(){

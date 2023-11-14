@@ -31,7 +31,7 @@ public class BugImpl extends TaskImpl {
         return stepsToReproduce;
     }
 
-    public void setStepsToReproduce(List<String> stepsToReproduce) {
+    private void setStepsToReproduce(List<String> stepsToReproduce) {
         this.stepsToReproduce = stepsToReproduce;
     }
 
@@ -39,7 +39,7 @@ public class BugImpl extends TaskImpl {
         return priority;
     }
 
-    public void setPriority(Priority priority) {
+    private void setPriority(Priority priority) {
         this.priority = priority;
     }
 
@@ -47,7 +47,7 @@ public class BugImpl extends TaskImpl {
         return severity;
     }
 
-    public void setSeverity(Severity severity) {
+    private void setSeverity(Severity severity) {
         this.severity = severity;
     }
 
@@ -75,7 +75,7 @@ public class BugImpl extends TaskImpl {
 
     }
 
-    public void setAssignee(PersonImpl assignee) {
+    private void setAssignee(PersonImpl assignee) {
         this.assignee = assignee;
     }
 

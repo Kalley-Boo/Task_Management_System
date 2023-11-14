@@ -28,11 +28,11 @@ public abstract  class TaskImpl implements Task {
         setDescription(description);
         setHistory();
     }
-    public void setComments() {
+    private void setComments() {
         this.comments = comments;
     }
-    public void setHistory(){this.history= history;}
-    public void setId(int id) {
+    private void setHistory(){this.history= history;}
+    private void setId(int id) {
         this.id = id;
     }
     public List<CommentImpl> getComments(){

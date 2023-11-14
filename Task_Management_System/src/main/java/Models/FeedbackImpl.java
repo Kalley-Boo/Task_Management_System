@@ -21,7 +21,7 @@ public class FeedbackImpl extends TaskImpl {
         return rating;
     }
 
-    public void setRating(int rating) {
+    private void setRating(int rating) {
         this.rating = rating;
     }
 
