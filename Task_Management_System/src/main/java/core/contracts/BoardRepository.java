@@ -1,9 +1,15 @@
 package core.contracts;
 
 import Models.BoardImpl;
+import Models.CommentImpl;
 import Models.Contracts.Person;
 import Models.Contracts.Task;
 import Models.Contracts.Team;
+import Models.Enums.Priority;
+import Models.Enums.Severity;
+import Models.Enums.TaskSize;
+import Models.Enums.TaskStatus;
+import Models.PersonImpl;
 
 import java.util.List;
 
@@ -13,9 +19,13 @@ public interface BoardRepository {
     List<Person> getPeople();
     List<BoardImpl> getBoards();
     List<Team> getTeams();
-    void createBug();//finish when the tasks are implemented
-    void createStory();
-    void createFeedback();
+
+    void createBug(int id, String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history);
+
+    void createStory(int id, String title, String description, Priority priority, TaskSize size, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history);
+
+    void createFeedback(int id, String title, String description, int rating, TaskStatus status, List<CommentImpl> comments, List<String> history);
+
     void createPerson(String name);
     void createBoard(String name);
     void createTeam(String name);
