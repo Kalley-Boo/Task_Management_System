@@ -75,5 +75,13 @@ public class TeamImpl  implements Team {
     public String getName(){
         return name;
     }
+
+    public List<String> getMembers() {
+        return members;
+    }
+
+    public List<BoardImpl> getBoards() {
+        return boards;
+    }
 }
 

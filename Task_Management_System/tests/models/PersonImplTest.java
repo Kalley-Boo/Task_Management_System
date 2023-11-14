@@ -1,6 +1,7 @@
 package models;
 
 import Models.PersonImpl;
+import Models.TaskImpl;
 import org.junit.Test;
 
 
@@ -14,15 +15,17 @@ public class PersonImplTest {
 
     @Test
     public void testSetName_ValidName_Success() {
-        PersonImpl person = new PersonImpl("JohnDoe");
-        assertEquals("JohnDoe", person.getName());
+        PersonImpl person = new PersonImpl(validName);
+        assertEquals(validName, person.getName());
     }
 
     @Test
     public void testSetName_InvalidName_Exception() {
         assertThrows(IllegalArgumentException.class, () -> new PersonImpl("John"));
-        assertThrows(IllegalArgumentException.class, () -> new PersonImpl("VeryLongNameThatExceedsTheMaxLength"));
+        assertThrows(IllegalArgumentException.class, () -> new PersonImpl("LongNameThatExceedsTheMaxLength"));
     }
+
+
 
 
 }
