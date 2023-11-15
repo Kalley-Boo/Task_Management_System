@@ -2,6 +2,7 @@ package core;
 
 import commands.CommandType;
 import commands.CreatePersonCommand;
+import commands.ShowAllPeopleCommand;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import core.contracts.CommandFactory;
@@ -23,6 +24,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new CreatePersonCommand(boardRepository);
             case CTREATEBOARD:
                 //
+            case SHOWALLPEOPLE:
+                return new ShowAllPeopleCommand(boardRepository);
             default:
                 throw new UnsupportedOperationException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, commandTypeValue));
         }

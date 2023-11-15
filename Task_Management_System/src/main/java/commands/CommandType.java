@@ -5,5 +5,6 @@ public enum CommandType {
     CREATEPERSON,
     CREATETASK,
     CTREATEBOARD,
-    CREATETEAM
+    CREATETEAM,
+    SHOWALLPEOPLE
 }
