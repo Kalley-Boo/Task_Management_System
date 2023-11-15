@@ -1,11 +1,16 @@
 package Models;
 
+import Models.Contracts.Feedback;
 import Models.Contracts.Task;
 import Models.Enums.TaskStatus;
+import util.Validator;
 
 import java.util.List;
 
-public class FeedbackImpl extends TaskImpl {
+public class FeedbackImpl extends TaskImpl implements Feedback {
+
+    private static final int MIN_RATING = 1;
+    private static final int MAX_RATING = 10;
 
     private int rating;
     private TaskStatus status;
@@ -17,37 +22,24 @@ public class FeedbackImpl extends TaskImpl {
         setStatus(status);
     }
 
-    public int getRating() {
-        return rating;
+    private void setRating(int rating){
+        Validator.validateIntRange(rating, MIN_RATING, MAX_RATING);
+        this.rating = rating;
     }
 
-    private void setRating(int rating) {
-        this.rating = rating;
+    private void setStatus(TaskStatus taskStatus){
+        this.status = taskStatus;
+    }
+
+    @Override
+    public int getRating() {
+        return this.rating;
     }
 
     @Override
     public TaskStatus getStatus() {
-        return status;
+        return this.status;
     }
 
-    @Override
-    public List<String> getHistory() {
-        return null;
-    }
-
-    @Override
-    public void setStatus(TaskStatus status) {
-        this.status = status;
-    }
-
-
-    @Override
-    public void addComment(String comment) {
-
-    }
-
-    @Override
-    public void addChange(String change) {
-
-    }
+    //TODO implement update rating and status
 }
