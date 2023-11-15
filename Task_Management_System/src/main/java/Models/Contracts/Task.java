@@ -4,7 +4,7 @@ import Models.Enums.TaskStatus;
 
 import java.util.List;
 
-public interface Task{
+public interface Task extends Printable{
     int getId();
     String getTitle();
     String getDescription();

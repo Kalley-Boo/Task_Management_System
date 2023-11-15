@@ -1,6 +1,7 @@
 package Models;
 
 import Models.Contracts.Feedback;
+import Models.Contracts.HistoryLog;
 import Models.Contracts.Task;
 import Models.Enums.TaskStatus;
 import util.Validator;
@@ -39,6 +40,16 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     @Override
     public TaskStatus getStatus() {
         return this.status;
+    }
+
+    @Override
+    public String print() {
+        return null;//TODO
+    }
+
+    @Override
+    public void addChange(HistoryLog historyLog) {
+        //TODO
     }
 
     //TODO implement update rating and status

@@ -19,13 +19,13 @@ public class Story {
     public void constructor_Should_ThrowException_When_TitleIsOutOfRange() {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new StoryImpl(
-                        1, "Problem", "Problem when logging", Models.Enums.Priority.HIGH, TaskSize.MEDIUM, Models.Enums.TaskStatus.ACTIVE, new PersonImpl("Ivan"), new ArrayList<CommentImpl>(), new ArrayList<>()));
+                        "Problem", "Problem when logging", Models.Enums.Priority.HIGH, TaskSize.MEDIUM, Models.Enums.TaskStatus.ACTIVE, new PersonImpl("Ivan"), new ArrayList<CommentImpl>(), new ArrayList<>()));
     }
     @Test
     public void constructor_Should_ThrowException_When_DescriptionIsOutOfRange() {
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new StoryImpl(
-                        1, "Problem with the system", "Logging", Models.Enums.Priority.HIGH, TaskSize.MEDIUM, Models.Enums.TaskStatus.ACTIVE, new PersonImpl("Ivan"), new ArrayList<CommentImpl>(), new ArrayList<>()));
+                        "Problem with the system", "Logging", Models.Enums.Priority.HIGH, TaskSize.MEDIUM, Models.Enums.TaskStatus.ACTIVE, new PersonImpl("Ivan"), new ArrayList<CommentImpl>(), new ArrayList<>()));
     }
 
 }

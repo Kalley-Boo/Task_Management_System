@@ -61,4 +61,9 @@ public class StoryImpl extends TaskImpl {
     public List<HistoryLog> getHistory() {
         return getHistory();
     }
+
+    @Override
+    public String print() {
+        return null;//TODO
+    }
 }

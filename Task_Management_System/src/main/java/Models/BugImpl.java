@@ -90,4 +90,9 @@ public class BugImpl extends TaskImpl implements Bug {
     public void addHistoryLog(HistoryLog historyLog){
         super.addHistoryLog(historyLog);
     }
+
+    @Override
+    public String print() {
+        return null; //TODO
+    }
 }
