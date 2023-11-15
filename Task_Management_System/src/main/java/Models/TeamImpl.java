@@ -2,16 +2,19 @@ package Models;
 
 import Models.Contracts.Board;
 import Models.Contracts.Person;
+import Models.Contracts.Printable;
 import Models.Contracts.Team;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamImpl  implements Team {
+public class TeamImpl  implements Team, Printable {
     public static final String MEMBER_CANT_BE_NULL = "Member cannot be null";
     public static final String PERSON_EXISTS = "Person with the same name already exists in the team";
     public static final String BOARD_CANT_BE_NUL = "Board cannot be null";
     public static final String BOARD_EXISTS = "Board with the same name already exists";
+    public static final String EMPTY_TEAM = "No members in the team ";
+    public static final String NO_BOARDS_IN_TEAM = "No boards in team ";
 
     private String name;
     private List<Person> members;
@@ -27,7 +30,7 @@ public class TeamImpl  implements Team {
 
     public void displayMembers() {
         if (members.isEmpty()) {
-            System.out.println("No members in the team " + name);
+            System.out.println(EMPTY_TEAM + name);
         } else {
             System.out.println("Members of team " + name + ":");
             for (Person member : members) {
@@ -38,7 +41,7 @@ public class TeamImpl  implements Team {
 
     public void displayBoards() {
         if (boards.isEmpty()) {
-            System.out.println("No boards in team " + name);
+            System.out.println(NO_BOARDS_IN_TEAM + name);
         } else {
             System.out.println("Boards in team " + name + ":");
             for (Board board : boards) {
@@ -51,7 +54,7 @@ public class TeamImpl  implements Team {
         if(member == null) {
             throw new IllegalArgumentException(MEMBER_CANT_BE_NULL);
         }
-        if(members.contains(member.getName())) { //Not sure if we will keep it, since maybe we allow many people with the same name
+        if(members.contains(member.getName())) {
             throw new IllegalArgumentException(PERSON_EXISTS);
         }
         members.add(member);
@@ -83,6 +86,11 @@ public class TeamImpl  implements Team {
 
     public List<BoardImpl> getBoards() {
         return boards;
+    }
+
+    @Override
+    public String print() {
+        return String.format("Team name: " + getName());
     }
 }
 
