@@ -21,6 +21,7 @@ public class ShowAllPeopleCommandTest {
         create.execute(args);
         Command show = new ShowAllPeopleCommand(boardRepository);
         Assertions.assertEquals(boardRepository.getPeople().get(0).toString(), show.execute(new ArrayList<>()));
+        //TODO rework when person is printable
 
     }
 }
