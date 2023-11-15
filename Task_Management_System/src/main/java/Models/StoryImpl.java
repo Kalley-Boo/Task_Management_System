@@ -1,6 +1,7 @@
 package Models;
+import Models.Contracts.Comment;
+import Models.Contracts.HistoryLog;
 import Models.Contracts.Person;
-import Models.Contracts.Task;
 import Models.Enums.Priority;
 import Models.Enums.TaskSize;
 import Models.Enums.TaskStatus;
@@ -40,13 +41,11 @@ public class StoryImpl extends TaskImpl {
     }
 
     @Override
-    public void addComment(String comment) {
-
+    public void addComment(Comment comment) {super.addComment(comment);
     }
 
     @Override
-    public void addChange(String change) {
-
+    public void addChange(HistoryLog historyLog) {super.addHistoryLog(historyLog);
     }
     public Person getAssignee() {
         return assignee;
@@ -59,7 +58,7 @@ public class StoryImpl extends TaskImpl {
     }
 
     @Override
-    public List<String> getHistory() {
-        return null;
+    public List<HistoryLog> getHistory() {
+        return getHistory();
     }
 }

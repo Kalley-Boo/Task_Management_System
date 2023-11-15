@@ -63,6 +63,8 @@ public abstract  class TaskImpl implements Task {
         return comments;
     }
 
+    public abstract void addChange(HistoryLog historyLog);
+
     public List<HistoryLog> getHistory(){
         return historyLog;
     }

@@ -78,6 +78,11 @@ public class BugImpl extends TaskImpl implements Bug {
         return this.status;
     }
 
+    @Override
+    public void addChange(HistoryLog historyLog) {
+        super.addHistoryLog(historyLog);
+    }
+
     public void addComment(Comment comment){
         super.addComment(comment);
     }

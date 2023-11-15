@@ -16,14 +16,12 @@ import java.util.List;
 public class Bug {
     @Test
     public void constructor_Should_ThrowException_When_TitleIsOutOfRange() {
-        // Arrange, Act, Assert
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new BugImpl(
                         "Problem", "Problem when logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, TaskStatus.ACTIVE, new PersonImpl("Ivan"), new ArrayList<CommentImpl>(), new ArrayList<>()));
     }
     @Test
     public void constructor_Should_ThrowException_When_DescriptionIsOutOfRange() {
-        // Arrange, Act, Assert
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new BugImpl(
                         "Problem to resolve", "Logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, TaskStatus.ACTIVE, new PersonImpl("Ivan"), new ArrayList<CommentImpl>(), new ArrayList<>()));
