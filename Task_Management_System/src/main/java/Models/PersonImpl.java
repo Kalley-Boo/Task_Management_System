@@ -16,9 +16,9 @@ public class PersonImpl implements Person {
     private final List<HistoryLog> history;
 
     public PersonImpl(String name){
-        setName(name);
         this.tasks = new ArrayList<>();
         this.history = new ArrayList<>();
+        setName(name);
     }//constructor
 
     //-----------------------------------------methods-----------------------------------------
