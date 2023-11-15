@@ -7,10 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="my-app" />
+        <module name="Task_Management_System" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Task_Management_System" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

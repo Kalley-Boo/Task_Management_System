@@ -1,56 +1,42 @@
 package Models;
-import Models.Contracts.Comment;
 import Models.Contracts.Person;
-import Models.Contracts.Story;
+import Models.Contracts.Task;
+import Models.Enums.Priority;
+import Models.Enums.TaskSize;
 import Models.Enums.TaskStatus;
 
 import java.util.List;
 
-public class StoryImpl extends TaskImpl implements Story {
 
-    @Override
-    public int getId() {
-        return 0;
+public class StoryImpl extends TaskImpl {
+    private Priority priority;
+    private TaskSize size;
+    private TaskStatus status;
+    private PersonImpl assignee;
+    public StoryImpl(int id, String title, String description, Priority priority, TaskSize size, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history) {
+        super(id, title, description, comments, history);
+        setPriority(priority);
+        setSize(size);
+        setStatus(status);
     }
 
-    @Override
-    public String getTitle() {
-        return null;
+    public Priority getPriority() {
+        return priority;
     }
 
-    @Override
-    public String getDescription() {
-        return null;
+    private void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
-    @Override
-    public TaskStatus getStatus() {
-        return null;
+    public TaskSize getSize() {
+        return size;
     }
 
-    @Override
-    public Person getAssignee() {
-        return null;
+    private void setSize(TaskSize size) {
+        this.size = size;
     }
-
-    @Override
-    public List<String> getHistory() {
-        return null;
-    }
-
-    @Override
-    public void setDescription(String description) {
-
-    }
-
-    @Override
-    public void setStatus(TaskStatus status) {
-
-    }
-
-    @Override
-    public void setAssignee(Person assignee) {
-
+    public void setStatus(TaskStatus status ){
+        this.status=status;
     }
 
     @Override
@@ -61,5 +47,14 @@ public class StoryImpl extends TaskImpl implements Story {
     @Override
     public void addChange(String change) {
 
+    }
+    public Person getAssignee() {
+        return assignee;
+    }
+    private void setAssignee(PersonImpl assignee) {
+        this.assignee = assignee;
+    }
+    public TaskStatus getStatus(){
+        return status;
     }
 }

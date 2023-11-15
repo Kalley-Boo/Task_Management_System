@@ -4,6 +4,10 @@ import Models.*;
 import Models.Contracts.Person;
 import Models.Contracts.Task;
 import Models.Contracts.Team;
+import Models.Enums.Priority;
+import Models.Enums.Severity;
+import Models.Enums.TaskSize;
+import Models.Enums.TaskStatus;
 import core.contracts.BoardRepository;
 
 import java.util.ArrayList;
@@ -45,18 +49,21 @@ public class BoardRepositoryImpl implements BoardRepository {
     }
 
     @Override
-    public void createBug() {
-        this.tasks.add(new BugImpl());
+    public void createBug(int id, String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history) {
+       BugImpl bug = new BugImpl(++id, title, description, stepsToReproduce, priority, severity, status, assignee, comments, history);
+        this.tasks.add(bug);
     }
 
     @Override
-    public void createStory() {
-        this.tasks.add(new StoryImpl());
+    public void createStory(int id, String title, String description, Priority priority, TaskSize size, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history) {
+        StoryImpl story = new StoryImpl(++id, title, description, priority, size, status, assignee,comments,history);
+        this.tasks.add(story);
     }
 
     @Override
-    public void createFeedback() {
-        this.tasks.add(new FeedbackImpl());
+    public void createFeedback(int id, String title, String description, int rating, TaskStatus status, List<CommentImpl> comments, List<String> history) {
+        FeedbackImpl feedback = new FeedbackImpl(++id, title, description, rating, status, comments,history);
+        this.tasks.add(feedback);
     }
 
     @Override

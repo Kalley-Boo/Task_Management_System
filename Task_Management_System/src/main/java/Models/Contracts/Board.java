@@ -4,7 +4,7 @@ import Models.HistoryLog;
 
 import java.util.List;
 
-public interface Board {
+public interface Board extends Printable{
 
     String getName();
     List<Task> getTasks();

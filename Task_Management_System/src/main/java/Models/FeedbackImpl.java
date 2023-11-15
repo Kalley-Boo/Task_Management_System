@@ -1,58 +1,40 @@
 package Models;
 
-import Models.Contracts.Comment;
-import Models.Contracts.Feedback;
-import Models.Contracts.Person;
+import Models.Contracts.Task;
 import Models.Enums.TaskStatus;
 
 import java.util.List;
 
-public class FeedbackImpl extends TaskImpl implements Feedback {
+public class FeedbackImpl extends TaskImpl {
 
-    @Override
-    public int getId() {
-        return 0;
+    private int rating;
+    private TaskStatus status;
+
+
+    public FeedbackImpl(int id, String title, String description, int rating, TaskStatus status, List<CommentImpl> comments, List<String> history) {
+        super(id, title, description, comments, history);
+        setRating(rating);
+        setStatus(status);
     }
 
-    @Override
-    public String getTitle() {
-        return null;
+    public int getRating() {
+        return rating;
     }
 
-    @Override
-    public String getDescription() {
-        return null;
+    private void setRating(int rating) {
+        this.rating = rating;
     }
 
     @Override
     public TaskStatus getStatus() {
-        return null;
-    }
-
-    @Override
-    public Person getAssignee() {
-        return null;
-    }
-
-    @Override
-    public List<String> getHistory() {
-        return null;
-    }
-
-    @Override
-    public void setDescription(String description) {
-
+        return status;
     }
 
     @Override
     public void setStatus(TaskStatus status) {
-
+        this.status = status;
     }
 
-    @Override
-    public void setAssignee(Person assignee) {
-
-    }
 
     @Override
     public void addComment(String comment) {
