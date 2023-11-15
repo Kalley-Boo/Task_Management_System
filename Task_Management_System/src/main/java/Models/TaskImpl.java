@@ -1,5 +1,6 @@
 package Models;
 
+import Models.Contracts.Printable;
 import Models.Contracts.Task;
 import Models.Enums.TaskStatus;
 import util.Validator;
