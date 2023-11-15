@@ -1,5 +1,6 @@
 package models;
 
+import Models.BoardImpl;
 import Models.Contracts.Person;
 import Models.PersonImpl;
 import Models.TeamImpl;
@@ -49,6 +50,36 @@ public class TeamImplTest {
             fail("Expected IllegalArgumentException");
         } catch (IllegalArgumentException e) {
             assertEquals("Person with the same name already exists in the team", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddBoard() {
+        BoardImpl board = new BoardImpl("TestBoard");
+        team.addBoard(board);
+        assertTrue(team.getBoards().contains(board));
+    }
+
+    @Test
+    public void testAddNullBoard() {
+        try {
+            team.addBoard(null);
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Board cannot be null", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddDuplicateBoard() {
+        BoardImpl board = new BoardImpl("TestBoard");
+        team.addBoard(board);
+
+        try {
+            team.addBoard(board);
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Board with the same name already exists", e.getMessage());
         }
     }
 

@@ -14,7 +14,7 @@ public class TeamImpl  implements Team {
     public static final String BOARD_EXISTS = "Board with the same name already exists";
 
     private String name;
-    private List<String> members;
+    private List<Person> members;
     private List<BoardImpl> boards;
 
     public TeamImpl(String name){
@@ -30,7 +30,7 @@ public class TeamImpl  implements Team {
             System.out.println("No members in the team " + name);
         } else {
             System.out.println("Members of team " + name + ":");
-            for (String member : members) {
+            for (Person member : members) {
                 System.out.println(member + " ");
             }
         }
@@ -54,7 +54,7 @@ public class TeamImpl  implements Team {
         if(members.contains(member.getName())) { //Not sure if we will keep it, since maybe we allow many people with the same name
             throw new IllegalArgumentException(PERSON_EXISTS);
         }
-        members.add(member.getName());
+        members.add(member);
     }
 
     public void addBoard(BoardImpl board){
@@ -77,7 +77,7 @@ public class TeamImpl  implements Team {
         return name;
     }
 
-    public List<String> getMembers() {
+    public List<Person> getMembers() {
         return members;
     }
 
