@@ -17,7 +17,7 @@ public class BoardRepositoryImpl implements BoardRepository {
 
     private final List<Task> tasks;
     private final List<BoardImpl> boards;
-    private final List<Team> teams;
+    private static List<TeamImpl> teams = null;
     private final List<Person> people;
 
     public BoardRepositoryImpl(){
@@ -80,4 +80,18 @@ public class BoardRepositoryImpl implements BoardRepository {
     public void createTeam(String name) {
         this.teams.add(new TeamImpl(name));
     }
-}
+
+    public static void createANewBoardInATeam(String boardName, String teamName){
+        int a = 0;
+        for (TeamImpl team:teams
+             ) {if (teams.contains(team)){
+                 a = teams.indexOf(team);
+                 break;
+        }
+        BoardImpl board = new BoardImpl(boardName);
+        teams.get(a).addBoard(board);
+
+        }
+
+        }
+    }
