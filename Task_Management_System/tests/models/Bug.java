@@ -19,13 +19,13 @@ public class Bug {
         // Arrange, Act, Assert
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new BugImpl(
-                        1, "Problem", "Problem when logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, TaskStatus.ACTIVE, new PersonImpl("Ivan"), new ArrayList<CommentImpl>(), new ArrayList<>()));
+                        "Problem", "Problem when logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, TaskStatus.ACTIVE, new PersonImpl("Ivan"), new ArrayList<CommentImpl>(), new ArrayList<>()));
     }
     @Test
     public void constructor_Should_ThrowException_When_DescriptionIsOutOfRange() {
         // Arrange, Act, Assert
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> new BugImpl(
-                        1, "Problem to resolve", "Logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, TaskStatus.ACTIVE, new PersonImpl("Ivan"), new ArrayList<CommentImpl>(), new ArrayList<>()));
+                        "Problem to resolve", "Logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, TaskStatus.ACTIVE, new PersonImpl("Ivan"), new ArrayList<CommentImpl>(), new ArrayList<>()));
     }
 }

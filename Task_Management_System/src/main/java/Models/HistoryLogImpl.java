@@ -1,12 +1,14 @@
 package Models;
 
+import Models.Contracts.HistoryLog;
+
 import java.time.LocalDateTime;
 
-public class HistoryLog {
+public class HistoryLogImpl implements HistoryLog {
     private final String description;
     private final LocalDateTime timestamp;
 
-    public HistoryLog(String description) {
+    public HistoryLogImpl(String description) {
         if (description.isEmpty()) {
             throw new IllegalArgumentException("Description cannot be empty");
         }

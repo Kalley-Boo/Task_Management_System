@@ -13,8 +13,8 @@ public class StoryImpl extends TaskImpl {
     private TaskSize size;
     private TaskStatus status;
     private PersonImpl assignee;
-    public StoryImpl(int id, String title, String description, Priority priority, TaskSize size, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history) {
-        super(id, title, description, comments, history);
+    public StoryImpl(String title, String description, Priority priority, TaskSize size, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history) {
+        super(title, description);
         setPriority(priority);
         setSize(size);
         setStatus(status);
@@ -56,5 +56,10 @@ public class StoryImpl extends TaskImpl {
     }
     public TaskStatus getStatus(){
         return status;
+    }
+
+    @Override
+    public List<String> getHistory() {
+        return null;
     }
 }

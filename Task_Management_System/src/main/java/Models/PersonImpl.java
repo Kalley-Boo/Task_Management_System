@@ -17,7 +17,7 @@ public class PersonImpl implements Person {
     public static final String TASKS_FOR = "Tasks for ";
     private String name;
     private List<Task> tasks;
-    private final List<HistoryLog> history;
+    private final List<HistoryLogImpl> history;
 
     public PersonImpl(String name){
         this.tasks = new ArrayList<>();
@@ -28,13 +28,13 @@ public class PersonImpl implements Person {
     //-----------------------------------------methods-----------------------------------------
 
     public void displayHistory() {
-        for (HistoryLog log : history) {
+        for (HistoryLogImpl log : history) {
             System.out.println(log.viewInfo());
         }
     }
 
     protected void logEvent(String event) {
-        history.add(new HistoryLog(event));
+        history.add(new HistoryLogImpl(event));
     }
 
     private void validateName(String name){

@@ -18,7 +18,7 @@ public class BoardImpl implements Board {
 
     private String name;
     private final List<Task> tasks;
-    private final List<HistoryLog> historyLog;
+    private final List<HistoryLogImpl> historyLog;
 
     public BoardImpl(String name){
         tasks = new ArrayList<>();
@@ -42,7 +42,7 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public List<HistoryLog> getHistoryLogs() {
+    public List<HistoryLogImpl> getHistoryLogs() {
         return this.getHistoryLogs();
     }
 

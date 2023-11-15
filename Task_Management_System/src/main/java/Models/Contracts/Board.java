@@ -1,6 +1,6 @@
 package Models.Contracts;
 
-import Models.HistoryLog;
+import Models.HistoryLogImpl;
 
 import java.util.List;
 
@@ -8,5 +8,5 @@ public interface Board extends Printable{
 
     String getName();
     List<Task> getTasks();
-    List<HistoryLog> getHistoryLogs();
+    List<HistoryLogImpl> getHistoryLogs();
 }

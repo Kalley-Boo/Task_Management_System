@@ -11,8 +11,8 @@ public class FeedbackImpl extends TaskImpl {
     private TaskStatus status;
 
 
-    public FeedbackImpl(int id, String title, String description, int rating, TaskStatus status, List<CommentImpl> comments, List<String> history) {
-        super(id, title, description, comments, history);
+    public FeedbackImpl(String title, String description, int rating, TaskStatus status, List<CommentImpl> comments, List<String> history) {
+        super(title, description);
         setRating(rating);
         setStatus(status);
     }
@@ -28,6 +28,11 @@ public class FeedbackImpl extends TaskImpl {
     @Override
     public TaskStatus getStatus() {
         return status;
+    }
+
+    @Override
+    public List<String> getHistory() {
+        return null;
     }
 
     @Override
