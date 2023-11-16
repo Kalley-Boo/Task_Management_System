@@ -12,6 +12,17 @@ import java.util.List;
 
 public class BugImpl extends TaskImpl implements Bug {
 
+    private static final String PRINT_template = """
+            Id: + %d +\s
+             + Title: %s +\s
+             + Description: %s + \s
+             + Priority: %s + \s
+             + Severity: %s + \s
+             + Assignee: %s + \n
+             + Status: %s + \n
+             """;
+    private static final String NO_COMMENTS = "There are no comments for this bug";
+    private static final String COMMENTS_HEADER = "---COMMENTS---";
     private static final String EMPTY_STEPS_MESSAGE = "The steps to reproduce are empty";
     private List<String> stepsToReproduce;
     private Priority priority;
@@ -93,6 +104,18 @@ public class BugImpl extends TaskImpl implements Bug {
 
     @Override
     public String print() {
-        return null; //TODO
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format(PRINT_template, super.getId(), super.getTitle(), super.getDescription(),
+                this.priority.toString(), this.severity.toString(), this.assignee.getName(), this.status.toString()));
+        if (super.getComments().isEmpty()){
+            stringBuilder.append(NO_COMMENTS);
+            return new String(stringBuilder);
+        }
+        stringBuilder.append("\n").append(COMMENTS_HEADER).append("\n");
+        for (Comment comment : super.getComments()) {
+            stringBuilder.append(comment.print()).append("\n");
+        }
+        stringBuilder.append(COMMENTS_HEADER);
+        return new String(stringBuilder);
     }
 }
