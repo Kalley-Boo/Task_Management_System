@@ -29,5 +29,5 @@ public interface BoardRepository {
     void createPerson(String name);
     void createBoard(String name);
     void createTeam(String name);
-
+    Person findPersonByName(String name);
 }

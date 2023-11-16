@@ -27,10 +27,12 @@ public class PersonImpl implements Person {
 
     //-----------------------------------------methods-----------------------------------------
 
-    public void displayHistory() {
+    public String displayHistory() {
+        StringBuilder stringBuilder = new StringBuilder();
         for (HistoryLogImpl log : history) {
-            System.out.println(log.viewInfo());
+            stringBuilder.append(log.viewInfo());
         }
+        return new String(stringBuilder);
     }
 
     protected void logEvent(String event) {

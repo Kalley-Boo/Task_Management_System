@@ -56,9 +56,8 @@ public class BoardImpl implements Board {
         }
         stringBuilder.append(TASKS_HEADER).append("\n");
         for (Task task : this.tasks) {
-            //stringBuilder.append(task.print);
+            stringBuilder.append(task.print());
             stringBuilder.append("\n");
-            //TODO finish when there is a print method in task
         }
         stringBuilder.append(TASKS_HEADER);
         return new String(stringBuilder);

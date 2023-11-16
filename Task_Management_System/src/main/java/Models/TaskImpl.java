@@ -78,4 +78,6 @@ public abstract  class TaskImpl implements Task {
         this.historyLog.add(historyLog);
     }
 
+    public abstract String print();
+
 }

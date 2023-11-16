@@ -1,9 +1,6 @@
 package core;
 
-import commands.CommandType;
-import commands.CreatePersonCommand;
-import commands.CreateTeamCommand;
-import commands.ShowAllPeopleCommand;
+import commands.*;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import core.contracts.CommandFactory;
@@ -27,6 +24,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 //
             case SHOWALLPEOPLE:
                 return new ShowAllPeopleCommand(boardRepository);
+            case SHOWPERSONCACTIVITY:
+                return new ShowPersonActivityCommand(boardRepository);
             default:
                 throw new UnsupportedOperationException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, commandTypeValue));
         }
