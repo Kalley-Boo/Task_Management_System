@@ -23,7 +23,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         setStatus(status);
     }
 
-    private void setRating(int rating){
+    public void setRating(int rating){
         Validator.validateIntRange(rating, MIN_RATING, MAX_RATING);
         this.rating = rating;
     }

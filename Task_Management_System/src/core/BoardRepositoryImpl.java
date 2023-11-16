@@ -1,6 +1,7 @@
 package core;
 
 import Models.*;
+import Models.Contracts.Feedback;
 import Models.Contracts.Person;
 import Models.Contracts.Task;
 import Models.Contracts.Team;
@@ -24,6 +25,7 @@ public class BoardRepositoryImpl implements BoardRepository {
     private final List<Person> people;
 
     public BoardRepositoryImpl() {
+
         this.tasks = new ArrayList<>();
         this.boards = new ArrayList<>();
         this.teams = new ArrayList<>();
@@ -159,4 +161,16 @@ public class BoardRepositoryImpl implements BoardRepository {
             }
             throw new PersonNotFoundException(String.format(PERSON_NOT_FOUND_EXCEPTION, name));
         }
+
+    @Override
+    public void changeRatingOfAFeedback(String feedbackName, int rating) {
+        int a = 0;
+        for (Task task : tasks
+        ) {if(task.getTitle().equals(feedbackName))
+        { a = tasks.indexOf(task);
+            break;}}
+        FeedbackImpl feedback = (FeedbackImpl) tasks.get(a);
+        feedback.setRating(rating); //TODO
     }
+
+}
