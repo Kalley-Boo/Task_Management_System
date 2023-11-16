@@ -1,9 +1,7 @@
 package core;
 
 import Models.*;
-import Models.Contracts.Person;
-import Models.Contracts.Task;
-import Models.Contracts.Team;
+import Models.Contracts.*;
 import Models.Enums.Priority;
 import Models.Enums.Severity;
 import Models.Enums.TaskSize;
@@ -22,21 +20,42 @@ public class BoardRepositoryImpl implements BoardRepository {
 
 
     private final List<Task> tasks;
+    private final List<Bug> bugs;
+    private final List<Feedback> feedbacks;
+    private final List<Story> stories;
     private final List<BoardImpl> boards;
     private final List<TeamImpl> teams;
     private final List<Person> people;
 
     public BoardRepositoryImpl() {
         this.tasks = new ArrayList<>();
+        this.bugs = new ArrayList<>();
+        this.feedbacks = new ArrayList<>();
+        this.stories = new ArrayList<>();
         this.boards = new ArrayList<>();
         this.teams = new ArrayList<>();
         this.people = new ArrayList<>();
     }
 
-
+    // ----------------GETTERS------------------
     @Override
     public List<Task> getTasks() {
         return new ArrayList<>(tasks);
+    }
+
+    @Override
+    public List<Bug> getBugs() {
+        return new ArrayList<>(bugs);
+    }
+
+    @Override
+    public List<Feedback> getFeedbacks() {
+        return new ArrayList<>(feedbacks);
+    }
+
+    @Override
+    public List<Story> getStories() {
+        return new ArrayList<>(stories);
     }
 
     @Override
@@ -53,6 +72,8 @@ public class BoardRepositoryImpl implements BoardRepository {
     public List<Team> getTeams() {
         return new ArrayList<>(teams);
     }
+
+    //-----------------CREATE------------------
 
     @Override
     public void createBug(int id, String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history) {
@@ -81,6 +102,8 @@ public class BoardRepositoryImpl implements BoardRepository {
     public void createBoard(String name) {
         this.boards.add(new BoardImpl(name));
     }
+
+    //------------------OTHERS----------------------
     @Override
     public void assignTaskToAPerson(String personName, String taskName){
         int a = 0;

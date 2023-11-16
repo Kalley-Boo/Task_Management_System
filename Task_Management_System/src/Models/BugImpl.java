@@ -24,7 +24,6 @@ public class BugImpl extends TaskImpl implements Bug {
              """;
     private static final String NO_COMMENTS = "There are no comments for this bug";
     private static final String COMMENTS_HEADER = "---COMMENTS---";
-    private static final String EMPTY_STEPS_MESSAGE = "The steps to reproduce are empty";
     private static final String UNASSIGNED = "Unassigned";
     private static final String INVALID_INPUT_MESSAGE = "The %s can not be NULL";
 
