@@ -19,10 +19,14 @@ public class ShowTeamsActivityCommand implements Command {
 
     public String showTeamsActivity(String name){
     //TODO figure out what I need to print exactly
+        return null;
     }
 
     @Override
     public String execute(List<String> parameters) {
-        return null;//TODO
+        if (parameters.size() != EXPECTED_PARAM_COUNT){
+            throw new IllegalArgumentException(INVALID_PARAM_COUNT);
+        }
+        return showTeamsActivity(parameters.get(0));
     }
 }

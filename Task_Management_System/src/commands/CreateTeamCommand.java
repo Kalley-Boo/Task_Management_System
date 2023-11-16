@@ -25,7 +25,6 @@ public class CreateTeamCommand implements Command {
         return String.format(TEAM_WAS_CREATED, name);
     }
 
-
     @Override
     public String execute(List<String> parameters) {
         if (parameters.size() != EXPECTED_PARAMETERS_COUNT){
