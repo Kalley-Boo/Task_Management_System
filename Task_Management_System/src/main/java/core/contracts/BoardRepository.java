@@ -33,4 +33,7 @@ public interface BoardRepository {
     void createANewBoardInATeam(String boardName, String teamName);
     void showAllTeamBoards(String boardname);
     void showBoardSActivity (String boardname);
+
+    void assignTaskToAPerson(String personName, String taskName);
+
 }
