@@ -20,7 +20,7 @@ public class StoryImpl extends TaskImpl {
              + Assignee: %s + \n
              + Status: %s + \n
              """;
-    private static final String NO_COMMENTS = "There are no comments for this bug";
+    private static final String NO_COMMENTS = "There are no comments for this story";
     private static final String COMMENTS_HEADER = "---COMMENTS---";
     private Priority priority;
     private TaskSize size;
