@@ -33,6 +33,6 @@ public class CreateANewBoardInATeamCommand implements Command {
         return String.format(BOARD_CREATED, boardName, teamName);
     }
     private void createANewBoardInATeam(String boardName, String teamName){
-        BoardRepositoryImpl.createANewBoardInATeam(boardName, teamName);
+        boardRepository.createANewBoardInATeam(boardName, teamName);
     }
 }

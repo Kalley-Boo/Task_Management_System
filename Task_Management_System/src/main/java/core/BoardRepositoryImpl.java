@@ -20,7 +20,7 @@ public class BoardRepositoryImpl implements BoardRepository {
 
     private final List<Task> tasks;
     private final List<BoardImpl> boards;
-    private static List<TeamImpl> teams = null;
+    private final List<TeamImpl> teams;
     private final List<Person> people;
 
     public BoardRepositoryImpl() {
@@ -84,27 +84,38 @@ public class BoardRepositoryImpl implements BoardRepository {
         this.teams.add(new TeamImpl(name));
     }
 
-    public static void createANewBoardInATeam(String boardName, String teamName) {
+    @Override
+    public void createANewBoardInATeam(String boardName, String teamName) {
         int a = 0;
         for (TeamImpl team : teams
-        ) {
-            if (teams.contains(team)) {
-                a = teams.indexOf(team);
-                break;
-            }
+        ) {if(team.getName().equals(teamName))
+        { a = teams.indexOf(team);
+            break;}}
             BoardImpl board = new BoardImpl(boardName);
             teams.get(a).addBoard(board);
-
         }
 
-    }
 
-    public Person findPersonByName(String name) {
-        for (Person p : this.people) {
-            if (p.getName().equals(name)) {
-                return p;
+    @Override
+    public void showAllTeamBoards(String teamName) {
+
+        int a = 0;
+        for (TeamImpl team : teams
+        ) {if(team.getName().equals(teamName))
+            { a = teams.indexOf(team);
+                break;}}
+            for (BoardImpl board:teams.get(a).getBoards()) {
+                board.print();
             }
+
         }
-        throw new PersonNotFoundException(String.format(PERSON_NOT_FOUND_EXCEPTION, name));
+
+        public Person findPersonByName (String name){
+            for (Person p : this.people) {
+                if (p.getName().equals(name)) {
+                    return p;
+                }
+            }
+            throw new PersonNotFoundException(String.format(PERSON_NOT_FOUND_EXCEPTION, name));
+        }
     }
-}
