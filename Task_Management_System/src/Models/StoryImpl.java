@@ -2,14 +2,19 @@ package Models;
 import Models.Contracts.Comment;
 import Models.Contracts.HistoryLog;
 import Models.Contracts.Person;
+import Models.Contracts.Story;
 import Models.Enums.Priority;
+import Models.Enums.StatusStory;
 import Models.Enums.TaskSize;
 import Models.Enums.TaskStatus;
+import exceptions.InvalidInputException;
+import util.Parser;
 
+import javax.swing.plaf.basic.BasicIconFactory;
 import java.util.List;
 
 
-public class StoryImpl extends TaskImpl {
+public class StoryImpl extends TaskImpl implements Story {
 
     private static final String PRINT_template = """
             Id: + %d +\s
@@ -22,63 +27,46 @@ public class StoryImpl extends TaskImpl {
              """;
     private static final String NO_COMMENTS = "There are no comments for this story";
     private static final String COMMENTS_HEADER = "---COMMENTS---";
+    private static final String INVALID_INPUT_MESSAGE = "The %s can not be NULL";
     private Priority priority;
     private TaskSize size;
-    private TaskStatus status;
+    private StatusStory status;
     private PersonImpl assignee;
-    public StoryImpl(String title, String description, Priority priority, TaskSize size, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history) {
+
+    //create a Story with an assignee
+    public StoryImpl(String title, String description, Priority priority, TaskSize size, PersonImpl assignee) {
         super(title, description);
         setPriority(priority);
         setSize(size);
-        setStatus(status);
+        this.status = StatusStory.NOT_DONE;
+        setAssignee(assignee);
     }
 
-    public Priority getPriority() {
-        return priority;
+    //create unassigned Story
+    public StoryImpl(String title, String description, Priority priority, TaskSize size) {
+        super(title, description);
+        setPriority(priority);
+        setSize(size);
+        this.status = StatusStory.NOT_DONE;
     }
 
-    private void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-
-    public TaskSize getSize() {
-        return size;
-    }
-
-    private void setSize(TaskSize size) {
-        this.size = size;
-    }
-    public void setStatus(TaskStatus status ){
-        this.status=status;
-    }
 
     @Override
-    public void addComment(Comment comment) {super.addComment(comment);
-    }
-
-    @Override
-    public void addChange(HistoryLog historyLog) {super.addHistoryLog(historyLog);
-    }
-    public Person getAssignee() {
-        return assignee;
-    }
-    private void setAssignee(PersonImpl assignee) {
-        this.assignee = assignee;
-    }
-    public TaskStatus getStatus(){
-        return status;
-    }
-
-    @Override
-    public List<HistoryLog> getHistory() {
-        return getHistory();
+    public void addChange(HistoryLog historyLog) {
+        //TODO
     }
 
     @Override
     public String print() {
         StringBuilder stringBuilder = new StringBuilder();
+        String assignee;
+        if (this.assignee == null){
+            assignee = "Unassigned";
+        }else {
+            assignee = this.assignee.getName();
+        }
         stringBuilder.append(String.format(PRINT_template, super.getId(), super.getTitle(), super.getDescription(),
-                this.priority.toString(), this.size.toString(), this.assignee.getName(), this.status.toString()));
+                this.priority.toString(), this.size.toString(), assignee, this.status.toString()));
         if (super.getComments().isEmpty()){
             stringBuilder.append(NO_COMMENTS);
             return new String(stringBuilder);
@@ -90,4 +78,54 @@ public class StoryImpl extends TaskImpl {
         stringBuilder.append(COMMENTS_HEADER);
         return new String(stringBuilder);
     }
+
+    @Override
+    public Priority getPriority() {
+        return null;
+    }
+
+    @Override
+    public TaskSize getSize() {
+        return null;
+    }
+
+    @Override
+    public StatusStory getStatus() {
+        return null;
+    }
+
+    @Override
+    public Person getAssignee() {
+        return null;
+    }
+
+    private void setPriority(Priority priority) {
+        if (assignee == null){
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "priority"));
+        }
+        this.priority = priority;
+    }
+
+    private void setSize(TaskSize size) {
+        if (assignee == null){
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "size"));
+        }
+        this.size = size;
+    }
+
+    private void setStatus(StatusStory status) {
+        if (assignee == null){
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "status"));
+        }
+        this.status = status;
+    }
+
+    private void setAssignee(PersonImpl assignee) {
+        if (assignee == null){
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "assignee"));
+        }
+        this.assignee = assignee;
+    }
+
+    //TODO edit priority, size, status, assignee methods, log the changes
 }
