@@ -37,5 +37,7 @@ public interface BoardRepository {
     void showBoardSActivity (String boardname);
 
     void assignTaskToAPerson(String personName, String taskName);
+    void unassignTaskToAPerson(String personName, String taskName);
+    void changeRatingOfAFeedback (String feedbackName, int rating);
 
 }
