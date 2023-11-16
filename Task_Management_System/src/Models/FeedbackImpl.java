@@ -4,6 +4,7 @@ import Models.Contracts.Comment;
 import Models.Contracts.Feedback;
 import Models.Contracts.HistoryLog;
 import Models.Contracts.Task;
+import Models.Enums.StatusFeedback;
 import Models.Enums.TaskStatus;
 import util.Validator;
 
@@ -25,21 +26,21 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     private static final int MAX_RATING = 10;
 
     private int rating;
-    private TaskStatus status;
+    private StatusFeedback status;
 
 
-    public FeedbackImpl(String title, String description, int rating, TaskStatus status, List<CommentImpl> comments, List<String> history) {
+    public FeedbackImpl(String title, String description, int rating) {
         super(title, description);
         setRating(rating);
-        setStatus(status);
+        this.status = StatusFeedback.NEW;
     }
 
-    public void setRating(int rating){
+    private void setRating(int rating){
         Validator.validateIntRange(rating, MIN_RATING, MAX_RATING);
         this.rating = rating;
     }
 
-    private void setStatus(TaskStatus taskStatus){
+    private void setStatus(StatusFeedback taskStatus){
         this.status = taskStatus;
     }
 
@@ -49,7 +50,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     }
 
     @Override
-    public TaskStatus getStatus() {
+    public StatusFeedback getStatus() {
         return this.status;
     }
 
@@ -75,5 +76,5 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         //TODO
     }
 
-    //TODO implement update rating and status
+    //TODO implement update rating and status, log the changes
 }

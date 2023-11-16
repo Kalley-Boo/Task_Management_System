@@ -28,6 +28,7 @@ public class StoryImpl extends TaskImpl implements Story {
     private static final String NO_COMMENTS = "There are no comments for this story";
     private static final String COMMENTS_HEADER = "---COMMENTS---";
     private static final String INVALID_INPUT_MESSAGE = "The %s can not be NULL";
+    private static final String UNASSIGNED = "Unassigned";
     private Priority priority;
     private TaskSize size;
     private StatusStory status;
@@ -61,7 +62,7 @@ public class StoryImpl extends TaskImpl implements Story {
         StringBuilder stringBuilder = new StringBuilder();
         String assignee;
         if (this.assignee == null){
-            assignee = "Unassigned";
+            assignee = UNASSIGNED;
         }else {
             assignee = this.assignee.getName();
         }
