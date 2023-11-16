@@ -12,6 +12,7 @@ public class PersonImpl implements Person {
     public static final String NAME_NOT_VALID = "Please enter a valid name with 5 to 15 symbols";
     public static final String TASK_CANNOT_BE_NULL = "Task cannot be null";
     public static final String ADDED = "Task added: %s";
+    public static final String REMOVED = "Task removed: %s";
     public static final String NO_TASKS = "No tasks available for ";
     public static final String NAME_SET = "Name set to: %s";
     public static final String TASKS_FOR = "Tasks for ";
@@ -53,6 +54,13 @@ public class PersonImpl implements Person {
         }
         tasks.add(task);
         logEvent(String.format(ADDED, task.getDescription()));
+    }
+    public void removeTask(Task task) {
+        if (task == null) {
+            throw new IllegalArgumentException(TASK_CANNOT_BE_NULL);
+        }
+        tasks.remove(task);
+        logEvent(String.format(REMOVED, task.getDescription()));
     }
 
     public void displayTasks() {

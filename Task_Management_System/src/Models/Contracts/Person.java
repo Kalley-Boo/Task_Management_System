@@ -6,5 +6,7 @@ public interface Person {
     public void addTask(Task task);
     public void displayTasks();
 
+    public void removeTask(Task task);
+
     String print();
 }

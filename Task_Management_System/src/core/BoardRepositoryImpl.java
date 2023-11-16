@@ -92,6 +92,20 @@ public class BoardRepositoryImpl implements BoardRepository {
     }}
 
     @Override
+    public void unassignTaskToAPerson(String personName, String taskName) {
+        int a = 0;
+        for (Task task : tasks
+        ) {if(task.getTitle().equals(taskName))
+        { a = tasks.indexOf(task);
+            break;}}
+        for (Person p : this.people) {
+            if (p.getName().equals(personName)) {
+                p.removeTask(tasks.get(a));
+            }
+        }
+    }
+
+    @Override
     public void createTeam(String name) {
         this.teams.add(new TeamImpl(name));
     }
