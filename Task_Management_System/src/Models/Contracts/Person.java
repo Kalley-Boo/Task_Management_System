@@ -5,4 +5,6 @@ public interface Person {
     public String getName();
     public void addTask(Task task);
     public void displayTasks();
+
+    String print();
 }

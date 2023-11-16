@@ -22,7 +22,8 @@ public class ShowBoardSActivityCommand implements Command{
     }
 
     @Override
-    public String execute(List<String> parameters) { if (parameters.size() != EXPECTED_PARAMETERS_COUNT){
+    public String execute(List<String> parameters) {
+        if (parameters.size() != EXPECTED_PARAMETERS_COUNT){
         throw new InvalidInputException(INVALID_PARAMETERS_COUNT_MESSAGE);
     }
 
