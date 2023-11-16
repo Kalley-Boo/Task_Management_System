@@ -15,6 +15,11 @@ public class TeamImpl  implements Team, Printable {
     public static final String BOARD_EXISTS = "Board with the same name already exists";
     public static final String EMPTY_TEAM = "No members in the team ";
     public static final String NO_BOARDS_IN_TEAM = "No boards in team ";
+    public static final String TEAM_HEADER = "---Team---";
+    public static final String NO_MEMBERS_ERROR = "There are no members on this team.";
+    public static final String MEMBERS_HEADER = "---Members---";
+    public static final String BOARDS_HEAEDR = "---Boards---";
+    public static final String NO_BOARDS_ERROR = "There are no boards in this team.";
 
     private String name;
     private List<Person> members;
@@ -90,7 +95,26 @@ public class TeamImpl  implements Team, Printable {
 
     @Override
     public String print() {
-        return String.format("Team name: " + getName());
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(TEAM_HEADER).append("\n");
+        stringBuilder.append(this.name).append("\n");
+        if(this.members.isEmpty()){
+            return new String(stringBuilder.append(NO_MEMBERS_ERROR));
+        }
+        stringBuilder.append(MEMBERS_HEADER).append("\n");
+        for(Person member : this.members){
+            stringBuilder.append(member.print()).append(" ");
+        }
+        stringBuilder.append("\n");
+        if(this.boards.isEmpty()){
+            return new String(stringBuilder.append(NO_BOARDS_ERROR));
+        }
+        stringBuilder.append(BOARDS_HEAEDR).append("\n");
+        for(Board board : this.boards){
+            stringBuilder.append(board.print());
+            stringBuilder.append("\n");
+        }
+        return new String(stringBuilder);
     }
 }
 

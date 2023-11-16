@@ -15,6 +15,8 @@ public class PersonImpl implements Person {
     public static final String NO_TASKS = "No tasks available for ";
     public static final String NAME_SET = "Name set to: %s";
     public static final String TASKS_FOR = "Tasks for ";
+    public static final String HAS_TASKS = " has tasks: ";
+    public static final String HAS_NO_TASKS_ASSIGNED_YET = " - has no tasks assigned yet.";
     private String name;
     private List<Task> tasks;
     private final List<HistoryLogImpl> history;
@@ -62,6 +64,21 @@ public class PersonImpl implements Person {
                 System.out.println(task.getDescription());
             }
         }
+    }
+
+    public String print(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("---Member---").append("\n");
+        stringBuilder.append(this.name);
+        if (this.tasks.isEmpty()){
+            stringBuilder.append(HAS_NO_TASKS_ASSIGNED_YET);
+        }
+        stringBuilder.append(HAS_TASKS);
+        for(Task task : this.tasks){
+            stringBuilder.append(task.print());
+            stringBuilder.append(" ");
+        }
+        return new String(stringBuilder);
     }
 
     //-----------------------------------setters and getters------------------------------------
