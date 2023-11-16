@@ -20,28 +20,46 @@ public class TeamImpl  implements Team, Printable {
     public static final String MEMBERS_HEADER = "---Members---";
     public static final String BOARDS_HEAEDR = "---Boards---";
     public static final String NO_BOARDS_ERROR = "There are no boards in this team.";
+    public static final String ADDED_TO_THIS_TEAM = "%s has been successfully added to this team!";
+    public static final String SET_TO = "Name set to: %s";
 
     private String name;
     private List<Person> members;
     private List<BoardImpl> boards;
+    private final List<HistoryLogImpl> history;
 
     public TeamImpl(String name){
         setName(name);
+        this.history = new ArrayList<>();
         this.members = new ArrayList<>();
         this.boards = new ArrayList<>();
     }//constructor
 
     //----------------------------------------methods--------------------------------------------
 
-    public void displayMembers() {
+    public String displayHistory() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (HistoryLogImpl log : history) {
+            stringBuilder.append(log.viewInfo());
+        }
+        return new String(stringBuilder);
+    }
+
+    protected void logEvent(String event) {
+        history.add(new HistoryLogImpl(event));
+    }
+
+    public String displayMembers() {
+        StringBuilder stringBuilder = new StringBuilder();
         if (members.isEmpty()) {
-            System.out.println(EMPTY_TEAM + name);
+            return new String(stringBuilder.append(EMPTY_TEAM).append(name));
         } else {
-            System.out.println("Members of team " + name + ":");
+            stringBuilder.append("---Members---");
             for (Person member : members) {
-                System.out.println(member + " ");
+                stringBuilder.append(member).append(" ");
             }
         }
+        return new String(stringBuilder);
     }
 
     public void displayBoards() {
@@ -62,6 +80,7 @@ public class TeamImpl  implements Team, Printable {
         if(members.contains(member.getName())) {
             throw new IllegalArgumentException(PERSON_EXISTS);
         }
+        logEvent(String.format(ADDED_TO_THIS_TEAM, member.getName()));
         members.add(member);
     }
 
@@ -72,12 +91,14 @@ public class TeamImpl  implements Team, Printable {
         if(boards.contains(board)){
             throw new IllegalArgumentException(BOARD_EXISTS);
         }
+        logEvent(String.format("Board %s added to this team", board.getName()));
         boards.add(board);
     }
 
     //-----------------------------------setters and getters----------------------------------------
 
     private void setName(String name){
+        logEvent(String.format(SET_TO, name));
         this.name = name;
     }
 

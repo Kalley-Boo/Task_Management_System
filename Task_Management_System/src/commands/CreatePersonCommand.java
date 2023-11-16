@@ -1,8 +1,6 @@
 package commands;
 
-import Models.PersonImpl;
 import commands.contracts.Command;
-import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;
 
@@ -15,7 +13,6 @@ public class CreatePersonCommand implements Command {
     private static final String INVALID_PARAMETERS_COUNT_MESSAGE = String.format(
             "CreatePerson command expects %d parameters.",
             EXPECTED_PARAMETERS_COUNT);
-
 
     private final BoardRepository boardRepository;
 

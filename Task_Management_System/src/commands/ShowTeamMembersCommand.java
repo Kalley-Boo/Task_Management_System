@@ -6,21 +6,20 @@ import core.contracts.BoardRepository;
 
 import java.util.List;
 
-public class ShowTeamsActivityCommand implements Command {
-
+public class ShowTeamMembersCommand implements Command {
     private static final int EXPECTED_PARAM_COUNT = 1;
     private static final String INVALID_PARAM_COUNT = String.format(
-            "The show teams activity command expects %d parameters.",
+            "The show team members command expects %d parameters.",
             EXPECTED_PARAM_COUNT);
     private final BoardRepository boardRepository;
 
-    public ShowTeamsActivityCommand(BoardRepository boardRepository){
+    public ShowTeamMembersCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
-    public String showTeamsActivity(String name){
+    public String showTeamMembers(String name){
         Team foundTeam = this.boardRepository.findTeamByName(name);
-        return foundTeam.displayHistory();
+        return foundTeam.displayMembers();
     }
 
     @Override
@@ -28,6 +27,6 @@ public class ShowTeamsActivityCommand implements Command {
         if (parameters.size() != EXPECTED_PARAM_COUNT){
             throw new IllegalArgumentException(INVALID_PARAM_COUNT);
         }
-        return showTeamsActivity(parameters.get(0));
+        return showTeamMembers(parameters.get(0));
     }
 }

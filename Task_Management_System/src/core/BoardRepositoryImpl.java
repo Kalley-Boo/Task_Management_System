@@ -10,6 +10,7 @@ import Models.Enums.TaskSize;
 import Models.Enums.TaskStatus;
 import core.contracts.BoardRepository;
 import exceptions.PersonNotFoundException;
+import exceptions.TeamNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,8 @@ import java.util.List;
 public class BoardRepositoryImpl implements BoardRepository {
 
     private static final String PERSON_NOT_FOUND_EXCEPTION = "Person with name %s not found.";
+    private static final String TEAM_NOT_FOUND_EXCEPTION = "Team with name %s not found.";
+
 
     private final List<Task> tasks;
     private final List<BoardImpl> boards;
@@ -144,5 +147,14 @@ public class BoardRepositoryImpl implements BoardRepository {
                 }
             }
             throw new PersonNotFoundException(String.format(PERSON_NOT_FOUND_EXCEPTION, name));
+        }
+
+        public Team findTeamByName (String name){
+            for(Team t : this.teams){
+                if(t.getName().equals(name)){
+                    return t;
+                }
+            }
+            throw new TeamNotFoundException(String.format(TEAM_NOT_FOUND_EXCEPTION, name));
         }
     }
