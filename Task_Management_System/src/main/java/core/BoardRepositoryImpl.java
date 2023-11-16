@@ -109,6 +109,21 @@ public class BoardRepositoryImpl implements BoardRepository {
             }
 
         }
+    @Override
+    public void showBoardSActivity (String boardname){
+        int a = 0;
+        for (BoardImpl board : boards
+        ) {if(board.getName().equals(boardname))
+        { a = boards.indexOf(board);
+            break;}}
+
+        for (HistoryLogImpl historyLog: boards.get(a).getHistoryLogs()
+             ) {
+            historyLog.viewInfo();
+
+        }
+        }
+
 
         public Person findPersonByName (String name){
             for (Person p : this.people) {

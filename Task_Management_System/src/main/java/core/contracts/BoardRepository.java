@@ -32,4 +32,5 @@ public interface BoardRepository {
     Person findPersonByName(String name);
     void createANewBoardInATeam(String boardName, String teamName);
     void showAllTeamBoards(String boardname);
+    void showBoardSActivity (String boardname);
 }
