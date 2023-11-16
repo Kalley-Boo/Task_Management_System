@@ -10,6 +10,18 @@ import java.util.List;
 
 
 public class StoryImpl extends TaskImpl {
+
+    private static final String PRINT_template = """
+            Id: + %d +\s
+             + Title: %s +\s
+             + Description: %s + \s
+             + Priority: %s + \s
+             + Task size: %s + \s
+             + Assignee: %s + \n
+             + Status: %s + \n
+             """;
+    private static final String NO_COMMENTS = "There are no comments for this bug";
+    private static final String COMMENTS_HEADER = "---COMMENTS---";
     private Priority priority;
     private TaskSize size;
     private TaskStatus status;
@@ -64,6 +76,18 @@ public class StoryImpl extends TaskImpl {
 
     @Override
     public String print() {
-        return null;//TODO
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format(PRINT_template, super.getId(), super.getTitle(), super.getDescription(),
+                this.priority.toString(), this.size.toString(), this.assignee.getName(), this.status.toString()));
+        if (super.getComments().isEmpty()){
+            stringBuilder.append(NO_COMMENTS);
+            return new String(stringBuilder);
+        }
+        stringBuilder.append("\n").append(COMMENTS_HEADER).append("\n");
+        for (Comment comment : super.getComments()) {
+            stringBuilder.append(comment.print()).append("\n");
+        }
+        stringBuilder.append(COMMENTS_HEADER);
+        return new String(stringBuilder);
     }
 }
