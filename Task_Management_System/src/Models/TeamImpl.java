@@ -18,7 +18,7 @@ public class TeamImpl  implements Team, Printable {
     public static final String TEAM_HEADER = "---Team---";
     public static final String NO_MEMBERS_ERROR = "There are no members on this team.";
     public static final String MEMBERS_HEADER = "---Members---";
-    public static final String BOARDS_HEAEDR = "---Boards---";
+    public static final String BOARDS_HEADER = "---Boards---";
     public static final String NO_BOARDS_ERROR = "There are no boards in this team.";
     public static final String ADDED_TO_THIS_TEAM = "%s has been successfully added to this team!";
     public static final String SET_TO = "Name set to: %s";
@@ -77,7 +77,7 @@ public class TeamImpl  implements Team, Printable {
         if(member == null) {
             throw new IllegalArgumentException(MEMBER_CANT_BE_NULL);
         }
-        if(members.contains(member.getName())) {
+        if(members.contains(member.getName())) {// TODO
             throw new IllegalArgumentException(PERSON_EXISTS);
         }
         logEvent(String.format(ADDED_TO_THIS_TEAM, member.getName()));
@@ -130,7 +130,7 @@ public class TeamImpl  implements Team, Printable {
         if(this.boards.isEmpty()){
             return new String(stringBuilder.append(NO_BOARDS_ERROR));
         }
-        stringBuilder.append(BOARDS_HEAEDR).append("\n");
+        stringBuilder.append(BOARDS_HEADER).append("\n");
         for(Board board : this.boards){
             stringBuilder.append(board.print());
             stringBuilder.append("\n");

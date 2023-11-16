@@ -3,12 +3,10 @@ package Models;
 import Models.Contracts.Comment;
 import Models.Contracts.Feedback;
 import Models.Contracts.HistoryLog;
-import Models.Contracts.Task;
 import Models.Enums.StatusFeedback;
-import Models.Enums.TaskStatus;
+import exceptions.InvalidInputException;
 import util.Validator;
 
-import java.util.List;
 
 public class FeedbackImpl extends TaskImpl implements Feedback {
 
@@ -21,6 +19,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
              """;
     private static final String NO_COMMENTS = "There are no comments for this feedback";
     private static final String COMMENTS_HEADER = "---COMMENTS---";
+    private static final String INVALID_INPUT_MESSAGE = "The %s can not be NULL";
 
     private static final int MIN_RATING = 1;
     private static final int MAX_RATING = 10;
@@ -41,6 +40,9 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     }
 
     private void setStatus(StatusFeedback taskStatus){
+        if (taskStatus == null){
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "status"));
+        }
         this.status = taskStatus;
     }
 

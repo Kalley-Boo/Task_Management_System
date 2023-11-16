@@ -6,6 +6,7 @@ import Models.Enums.Severity;
 import Models.Enums.StatusBug;
 import Models.Enums.TaskStatus;
 import commands.contracts.Command;
+import exceptions.InvalidInputException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class BugImpl extends TaskImpl implements Bug {
     private static final String COMMENTS_HEADER = "---COMMENTS---";
     private static final String EMPTY_STEPS_MESSAGE = "The steps to reproduce are empty";
     private static final String UNASSIGNED = "Unassigned";
+    private static final String INVALID_INPUT_MESSAGE = "The %s can not be NULL";
 
     private List<String> stepsToReproduce;
     private Priority priority;
@@ -52,25 +54,36 @@ public class BugImpl extends TaskImpl implements Bug {
     }
 
     private void setStepsToReproduce(List<String> steps){
-        if (steps != null){
-            this.stepsToReproduce = steps;
-        }else {
-            throw new IllegalArgumentException(EMPTY_STEPS_MESSAGE);
+        if (steps == null){
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "steps"));
         }
+        this.stepsToReproduce = steps;
     }
 
     private void setPriority(Priority priority){
+        if (assignee == null){
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "priority"));
+        }
         this.priority = priority;
     }
 
     private void setSeverity(Severity severity){
+        if (severity == null){
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "severity"));
+        }
         this.severity = severity;
     }
     private void setStatus(StatusBug status){
+        if (status == null){
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "status"));
+        }
         this.status = status;
     }
 
     private void setAssignee(Person assignee){
+        if (assignee == null){
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "assignee"));
+        }
         this.assignee = assignee;
     }
 
@@ -106,6 +119,9 @@ public class BugImpl extends TaskImpl implements Bug {
     }
 
     public void addComment(Comment comment){
+        if (comment == null){
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "comment"));
+        }
         super.addComment(comment);
     }
 
