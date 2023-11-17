@@ -77,8 +77,10 @@ public class TeamImpl  implements Team, Printable {
         if(member == null) {
             throw new IllegalArgumentException(MEMBER_CANT_BE_NULL);
         }
-        if(members.contains(member.getName())) {
-            throw new IllegalArgumentException(PERSON_EXISTS);
+        for(Person person : this.members){
+            if(member.getName().equals(person.getName())){
+                throw new IllegalArgumentException(PERSON_EXISTS);
+            }
         }
         logEvent(String.format(ADDED_TO_THIS_TEAM, member.getName()));
         members.add(member);
