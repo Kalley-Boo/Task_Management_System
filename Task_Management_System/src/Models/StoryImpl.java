@@ -51,10 +51,38 @@ public class StoryImpl extends TaskImpl implements Story {
         this.status = StatusStory.NOT_DONE;
     }
 
+    public void editPriority(Priority newPriority) {
+        Priority oldPriority = this.priority;
+        this.priority = newPriority;
+        String changeLog = String.format("Priority changed from %s to %s", oldPriority, newPriority);
+        addChange(new HistoryLogImpl(changeLog));
+    }
+
+    public void editSize(TaskSize newSize) {
+        TaskSize oldSize = this.size;
+        this.size = newSize;
+        String changeLog = String.format("Task size changed from %s to %s", oldSize, newSize);
+        addChange(new HistoryLogImpl(changeLog));
+    }
+
+    public void editStatus(StatusStory newStatus) {
+        StatusStory oldStatus = this.status;
+        this.status = newStatus;
+        String changeLog = String.format("Status changed from %s to %s", oldStatus, newStatus);
+        addChange(new HistoryLogImpl(changeLog));
+    }
+
+    public void editAssignee(PersonImpl newAssignee) {
+        Person oldAssignee = this.assignee;
+        this.assignee = newAssignee;
+        String changeLog = String.format("Assignee changed from %s to %s", oldAssignee.getName(), newAssignee.getName());
+        addChange(new HistoryLogImpl(changeLog));
+    }
+
 
     @Override
     public void addChange(HistoryLog historyLog) {
-        //TODO
+        super.addHistoryLog(historyLog);
     }
 
     @Override

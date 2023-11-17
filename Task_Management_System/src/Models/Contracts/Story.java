@@ -12,4 +12,9 @@ public interface Story {
      TaskSize getSize();
      StatusStory getStatus();
      Person getAssignee();
+
+     void editAssignee(PersonImpl newAssignee);
+     void editStatus(StatusStory newStatus);
+     void editSize(TaskSize newSize);
+     void editPriority(Priority newPriority);
 }

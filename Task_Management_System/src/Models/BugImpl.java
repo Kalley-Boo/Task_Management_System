@@ -10,6 +10,7 @@ import exceptions.InvalidInputException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class BugImpl extends TaskImpl implements Bug {
 
     private static final String PRINT_template = """
@@ -52,38 +53,38 @@ public class BugImpl extends TaskImpl implements Bug {
         this.status = StatusBug.ACTIVE;
     }
 
-    public void editPriority(Priority newPriority, Person editor){
+    public void editPriority(Priority newPriority){
         Priority oldPriority = this.priority;
         this.priority = newPriority;
-        String changeLog = String.format("Priority changed from %s to %s, by: %s", oldPriority, newPriority, editor.getName());
+        String changeLog = String.format("Priority changed from %s to %s", oldPriority, newPriority);
         addChange(new HistoryLogImpl(changeLog));
     }
 
-    public void editSeverity(Severity newSeverity, Person editor){
+    public void editSeverity(Severity newSeverity){
         Severity oldSeverity = this.severity;
         this.severity = newSeverity;
-        String changeLog = String.format("Severity changed from %s to %s, by: %s", oldSeverity, newSeverity, editor.getName());
+        String changeLog = String.format("Severity changed from %s to %s", oldSeverity, newSeverity);
         addChange(new HistoryLogImpl(changeLog));
     }
 
-    public void editStatus(StatusBug newStatus, Person editor) {
+    public void editStatus(StatusBug newStatus) {
         StatusBug oldStatus = this.status;
         this.status = newStatus;
-        String changeLog = String.format("Status changed from %s to %s, by: %s", oldStatus, newStatus, editor.getName());
+        String changeLog = String.format("Status changed from %s to %s", oldStatus, newStatus);
         addChange(new HistoryLogImpl(changeLog));
     }
 
-    public void editStepsToReproduce(List<String> newSteps, Person editor) {
+    public void editStepsToReproduce(List<String> newSteps) {
         List<String> oldSteps = new ArrayList<>(this.stepsToReproduce);
         this.stepsToReproduce = new ArrayList<>(newSteps);
-        String changeLog = String.format("Steps to reproduce changed from %s to %s, by: %s", oldSteps, newSteps, editor.getName());
+        String changeLog = String.format("Steps to reproduce changed from %s to %s", oldSteps, newSteps);
         addChange(new HistoryLogImpl(changeLog));
     }
 
-    public void editAssignee(Person newAssignee, Person editor) {
+    public void editAssignee(Person newAssignee) {
         Person oldAssignee = this.assignee;
         this.assignee = newAssignee;
-        String changeLog = String.format("Assignee changed from %s to %s, by: %s", oldAssignee.getName(), newAssignee.getName(), editor.getName());
+        String changeLog = String.format("Assignee changed from %s to %s", oldAssignee.getName(), newAssignee.getName());
         addChange(new HistoryLogImpl(changeLog));
     }
 
