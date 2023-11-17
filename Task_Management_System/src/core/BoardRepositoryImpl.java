@@ -181,6 +181,26 @@ public class BoardRepositoryImpl implements BoardRepository {
     public void assignTaskToAPerson(String personName, String title) {
         findPersonByName(personName).addTask(findTaskByTitle(title));
     }
+    @Override
+    public void unassignTaskToAPerson(String personName, String taskName) {
+        findPersonByName(personName).removeTask(findTaskByTitle(taskName));
+            }
+
+    public Feedback findFeedbackByName(String feedbackName){
+        int a = 0;
+        for (Feedback feedback : feedbacks
+        ) {if(feedback.getTitle().equals(feedbackName))
+        { a =feedbacks.indexOf(feedback);break;}
+        } return feedbacks.indexOf(a);
+    }
+    @Override
+    public void changeRatingOfAFeedback(String feedbackName, int rating) {
+        findFeedbackByName(feedbackName).setRating(rating);
+    }
+    @Override
+    public void changeStatusOfAFeedback(String feedbackName, StatusFeedback status){
+
+    }
 
     @Override
     public void createANewBoardInATeam(String boardName, String teamName) {
