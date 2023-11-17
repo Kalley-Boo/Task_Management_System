@@ -33,13 +33,13 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         setRating(rating);
         this.status = StatusFeedback.NEW;
     }
-
-    private void setRating(int rating){
+    @Override
+    public void setRating(int rating){
         Validator.validateIntRange(rating, MIN_RATING, MAX_RATING);
         this.rating = rating;
     }
-
-    private void setStatus(StatusFeedback taskStatus){
+    @Override
+    public void setStatus(StatusFeedback taskStatus){
         if (taskStatus == null){
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "status"));
         }
@@ -76,6 +76,10 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     @Override
     public void addChange(HistoryLog historyLog) {
         //TODO
+    }
+    @Override
+    public String getName(){
+        return getTitle();
     }
 
     //TODO implement update rating and status, log the changes
