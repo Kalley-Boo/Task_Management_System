@@ -30,6 +30,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowAllTeamsCommand(boardRepository);
             case SHOWPERSONCACTIVITY:
                 return new ShowPersonActivityCommand(boardRepository);
+            case ADDCOMMENTTOTASK:
+                return new AddCommentToTaskCommand(boardRepository);
             default:
                 throw new UnsupportedOperationException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, commandTypeValue));
         }

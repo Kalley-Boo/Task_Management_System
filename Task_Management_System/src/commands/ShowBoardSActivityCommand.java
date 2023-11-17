@@ -11,7 +11,6 @@ import java.util.List;
 
 
 public class ShowBoardSActivityCommand implements Command {
-    private static final String COMMAND_IS_DONE = "These are all activities for board with name %s.";
     public static final int EXPECTED_PARAMETERS_COUNT = 1;
     private static final String INVALID_PARAMETERS_COUNT_MESSAGE = String.format(
             "ShowBoardSActivity command expects %d parameters.",

@@ -69,6 +69,7 @@ public class TeamImpl  implements Team, Printable {
             System.out.println("Boards in team " + name + ":");
             for (Board board : boards) {
                 System.out.println(board.getName());
+                System.out.println(" ");
             }
         }
     }
