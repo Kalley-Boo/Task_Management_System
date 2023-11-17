@@ -7,6 +7,7 @@ import Models.Enums.StatusBug;
 
 import exceptions.InvalidInputException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BugImpl extends TaskImpl implements Bug {
@@ -54,7 +55,6 @@ public class BugImpl extends TaskImpl implements Bug {
     public void editPriority(Priority newPriority, Person editor){
         Priority oldPriority = this.priority;
         this.priority = newPriority;
-
         String changeLog = String.format("Priority changed from %s to %s, by: %s", oldPriority, newPriority, editor.getName());
         addChange(new HistoryLogImpl(changeLog));
     }
@@ -62,12 +62,30 @@ public class BugImpl extends TaskImpl implements Bug {
     public void editSeverity(Severity newSeverity, Person editor){
         Severity oldSeverity = this.severity;
         this.severity = newSeverity;
-
         String changeLog = String.format("Severity changed from %s to %s, by: %s", oldSeverity, newSeverity, editor.getName());
         addChange(new HistoryLogImpl(changeLog));
     }
 
-    public void editStatus(Stat)
+    public void editStatus(StatusBug newStatus, Person editor) {
+        StatusBug oldStatus = this.status;
+        this.status = newStatus;
+        String changeLog = String.format("Status changed from %s to %s, by: %s", oldStatus, newStatus, editor.getName());
+        addChange(new HistoryLogImpl(changeLog));
+    }
+
+    public void editStepsToReproduce(List<String> newSteps, Person editor) {
+        List<String> oldSteps = new ArrayList<>(this.stepsToReproduce);
+        this.stepsToReproduce = new ArrayList<>(newSteps);
+        String changeLog = String.format("Steps to reproduce changed from %s to %s, by: %s", oldSteps, newSteps, editor.getName());
+        addChange(new HistoryLogImpl(changeLog));
+    }
+
+    public void editAssignee(Person newAssignee, Person editor) {
+        Person oldAssignee = this.assignee;
+        this.assignee = newAssignee;
+        String changeLog = String.format("Assignee changed from %s to %s, by: %s", oldAssignee.getName(), newAssignee.getName(), editor.getName());
+        addChange(new HistoryLogImpl(changeLog));
+    }
 
     private void setStepsToReproduce(List<String> steps){
         if (steps == null){
@@ -169,5 +187,4 @@ public class BugImpl extends TaskImpl implements Bug {
         return new String(stringBuilder);
     }
 
-    //TODO , severity, status, steps to reproduce, assignee EDITING METHODS, log the changes
 }
