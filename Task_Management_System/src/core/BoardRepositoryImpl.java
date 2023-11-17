@@ -174,19 +174,6 @@ public class BoardRepositoryImpl implements BoardRepository {
         }
         throw new BoardNotFoundException(String.format(BOARD_NOT_FOUND_EXCEPTION, name));
     }
-//    //------------------SHOW----------------------
-//
-//    @Override
-//    public void showAllTeamBoards(String teamName) {
-//        for (Board board : findTeamByName(teamName).getBoards()) {
-//            board.print();
-//        }
-//    }
-//    @Override
-//    public String showBoardsActivity (String boardName){
-//        List<HistoryLog> activity = findBoardByName(boardName).getHistoryLogs();
-//        return Printer.historyPrinter(activity);
-//    }
 
 
     //------------------OTHERS----------------------

@@ -40,9 +40,6 @@ public interface BoardRepository {
 
 
     void createANewBoardInATeam(String boardName, String teamName);
-    void showAllTeamBoards(String boardname);
-    String showBoardsActivity (String boardName);
-
     void assignTaskToAPerson(String personName, String taskName);
     void unassignTaskToAPerson(String personName, String taskName);
     void changeRatingOfAFeedback (String feedbackName, int rating);
