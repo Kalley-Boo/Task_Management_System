@@ -7,4 +7,7 @@ public interface Feedback {
 
     int getRating();
     StatusFeedback getStatus();
+    void setRating(int rating);
+    void setStatus(StatusFeedback status);
+    String getName();
 }

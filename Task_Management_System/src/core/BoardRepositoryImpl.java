@@ -2,10 +2,7 @@ package core;
 
 import Models.*;
 import Models.Contracts.*;
-import Models.Enums.Priority;
-import Models.Enums.Severity;
-import Models.Enums.TaskSize;
-import Models.Enums.TaskStatus;
+import Models.Enums.*;
 import core.contracts.BoardRepository;
 import exceptions.BoardNotFoundException;
 import exceptions.PersonNotFoundException;
@@ -186,12 +183,13 @@ public class BoardRepositoryImpl implements BoardRepository {
         findPersonByName(personName).removeTask(findTaskByTitle(taskName));
             }
 
-    public Feedback findFeedbackByName(String feedbackName){
-        int a = 0;
+    public Feedback findFeedbackByName(String feedbackName) {
         for (Feedback feedback : feedbacks
-        ) {if(feedback.getTitle().equals(feedbackName))
-        { a =feedbacks.indexOf(feedback);break;}
-        } return feedbacks.indexOf(a);
+        ) {
+            if (feedback.getName().equals(feedbackName)) {
+                return feedback;
+            }
+        } throw new IllegalArgumentException (String.format("Feedback with name %s was not found.", feedbackName));
     }
     @Override
     public void changeRatingOfAFeedback(String feedbackName, int rating) {
@@ -199,7 +197,7 @@ public class BoardRepositoryImpl implements BoardRepository {
     }
     @Override
     public void changeStatusOfAFeedback(String feedbackName, StatusFeedback status){
-
+        findFeedbackByName(feedbackName).setStatus(status);
     }
 
     @Override

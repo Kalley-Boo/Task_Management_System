@@ -3,10 +3,7 @@ package core.contracts;
 import Models.BoardImpl;
 import Models.CommentImpl;
 import Models.Contracts.*;
-import Models.Enums.Priority;
-import Models.Enums.Severity;
-import Models.Enums.TaskSize;
-import Models.Enums.TaskStatus;
+import Models.Enums.*;
 import Models.PersonImpl;
 import Models.TeamImpl;
 
@@ -43,6 +40,7 @@ public interface BoardRepository {
     void assignTaskToAPerson(String personName, String taskName);
     void unassignTaskToAPerson(String personName, String taskName);
     void changeRatingOfAFeedback (String feedbackName, int rating);
+
     void changeStatusOfAFeedback(String feedbackName, StatusFeedback status);
 
 }
