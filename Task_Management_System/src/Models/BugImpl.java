@@ -4,11 +4,9 @@ import Models.Contracts.*;
 import Models.Enums.Priority;
 import Models.Enums.Severity;
 import Models.Enums.StatusBug;
-import Models.Enums.TaskStatus;
-import commands.contracts.Command;
+
 import exceptions.InvalidInputException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BugImpl extends TaskImpl implements Bug {
@@ -33,6 +31,7 @@ public class BugImpl extends TaskImpl implements Bug {
     private Person assignee;
     private StatusBug status;
 
+
     //create a bug with an assignee
     public BugImpl(int id, String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, PersonImpl assignee) {
         super(id, title, description);
@@ -51,6 +50,24 @@ public class BugImpl extends TaskImpl implements Bug {
         setSeverity(severity);
         this.status = StatusBug.ACTIVE;
     }
+
+    public void editPriority(Priority newPriority, Person editor){
+        Priority oldPriority = this.priority;
+        this.priority = newPriority;
+
+        String changeLog = String.format("Priority changed from %s to %s, by: %s", oldPriority, newPriority, editor.getName());
+        addChange(new HistoryLogImpl(changeLog));
+    }
+
+    public void editSeverity(Severity newSeverity, Person editor){
+        Severity oldSeverity = this.severity;
+        this.severity = newSeverity;
+
+        String changeLog = String.format("Severity changed from %s to %s, by: %s", oldSeverity, newSeverity, editor.getName());
+        addChange(new HistoryLogImpl(changeLog));
+    }
+
+    public void editStatus(Stat)
 
     private void setStepsToReproduce(List<String> steps){
         if (steps == null){
@@ -72,6 +89,7 @@ public class BugImpl extends TaskImpl implements Bug {
         }
         this.severity = severity;
     }
+
     private void setStatus(StatusBug status){
         if (status == null){
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "status"));
@@ -151,5 +169,5 @@ public class BugImpl extends TaskImpl implements Bug {
         return new String(stringBuilder);
     }
 
-    //TODO edit priority, severity, status, steps to reproduce, assignee EDITING METHODS, log the changes
+    //TODO , severity, status, steps to reproduce, assignee EDITING METHODS, log the changes
 }
