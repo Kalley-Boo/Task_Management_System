@@ -1,6 +1,7 @@
 package Models;
 
 import Models.Contracts.Board;
+import Models.Contracts.HistoryLog;
 import Models.Contracts.Task;
 import util.Validator;
 
@@ -42,7 +43,7 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public List<HistoryLogImpl> getHistoryLogs() {
+    public List<HistoryLog> getHistoryLogs() {
         return this.getHistoryLogs();
     }
 

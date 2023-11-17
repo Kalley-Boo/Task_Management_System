@@ -8,5 +8,5 @@ public interface Board extends Printable{
 
     String getName();
     List<Task> getTasks();
-    List<HistoryLogImpl> getHistoryLogs();
+    List<HistoryLog> getHistoryLogs();
 }

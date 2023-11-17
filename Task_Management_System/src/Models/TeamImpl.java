@@ -25,7 +25,7 @@ public class TeamImpl  implements Team, Printable {
 
     private String name;
     private List<Person> members;
-    private List<BoardImpl> boards;
+    private List<Board> boards;
     private final List<HistoryLogImpl> history;
 
     public TeamImpl(String name){
@@ -84,7 +84,7 @@ public class TeamImpl  implements Team, Printable {
         members.add(member);
     }
 
-    public void addBoard(BoardImpl board){
+    public void addBoard(Board board){
         if(board == null){
             throw new IllegalArgumentException(BOARD_CANT_BE_NUL);
         }
@@ -109,8 +109,8 @@ public class TeamImpl  implements Team, Printable {
     public List<Person> getMembers() {
         return members;
     }
-
-    public List<BoardImpl> getBoards() {
+    @Override
+    public List<Board> getBoards() {
         return boards;
     }
 

@@ -8,6 +8,7 @@ import Models.Enums.Severity;
 import Models.Enums.TaskSize;
 import Models.Enums.TaskStatus;
 import Models.PersonImpl;
+import Models.TeamImpl;
 
 import java.util.List;
 
@@ -27,16 +28,20 @@ public interface BoardRepository {
     void createAssignedStory(String title, String description, Priority priority, TaskSize size, PersonImpl assignee);
     void createUnassignedStory(String title, String description, Priority priority, TaskSize size);
     void createFeedback(String title, String description, int rating);
-
     void createPerson(String name);
-    void createBoard(String name);
+    Board createBoard(String name);
     void createTeam(String name);
-    Person findPersonByName(String name);
 
+
+    Person findPersonByName(String name);
     Team findTeamByName(String name);
+    Task findTaskByTitle(String title);
+    Board findBoardByName(String name);
+
+
     void createANewBoardInATeam(String boardName, String teamName);
     void showAllTeamBoards(String boardname);
-    void showBoardSActivity (String boardname);
+    String showBoardsActivity (String boardName);
 
     void assignTaskToAPerson(String personName, String taskName);
     void unassignTaskToAPerson(String personName, String taskName);

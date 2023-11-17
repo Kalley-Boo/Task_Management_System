@@ -19,7 +19,7 @@ public class HistoryLogImpl implements HistoryLog {
     public String getDescription() {
         return description;
     }
-
+    @Override
     public String viewInfo() {
         return String.format("Time:%s ,Event:%s", timestamp, description);
     }

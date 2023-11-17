@@ -32,6 +32,6 @@ public class ShowBoardSActivityCommand implements Command{
         return String.format(COMMAND_IS_DONE, boardName);
     }
     private void showBoardSActivity(String boardName){
-        boardRepository.showBoardSActivity(boardName);
+        boardRepository.showBoardsActivity(boardName);
     }
 }
