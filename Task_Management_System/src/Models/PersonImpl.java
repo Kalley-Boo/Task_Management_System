@@ -19,7 +19,7 @@ public class PersonImpl implements Person {
     public static final String HAS_TASKS = " has tasks: ";
     public static final String HAS_NO_TASKS_ASSIGNED_YET = " - has no tasks assigned yet.";
     private String name;
-    private List<Task> tasks;
+    private final List<Task> tasks;
     private final List<HistoryLogImpl> history;
 
     public PersonImpl(String name){

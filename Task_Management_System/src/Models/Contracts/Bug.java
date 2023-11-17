@@ -2,6 +2,7 @@ package Models.Contracts;
 
 import Models.Enums.Priority;
 import Models.Enums.Severity;
+import Models.Enums.StatusBug;
 import Models.Enums.TaskStatus;
 import Models.PersonImpl;
 
@@ -13,5 +14,5 @@ public interface Bug {
     Priority getPriority();
     Severity getSeverity();
     Person getAssignee();
-    TaskStatus getTaskStatus();
+    StatusBug getTaskStatus();
 }

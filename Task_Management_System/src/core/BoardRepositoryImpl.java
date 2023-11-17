@@ -1,42 +1,67 @@
 package core;
 
 import Models.*;
-import Models.Contracts.Person;
-import Models.Contracts.Task;
-import Models.Contracts.Team;
+import Models.Contracts.*;
 import Models.Enums.Priority;
 import Models.Enums.Severity;
 import Models.Enums.TaskSize;
 import Models.Enums.TaskStatus;
 import core.contracts.BoardRepository;
+import exceptions.BoardNotFoundException;
 import exceptions.PersonNotFoundException;
+import exceptions.TaskNotFoundException;
 import exceptions.TeamNotFoundException;
+import util.Printer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BoardRepositoryImpl implements BoardRepository {
 
-    private static final String PERSON_NOT_FOUND_EXCEPTION = "Person with name %s not found.";
-    private static final String TEAM_NOT_FOUND_EXCEPTION = "Team with name %s not found.";
+    private int nextId = 1;
 
+    private static final String TEAM_NOT_FOUND_EXCEPTION = "Team with name %s not found.";
+    private static final String PERSON_NOT_FOUND_EXCEPTION = "Person with name %s not found.";
+    private static final String BOARD_NOT_FOUND_EXCEPTION = "Board with name %s not found.";
+    private static final String TASK_NOT_FOUND_EXCEPTION = "Task with title %s not found.";
 
     private final List<Task> tasks;
+    private final List<Bug> bugs;
+    private final List<Feedback> feedbacks;
+    private final List<Story> stories;
     private final List<BoardImpl> boards;
     private final List<TeamImpl> teams;
     private final List<Person> people;
 
     public BoardRepositoryImpl() {
         this.tasks = new ArrayList<>();
+        this.bugs = new ArrayList<>();
+        this.feedbacks = new ArrayList<>();
+        this.stories = new ArrayList<>();
         this.boards = new ArrayList<>();
         this.teams = new ArrayList<>();
         this.people = new ArrayList<>();
     }
 
-
+    // ----------------GETTERS------------------
     @Override
     public List<Task> getTasks() {
         return new ArrayList<>(tasks);
+    }
+
+    @Override
+    public List<Bug> getBugs() {
+        return new ArrayList<>(bugs);
+    }
+
+    @Override
+    public List<Feedback> getFeedbacks() {
+        return new ArrayList<>(feedbacks);
+    }
+
+    @Override
+    public List<Story> getStories() {
+        return new ArrayList<>(stories);
     }
 
     @Override
@@ -54,23 +79,43 @@ public class BoardRepositoryImpl implements BoardRepository {
         return new ArrayList<>(teams);
     }
 
+
+    //-----------------CREATE------------------
     @Override
-    public void createBug(int id, String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history) {
-        BugImpl bug = new BugImpl(title, description, stepsToReproduce, priority, severity, status, assignee, comments, history);
+    public void createAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status, PersonImpl assignee) {
+        BugImpl bug = new BugImpl(nextId++, title, description, stepsToReproduce, priority, severity, assignee);
         this.tasks.add(bug);
+        this.bugs.add(bug);
     }
 
     @Override
-    public void createStory(int id, String title, String description, Priority priority, TaskSize size, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history) {
-        StoryImpl story = new StoryImpl(title, description, priority, size, status, assignee, comments, history);
+    public void createUnassignedAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status) {
+        BugImpl bug = new BugImpl(nextId++, title, description, stepsToReproduce, priority, severity);
+        this.tasks.add(bug);
+        this.bugs.add(bug);
+    }
+
+    @Override
+    public void createAssignedStory(String title, String description, Priority priority, TaskSize size, PersonImpl assignee) {
+        StoryImpl story = new StoryImpl(nextId++, title, description, priority, size, assignee);
         this.tasks.add(story);
+        this.stories.add(story);
     }
 
     @Override
-    public void createFeedback(int id, String title, String description, int rating, TaskStatus status, List<CommentImpl> comments, List<String> history) {
-        FeedbackImpl feedback = new FeedbackImpl(title, description, rating, status, comments, history);
-        this.tasks.add(feedback);
+    public void createUnassignedStory(String title, String description, Priority priority, TaskSize size) {
+        StoryImpl story = new StoryImpl(nextId++, title, description, priority, size);
+        this.tasks.add(story);
+        this.stories.add(story);
     }
+
+    @Override
+    public void createFeedback(String title, String description, int rating) {
+        FeedbackImpl feedback = new FeedbackImpl(nextId, title, description, rating);
+        this.tasks.add(feedback);
+        this.feedbacks.add(feedback);
+    }
+
 
     @Override
     public void createPerson(String name) {
@@ -78,83 +123,68 @@ public class BoardRepositoryImpl implements BoardRepository {
     }
 
     @Override
-    public void createBoard(String name) {
-        this.boards.add(new BoardImpl(name));
+    public Board createBoard(String name) {
+        BoardImpl board = new BoardImpl(name);
+        this.boards.add(board);
+        return board;
     }
-    @Override
-    public void assignTaskToAPerson(String personName, String taskName){
-        int a = 0;
-        for (Task task : tasks
-        ) {if(task.getTitle().equals(taskName))
-        { a = tasks.indexOf(task);
-            break;}}
-        for (Person p : this.people) {
-            if (p.getName().equals(personName)) {
-                p.addTask(tasks.get(a));
-            }
-    }}
 
     @Override
     public void createTeam(String name) {
         this.teams.add(new TeamImpl(name));
     }
 
+    //------------------FIND------------------------
+    @Override
+    public Person findPersonByName(String name) {
+        for (Person p : this.people) {
+            if (p.getName().equals(name)) {
+                return p;
+            }
+        }
+        throw new PersonNotFoundException(String.format(PERSON_NOT_FOUND_EXCEPTION, name));
+    }
+
+    @Override
+    public Team findTeamByName(String name) {
+        for (Team t : this.teams) {
+            if (t.getName().equals(name)) {
+                return t;
+            }
+        }
+        throw new TeamNotFoundException(String.format(TEAM_NOT_FOUND_EXCEPTION, name));
+    }
+
+    @Override
+    public Task findTaskByTitle(String title) {
+        for (Task task : this.tasks) {
+            if (task.getTitle().equals(title)) {
+                return task;
+            }
+        }
+        throw new TaskNotFoundException(String.format(TASK_NOT_FOUND_EXCEPTION, title));
+    }
+
+    @Override
+    public Board findBoardByName(String name) {
+        for (Board board : this.boards) {
+            if (board.getName().equals(name)) {
+                return board;
+            }
+        }
+        throw new BoardNotFoundException(String.format(BOARD_NOT_FOUND_EXCEPTION, name));
+    }
+
+
+    //------------------OTHERS----------------------
+    @Override
+    public void assignTaskToAPerson(String personName, String title) {
+        findPersonByName(personName).addTask(findTaskByTitle(title));
+    }
+
     @Override
     public void createANewBoardInATeam(String boardName, String teamName) {
-        int a = 0;
-        for (TeamImpl team : teams
-        ) {if(team.getName().equals(teamName))
-        { a = teams.indexOf(team);
-            break;}}
-            BoardImpl board = new BoardImpl(boardName);
-            teams.get(a).addBoard(board);
-        }
-
-
-    @Override
-    public void showAllTeamBoards(String teamName) {
-
-        int a = 0;
-        for (TeamImpl team : teams
-        ) {if(team.getName().equals(teamName))
-            { a = teams.indexOf(team);
-                break;}}
-            for (BoardImpl board:teams.get(a).getBoards()) {
-                board.print();
-            }
-
-        }
-    @Override
-    public void showBoardSActivity (String boardname){
-        int a = 0;
-        for (BoardImpl board : boards
-        ) {if(board.getName().equals(boardname))
-        { a = boards.indexOf(board);
-            break;}}
-
-        for (HistoryLogImpl historyLog: boards.get(a).getHistoryLogs()
-             ) {
-            historyLog.viewInfo();
-
-        }
-        }
-
-
-        public Person findPersonByName (String name){
-            for (Person p : this.people) {
-                if (p.getName().equals(name)) {
-                    return p;
-                }
-            }
-            throw new PersonNotFoundException(String.format(PERSON_NOT_FOUND_EXCEPTION, name));
-        }
-
-        public Team findTeamByName (String name){
-            for(Team t : this.teams){
-                if(t.getName().equals(name)){
-                    return t;
-                }
-            }
-            throw new TeamNotFoundException(String.format(TEAM_NOT_FOUND_EXCEPTION, name));
-        }
+        findTeamByName(teamName).addBoard(createBoard(boardName));
     }
+
+}

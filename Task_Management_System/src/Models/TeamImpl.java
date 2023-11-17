@@ -18,14 +18,14 @@ public class TeamImpl  implements Team, Printable {
     public static final String TEAM_HEADER = "---Team---";
     public static final String NO_MEMBERS_ERROR = "There are no members on this team.";
     public static final String MEMBERS_HEADER = "---Members---";
-    public static final String BOARDS_HEAEDR = "---Boards---";
+    public static final String BOARDS_HEADER = "---Boards---";
     public static final String NO_BOARDS_ERROR = "There are no boards in this team.";
     public static final String ADDED_TO_THIS_TEAM = "%s has been successfully added to this team!";
     public static final String SET_TO = "Name set to: %s";
 
     private String name;
     private List<Person> members;
-    private List<BoardImpl> boards;
+    private List<Board> boards;
     private final List<HistoryLogImpl> history;
 
     public TeamImpl(String name){
@@ -86,7 +86,7 @@ public class TeamImpl  implements Team, Printable {
         members.add(member);
     }
 
-    public void addBoard(BoardImpl board){
+    public void addBoard(Board board){
         if(board == null){
             throw new IllegalArgumentException(BOARD_CANT_BE_NUL);
         }
@@ -111,8 +111,8 @@ public class TeamImpl  implements Team, Printable {
     public List<Person> getMembers() {
         return members;
     }
-
-    public List<BoardImpl> getBoards() {
+    @Override
+    public List<Board> getBoards() {
         return boards;
     }
 
@@ -132,7 +132,7 @@ public class TeamImpl  implements Team, Printable {
         if(this.boards.isEmpty()){
             return new String(stringBuilder.append(NO_BOARDS_ERROR));
         }
-        stringBuilder.append(BOARDS_HEAEDR).append("\n");
+        stringBuilder.append(BOARDS_HEADER).append("\n");
         for(Board board : this.boards){
             stringBuilder.append(board.print());
             stringBuilder.append("\n");
