@@ -35,8 +35,8 @@ public class StoryImpl extends TaskImpl implements Story {
     private PersonImpl assignee;
 
     //create a Story with an assignee
-    public StoryImpl(String title, String description, Priority priority, TaskSize size, PersonImpl assignee) {
-        super(title, description);
+    public StoryImpl(int id, String title, String description, Priority priority, TaskSize size, PersonImpl assignee) {
+        super(id, title, description);
         setPriority(priority);
         setSize(size);
         this.status = StatusStory.NOT_DONE;
@@ -44,8 +44,8 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
     //create unassigned Story
-    public StoryImpl(String title, String description, Priority priority, TaskSize size) {
-        super(title, description);
+    public StoryImpl(int id, String title, String description, Priority priority, TaskSize size) {
+        super(id, title, description);
         setPriority(priority);
         setSize(size);
         this.status = StatusStory.NOT_DONE;

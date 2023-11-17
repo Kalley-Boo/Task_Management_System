@@ -22,11 +22,11 @@ public interface BoardRepository {
     List<Team> getTeams();
 
 
-    void createBug(int id, String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history);
-
-    void createStory(int id, String title, String description, Priority priority, TaskSize size, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history);
-
-    void createFeedback(int id, String title, String description, int rating, TaskStatus status, List<CommentImpl> comments, List<String> history);
+    void createAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status, PersonImpl assignee);
+    void createUnassignedAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status);
+    void createAssignedStory(String title, String description, Priority priority, TaskSize size, PersonImpl assignee);
+    void createUnassignedStory(String title, String description, Priority priority, TaskSize size);
+    void createFeedback(String title, String description, int rating);
 
     void createPerson(String name);
     void createBoard(String name);

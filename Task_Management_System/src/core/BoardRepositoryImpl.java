@@ -15,6 +15,7 @@ import java.util.List;
 
 public class BoardRepositoryImpl implements BoardRepository {
 
+    private int nextId = 1;
     private static final String PERSON_NOT_FOUND_EXCEPTION = "Person with name %s not found.";
     private static final String TEAM_NOT_FOUND_EXCEPTION = "Team with name %s not found.";
 
@@ -73,25 +74,44 @@ public class BoardRepositoryImpl implements BoardRepository {
         return new ArrayList<>(teams);
     }
 
+
+
     //-----------------CREATE------------------
-
     @Override
-    public void createBug(int id, String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history) {
-        BugImpl bug = new BugImpl(title, description, stepsToReproduce, priority, severity, status, assignee, comments, history);
+    public void createAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status, PersonImpl assignee) {
+        BugImpl bug = new BugImpl(nextId++, title, description, stepsToReproduce, priority, severity, assignee);
         this.tasks.add(bug);
+        this.bugs.add(bug);
     }
 
     @Override
-    public void createStory(int id, String title, String description, Priority priority, TaskSize size, TaskStatus status, PersonImpl assignee, List<CommentImpl> comments, List<String> history) {
-        StoryImpl story = new StoryImpl(title, description, priority, size, status, assignee, comments, history);
+    public void createUnassignedAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status) {
+        BugImpl bug = new BugImpl(nextId++, title, description, stepsToReproduce, priority, severity);
+        this.tasks.add(bug);
+        this.bugs.add(bug);
+    }
+
+    @Override
+    public void createAssignedStory(String title, String description, Priority priority, TaskSize size, PersonImpl assignee) {
+        StoryImpl story = new StoryImpl(nextId++, title, description, priority, size, assignee);
         this.tasks.add(story);
+        this.stories.add(story);
     }
 
     @Override
-    public void createFeedback(int id, String title, String description, int rating, TaskStatus status, List<CommentImpl> comments, List<String> history) {
-        FeedbackImpl feedback = new FeedbackImpl(title, description, rating, status, comments, history);
-        this.tasks.add(feedback);
+    public void createUnassignedStory(String title, String description, Priority priority, TaskSize size) {
+        StoryImpl story = new StoryImpl(nextId++, title, description, priority, size);
+        this.tasks.add(story);
+        this.stories.add(story);
     }
+
+    @Override
+    public void createFeedback(String title, String description, int rating) {
+        FeedbackImpl feedback = new FeedbackImpl(nextId, title, description, rating);
+        this.tasks.add(feedback);
+        this.feedbacks.add(feedback);
+    }
+
 
     @Override
     public void createPerson(String name) {

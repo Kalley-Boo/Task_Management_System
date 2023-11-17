@@ -15,23 +15,21 @@ public abstract  class TaskImpl implements Task {
     public static final int DESCRIPTION_MIN_VALUE = 10;
     public static final int DESCRIPTION_MAX_VALUE = 500;
     private static final String DESCRIPTION_ERROR_MESSAGE = "Description should have between 10 and 500 symbols.";
-    private static int nextId = 1;
     private int id;
     private String title;
     private String description;
     private final List<Comment> comments;
     private final List<HistoryLog> historyLog;
 
-    public TaskImpl(String title, String description){
-        setId();
+    public TaskImpl(int id, String title, String description){
+        setId(id);
         setTitle(title);
         setDescription(description);
         this.comments = new ArrayList<>();
         this.historyLog = new ArrayList<>();
     }
-    protected void setId() {
-        this.id = nextId;
-        nextId++;
+    private void setId(int id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {

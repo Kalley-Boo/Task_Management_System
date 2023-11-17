@@ -34,8 +34,8 @@ public class BugImpl extends TaskImpl implements Bug {
     private StatusBug status;
 
     //create a bug with an assignee
-    public BugImpl(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, PersonImpl assignee) {
-        super(title, description);
+    public BugImpl(int id, String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, PersonImpl assignee) {
+        super(id, title, description);
         setStepsToReproduce(stepsToReproduce);
         setPriority(priority);
         setSeverity(severity);
@@ -44,8 +44,8 @@ public class BugImpl extends TaskImpl implements Bug {
     }
 
     // create unassigned bug
-    public BugImpl(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity) {
-        super(title, description);
+    public BugImpl(int id, String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity) {
+        super(id, title, description);
         setStepsToReproduce(stepsToReproduce);
         setPriority(priority);
         setSeverity(severity);
