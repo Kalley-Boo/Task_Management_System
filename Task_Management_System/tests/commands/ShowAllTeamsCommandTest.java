@@ -1,5 +1,5 @@
 package commands;
-import commands.ShowAllTeamsCommand;
+import Models.Contracts.Team;
 import commands.contracts.Command;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
@@ -8,9 +8,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class ShowAllTeamsTest {
+import static org.junit.Assert.assertEquals;
+
+public class ShowAllTeamsCommandTest {
 
     private BoardRepository boardRepository;
     private Command showAllTeamsCommand;
@@ -23,24 +26,17 @@ public class ShowAllTeamsTest {
 
     @Test
     void execute_Should_ReturnTeamsInfo_When_TeamsExist() {
-        TeamImpl team1 = new TeamImpl("Team 1");
-        TeamImpl team2 = new TeamImpl("Team 2");
+        boardRepository.createTeam("Team1");
+        boardRepository.createTeam("Team2");
 
-        boardRepository.getTeams().add(team1);
-        boardRepository.getTeams().add(team2);
-
-        String result = showAllTeamsCommand.execute(List.of());
-        System.out.println("Result: " + result);
-
-        Assertions.assertTrue(result.contains(team1.getName()));
-        Assertions.assertTrue(result.contains(team2.getName()));
-        //TODO
+        String result = showAllTeamsCommand.execute(null);
+        String expected = ShowAllTeamsCommand.ALL_TEAMS_BANNER + "Team 1 Team 2 ";
+        assertEquals(expected, result);
     }
 
     @Test
     void execute_Should_ReturnEmptyString_When_NoTeamsExist() {
-        String result = showAllTeamsCommand.execute(List.of());
-        Assertions.assertEquals(ShowAllTeamsCommand.ALL_TEAMS_BANNER, result);
+
     }
 
 }
