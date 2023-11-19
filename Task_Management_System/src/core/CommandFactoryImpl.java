@@ -1,9 +1,7 @@
 package core;
 
 import commands.*;
-import commands.changeCommands.ChangeRatingOfAFeedbackCommand;
-import commands.changeCommands.ChangeStatusOfAFeedbackCommand;
-import commands.changeCommands.ChangeStoryPriorityCommand;
+import commands.changeCommands.*;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import core.contracts.CommandFactory;

@@ -3,6 +3,7 @@ package commands;
 import Models.Enums.Priority;
 import Models.Enums.StatusStory;
 import Models.Enums.TaskSize;
+import commands.changeCommands.ChangeStoryStatusCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import org.junit.jupiter.api.BeforeEach;
