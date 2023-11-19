@@ -1,6 +1,7 @@
 package commands;
 
 import commands.contracts.Command;
+import commands.createCommands.CreatePersonCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;

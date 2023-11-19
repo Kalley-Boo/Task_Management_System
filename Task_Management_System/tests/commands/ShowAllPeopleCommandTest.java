@@ -1,11 +1,11 @@
 package commands;
 
 import commands.contracts.Command;
+import commands.createCommands.CreatePersonCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 //import org.testng.annotations.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 import java.util.List;
