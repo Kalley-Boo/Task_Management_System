@@ -17,8 +17,9 @@ public class ShowAllTeamsCommand implements Command {
 
     private String showAllTeams(){
         StringBuilder stringBuilder = new StringBuilder();
+        List<Team> teams = boardRepository.getTeams();
         stringBuilder.append(ALL_TEAMS_BANNER);
-        for(Team t : boardRepository.getTeams()){
+        for(Team t : teams){
             stringBuilder.append(t.toString()).append(" ");
         }
         return new String(stringBuilder);
