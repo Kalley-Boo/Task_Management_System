@@ -150,6 +150,11 @@ public class BugImpl extends TaskImpl implements Bug {
     }
 
     @Override
+    public String getTitle(){
+        return super.getTitle();
+    }
+
+    @Override
     public void addChange(HistoryLog historyLog) {
         super.addHistoryLog(historyLog);
     }
@@ -187,5 +192,6 @@ public class BugImpl extends TaskImpl implements Bug {
         stringBuilder.append(COMMENTS_HEADER);
         return new String(stringBuilder);
     }
+
 
 }

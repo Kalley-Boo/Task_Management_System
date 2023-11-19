@@ -4,10 +4,7 @@ import Models.*;
 import Models.Contracts.*;
 import Models.Enums.*;
 import core.contracts.BoardRepository;
-import exceptions.BoardNotFoundException;
-import exceptions.PersonNotFoundException;
-import exceptions.TaskNotFoundException;
-import exceptions.TeamNotFoundException;
+import exceptions.*;
 import util.Printer;
 
 import java.util.ArrayList;
@@ -23,6 +20,8 @@ public class BoardRepositoryImpl implements BoardRepository {
     private static final String PERSON_NOT_FOUND_EXCEPTION = "Person with name %s not found.";
     private static final String BOARD_NOT_FOUND_EXCEPTION = "Board with name %s not found.";
     private static final String TASK_NOT_FOUND_EXCEPTION = "Task with title %s not found.";
+    private static final String BUG_NOT_FOUND_EXCEPTION = "Bug with title %s not found.";
+
 
     private final List<Task> tasks;
     private final List<Bug> bugs;
@@ -189,6 +188,16 @@ public class BoardRepositoryImpl implements BoardRepository {
                 return feedback;
             }
         } throw new IllegalArgumentException (String.format(FEEDBACK_WITH_NAME_S_WAS_NOT_FOUND, feedbackName));
+    }
+
+    @Override
+    public Bug findBugByTitle(String bugTitle) {
+        for (Bug bug : bugs) {
+            if (bug.getTitle().equals(bugTitle)){
+                return bug;
+            }
+        }
+        throw new BugNotFoundException(String.format(BUG_NOT_FOUND_EXCEPTION, bugTitle));
     }
 
 

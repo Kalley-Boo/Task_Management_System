@@ -35,7 +35,7 @@ public interface BoardRepository {
     Task findTaskByTitle(String title);
     Board findBoardByName(String name);
     Feedback findFeedbackByName(String feedbackName);
-
+    Bug findBugByTitle(String bugTitle);
 
     void createANewBoardInATeam(String boardName, String teamName);
 }

@@ -9,7 +9,7 @@ import Models.PersonImpl;
 import java.util.List;
 
 public interface Bug {
-
+    String getTitle();
     List<String> getStepsToReproduce();
     Priority getPriority();
     Severity getSeverity();
