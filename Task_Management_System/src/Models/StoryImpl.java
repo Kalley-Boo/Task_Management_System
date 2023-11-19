@@ -73,7 +73,7 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
     public void editAssignee(PersonImpl newAssignee) {
-        Person oldAssignee = this.assignee;
+        PersonImpl oldAssignee = this.assignee;
         this.assignee = newAssignee;
         String changeLog = String.format("Assignee changed from %s to %s", oldAssignee.getName(), newAssignee.getName());
         addChange(new HistoryLogImpl(changeLog));
@@ -110,22 +110,22 @@ public class StoryImpl extends TaskImpl implements Story {
 
     @Override
     public Priority getPriority() {
-        return null;
+        return priority;
     }
 
     @Override
     public TaskSize getSize() {
-        return null;
+        return size;
     }
 
     @Override
     public StatusStory getStatus() {
-        return null;
+        return status;
     }
 
     @Override
     public Person getAssignee() {
-        return null;
+        return assignee;
     }
 
     private void setPriority(Priority priority) {
