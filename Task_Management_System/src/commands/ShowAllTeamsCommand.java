@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ShowAllTeamsCommand implements Command {
 
-    public static final String ALL_TEAMS_BANNER = "---All teams---";
+    public static final String ALL_TEAMS_BANNER = "---All teams--- \n";
     private final BoardRepository boardRepository;
 
     public ShowAllTeamsCommand(BoardRepository boardRepository) {
@@ -19,8 +19,7 @@ public class ShowAllTeamsCommand implements Command {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(ALL_TEAMS_BANNER);
         for(Team t : boardRepository.getTeams()){
-            stringBuilder.append(t.toString());
-            stringBuilder.append(" ");
+            stringBuilder.append(t.toString()).append(" ");
         }
         return new String(stringBuilder);
     }
