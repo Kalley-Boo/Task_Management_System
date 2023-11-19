@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public class UnassignTaskToAPersonCommand implements Command {
-    private static final String COMMAND_IS_DONE = "Task with name %s has been unassigned to person with name %s.";
+    public static final String COMMAND_IS_DONE = "Task with name %s has been unassigned to person with name %s.";
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
     private static final String INVALID_PARAMETERS_COUNT_MESSAGE = String.format(
             "UnassignTaskToAPerson Command expects %d parameters.",
