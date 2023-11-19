@@ -214,6 +214,6 @@ public class BoardRepositoryImpl implements BoardRepository {
     @Override
     public void createANewBoardInATeam(String boardName, String teamName) {
         findTeamByName(teamName).addBoard(createBoard(boardName));
-    }//TODO to be taken out of the repo and put into a command
+    }
 
 }

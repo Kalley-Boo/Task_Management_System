@@ -24,7 +24,6 @@ public class BoardImpl implements Board {
         setName(name);
     }
 
-
     @Override
     public String print() {
         StringBuilder stringBuilder = new StringBuilder();

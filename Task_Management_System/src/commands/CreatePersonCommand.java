@@ -23,7 +23,7 @@ public class CreatePersonCommand implements Command {
     private String createPerson(String name){
         boardRepository.createPerson(name);
         return String.format(PERSON_CREATED, name);
-    }
+    }//TODO needs to be specified in which team
 
     @Override
     public String execute(List<String> parameters) {

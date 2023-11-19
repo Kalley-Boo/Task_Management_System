@@ -21,9 +21,12 @@ public class ShowBoardSActivityCommand implements Command {
     public ShowBoardSActivityCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
+
     private String showBoardSActivity(String boardName) {
-        return Printer.historyPrinter(boardRepository.findBoardByName(boardName).getHistoryLogs());
+        return null;
+       // return Printer.historyPrinter(boardRepository.findBoardByName(boardName).getHistoryLogs());
     }
+    //TODO this was throwing error
 
     @Override
     public String execute(List<String> parameters) {

@@ -29,10 +29,10 @@ public class TeamImpl  implements Team, Printable {
     private final List<HistoryLogImpl> history;
 
     public TeamImpl(String name){
-        setName(name);
         this.history = new ArrayList<>();
         this.members = new ArrayList<>();
         this.boards = new ArrayList<>();
+        setName(name);
     }//constructor
 
     //----------------------------------------methods--------------------------------------------
