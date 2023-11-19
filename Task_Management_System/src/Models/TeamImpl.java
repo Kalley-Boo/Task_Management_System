@@ -54,9 +54,9 @@ public class TeamImpl  implements Team, Printable {
         if (members.isEmpty()) {
             return new String(stringBuilder.append(EMPTY_TEAM).append(name));
         } else {
-            stringBuilder.append("---Members---");
+            stringBuilder.append("---Members---\n");
             for (Person member : members) {
-                stringBuilder.append(member).append(" ");
+                stringBuilder.append(member.getName()).append(" ");
             }
         }
         return new String(stringBuilder);
