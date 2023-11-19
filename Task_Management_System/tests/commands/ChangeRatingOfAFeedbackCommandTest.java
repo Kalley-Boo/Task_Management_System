@@ -1,5 +1,6 @@
 package commands;
 
+import commands.changeCommands.ChangeRatingOfAFeedbackCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import org.junit.jupiter.api.BeforeEach;

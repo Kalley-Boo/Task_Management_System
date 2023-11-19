@@ -2,7 +2,6 @@ package commands.changeCommands;
 
 import Models.Contracts.Bug;
 import Models.Enums.Priority;
-import Models.Enums.StatusBug;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import util.Parser;
@@ -17,18 +16,17 @@ public class ChangePriorityOfABug implements Command {
 
     private final BoardRepository boardRepository;
 
-    public ChangePriorityOfABug(BoardRepository boardRepository){
+    public ChangePriorityOfABug(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
 
-    private String ChangePriority(String title, Priority priority){
+    private String ChangePriority(String title, Priority priority) {
         Bug bug = boardRepository.findBugByTitle(title);
         String oldPriority = bug.getPriority().toString();
         bug.editPriority(priority);
         return String.format(PRIORITY_OF_BUG_CHANGED, title, oldPriority, priority.toString());
     }
-
 
 
     @Override
