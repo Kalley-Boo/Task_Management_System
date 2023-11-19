@@ -41,7 +41,6 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         addChange(new HistoryLogImpl(String.format("Status updated from %s to %s.", oldStatus.toString(), newStatus.toString())));
     }
 
-
     public FeedbackImpl(int id, String title, String description, int rating) {
         super(id, title, description);
         setRating(rating);
@@ -91,6 +90,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     public void addChange(HistoryLog historyLog) {
         super.addHistoryLog(historyLog);
     }
+
     @Override
     public String getName(){
         return getTitle();

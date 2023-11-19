@@ -29,7 +29,7 @@ public interface BoardRepository {
     Board createBoard(String name);
     void createTeam(String name);
 
-
+    Story findStoryByName(String name);
     Person findPersonByName(String name);
     Team findTeamByName(String name);
     Task findTaskByTitle(String title);

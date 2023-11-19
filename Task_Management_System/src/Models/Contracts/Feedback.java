@@ -4,7 +4,8 @@ import Models.Enums.StatusFeedback;
 import Models.Enums.TaskStatus;
 
 public interface Feedback {
-
+    void updateRating(int newRating);
+    void updateStatus(StatusFeedback newStatus);
     int getRating();
     StatusFeedback getStatus();
     void setRating(int rating);

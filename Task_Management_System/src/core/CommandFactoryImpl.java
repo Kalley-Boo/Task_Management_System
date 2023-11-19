@@ -22,7 +22,7 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowTeamsActivityCommand(boardRepository);
             case CREATEPERSON:
                 return new CreatePersonCommand(boardRepository);
-            case CTREATEBOARD:
+            case CREATEBOARD:
                 //
             case SHOWALLPEOPLE:
                 return new ShowAllPeopleCommand(boardRepository);
@@ -32,6 +32,14 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ShowPersonActivityCommand(boardRepository);
             case ADDCOMMENTTOTASK:
                 return new AddCommentToTaskCommand(boardRepository);
+            case SHOWTEAMMEMBERS:
+                return new ShowTeamMembersCommand(boardRepository);
+            case CHANGESTORYPRIORITY:
+                return new ChangeStoryPriority(boardRepository);
+            case CHANGESTORYSIZE:
+                return new ChangeStorySize(boardRepository);
+            case CHANGESTORYSTATUS:
+                return new ChangeStoryStatus(boardRepository);
             default:
 
                 throw new UnsupportedOperationException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, commandTypeValue));

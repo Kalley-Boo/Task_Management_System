@@ -12,7 +12,7 @@ public interface Story {
      TaskSize getSize();
      StatusStory getStatus();
      Person getAssignee();
-
+     String getName();
      void editAssignee(PersonImpl newAssignee);
      void editStatus(StatusStory newStatus);
      void editSize(TaskSize newSize);

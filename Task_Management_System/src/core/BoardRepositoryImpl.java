@@ -15,6 +15,8 @@ import java.util.List;
 
 public class BoardRepositoryImpl implements BoardRepository {
 
+    public static final String FEEDBACK_WITH_NAME_S_WAS_NOT_FOUND = "Feedback with name %s was not found.";
+    public static final String STORY_S_NOT_FOUND = "Story %s not found!";
     private int nextId = 1;
 
     private static final String TEAM_NOT_FOUND_EXCEPTION = "Team with name %s not found.";
@@ -162,6 +164,15 @@ public class BoardRepositoryImpl implements BoardRepository {
         throw new TaskNotFoundException(String.format(TASK_NOT_FOUND_EXCEPTION, title));
     }
 
+    public Story findStoryByName(String name){
+        for(Story story : this.stories){
+            if(story.getName().equals(name)){
+                return story;
+            }
+        }
+        throw new TaskNotFoundException(String.format(STORY_S_NOT_FOUND, name));
+    }
+
     @Override
     public Board findBoardByName(String name) {
         for (Board board : this.boards) {
@@ -172,37 +183,37 @@ public class BoardRepositoryImpl implements BoardRepository {
         throw new BoardNotFoundException(String.format(BOARD_NOT_FOUND_EXCEPTION, name));
     }
 
+    public Feedback findFeedbackByName(String feedbackName) {
+        for (Feedback feedback : feedbacks) {
+            if (feedback.getName().equals(feedbackName)) {
+                return feedback;
+            }
+        } throw new IllegalArgumentException (String.format(FEEDBACK_WITH_NAME_S_WAS_NOT_FOUND, feedbackName));
+    }
+
 
     //------------------OTHERS----------------------
     @Override
     public void assignTaskToAPerson(String personName, String title) {
         findPersonByName(personName).addTask(findTaskByTitle(title));
-    }
+    }//TODO to be taken out of the repo and put into a command
     @Override
     public void unassignTaskToAPerson(String personName, String taskName) {
         findPersonByName(personName).removeTask(findTaskByTitle(taskName));
-            }
+            }//TODO to be taken out of the repo and put into a command
 
-    public Feedback findFeedbackByName(String feedbackName) {
-        for (Feedback feedback : feedbacks
-        ) {
-            if (feedback.getName().equals(feedbackName)) {
-                return feedback;
-            }
-        } throw new IllegalArgumentException (String.format("Feedback with name %s was not found.", feedbackName));
-    }
     @Override
     public void changeRatingOfAFeedback(String feedbackName, int rating) {
         findFeedbackByName(feedbackName).setRating(rating);
-    }
+    }//TODO to be taken out of the repo and put into a command
     @Override
     public void changeStatusOfAFeedback(String feedbackName, StatusFeedback status){
         findFeedbackByName(feedbackName).setStatus(status);
-    }
+    }//TODO to be taken out of the repo and put into a command
 
     @Override
     public void createANewBoardInATeam(String boardName, String teamName) {
         findTeamByName(teamName).addBoard(createBoard(boardName));
-    }
+    }//TODO to be taken out of the repo and put into a command
 
 }

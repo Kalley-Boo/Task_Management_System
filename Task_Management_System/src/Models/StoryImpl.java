@@ -149,12 +149,14 @@ public class StoryImpl extends TaskImpl implements Story {
         this.status = status;
     }
 
+    public String getName(){
+        return getTitle();
+    }
+
     private void setAssignee(PersonImpl assignee) {
         if (assignee == null){
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "assignee"));
         }
         this.assignee = assignee;
     }
-
-    //TODO edit priority, size, status, assignee methods, log the changes
 }
