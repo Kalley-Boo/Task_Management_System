@@ -5,6 +5,7 @@ import Models.Contracts.Board;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
+
 public class BoardImplTest {
 
     public String VALID_NAME = "Test1";
