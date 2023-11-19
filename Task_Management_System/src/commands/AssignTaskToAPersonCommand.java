@@ -26,12 +26,12 @@ public class AssignTaskToAPersonCommand implements Command {
             throw new InvalidInputException(INVALID_PARAMETERS_COUNT_MESSAGE);
         }
         String personName = parameters.get(0);
-        String taskName = parameters.get(1);
+        String task = parameters.get(1);
 
-        assignTaskToAPerson(personName, taskName);
-            return String.format(COMMAND_IS_DONE, taskName, personName);
+        assignTaskToAPerson(personName, task);
+            return String.format(COMMAND_IS_DONE, task, personName);
         }
-        private void assignTaskToAPerson(String personName, String taskName){
-            boardRepository.assignTaskToAPerson(personName, taskName);
+        private void assignTaskToAPerson(String personName, String task){
+            boardRepository.findPersonByName(personName).addTask(boardRepository.findTaskByTitle(task));
         }
 }

@@ -53,7 +53,8 @@ public class BoardImpl implements Board {
     public String getName() {
         return this.name;
     }
-
-
-
+    @Override
+    public List<HistoryLogImpl> getHistoryLog() {
+        return historyLog;
+    }
 }

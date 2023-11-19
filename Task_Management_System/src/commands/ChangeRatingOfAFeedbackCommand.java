@@ -34,6 +34,6 @@ public class ChangeRatingOfAFeedbackCommand implements Command {
     }
 
     private void changeRatingOfAFeedback(String feedbackName, int rating){
-        boardRepository.changeRatingOfAFeedback(feedbackName, rating);
+        boardRepository.findFeedbackByName(feedbackName).setRating(rating);
     }
 }

@@ -35,6 +35,6 @@ public class ChangeStatusOfAFeedback implements Command {
     }
 
     private void changeStatusOfAFeedback(String feedbackName, StatusFeedback status){
-        boardRepository.changeStatusOfAFeedback(feedbackName, status);
+        boardRepository.findFeedbackByName(feedbackName).setStatus(status);
     }
 }

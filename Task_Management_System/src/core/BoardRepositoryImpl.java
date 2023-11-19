@@ -182,7 +182,7 @@ public class BoardRepositoryImpl implements BoardRepository {
         }
         throw new BoardNotFoundException(String.format(BOARD_NOT_FOUND_EXCEPTION, name));
     }
-
+    @Override
     public Feedback findFeedbackByName(String feedbackName) {
         for (Feedback feedback : feedbacks) {
             if (feedback.getName().equals(feedbackName)) {
@@ -193,23 +193,6 @@ public class BoardRepositoryImpl implements BoardRepository {
 
 
     //------------------OTHERS----------------------
-    @Override
-    public void assignTaskToAPerson(String personName, String title) {
-        findPersonByName(personName).addTask(findTaskByTitle(title));
-    }//TODO to be taken out of the repo and put into a command
-    @Override
-    public void unassignTaskToAPerson(String personName, String taskName) {
-        findPersonByName(personName).removeTask(findTaskByTitle(taskName));
-            }//TODO to be taken out of the repo and put into a command
-
-    @Override
-    public void changeRatingOfAFeedback(String feedbackName, int rating) {
-        findFeedbackByName(feedbackName).setRating(rating);
-    }//TODO to be taken out of the repo and put into a command
-    @Override
-    public void changeStatusOfAFeedback(String feedbackName, StatusFeedback status){
-        findFeedbackByName(feedbackName).setStatus(status);
-    }//TODO to be taken out of the repo and put into a command
 
     @Override
     public void createANewBoardInATeam(String boardName, String teamName) {

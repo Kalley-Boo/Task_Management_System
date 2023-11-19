@@ -35,6 +35,6 @@ public class UnassignTaskToAPersonCommand implements Command {
         return String.format(COMMAND_IS_DONE, taskName, personName);
     }
     private void unassignTaskToAPerson(String personName, String taskName){
-        boardRepository.assignTaskToAPerson(personName, taskName);
+        boardRepository.findPersonByName(personName).removeTask(boardRepository.findTaskByTitle(taskName));
     }
 }

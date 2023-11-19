@@ -1,6 +1,7 @@
 package commands;
 
 import Models.BoardImpl;
+import Models.HistoryLogImpl;
 import commands.contracts.Command;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
@@ -23,10 +24,8 @@ public class ShowBoardSActivityCommand implements Command {
     }
 
     private String showBoardSActivity(String boardName) {
-        return null;
-       // return Printer.historyPrinter(boardRepository.findBoardByName(boardName).getHistoryLogs());
+        return Printer.historyPrinter(boardRepository.findBoardByName(boardName).getHistoryLog());
     }
-    //TODO this was throwing error
 
     @Override
     public String execute(List<String> parameters) {

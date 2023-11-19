@@ -34,13 +34,10 @@ public interface BoardRepository {
     Team findTeamByName(String name);
     Task findTaskByTitle(String title);
     Board findBoardByName(String name);
+    Feedback findFeedbackByName(String feedbackName);
 
 
     void createANewBoardInATeam(String boardName, String teamName);
-    void assignTaskToAPerson(String personName, String taskName);
-    void unassignTaskToAPerson(String personName, String taskName);
-    void changeRatingOfAFeedback (String feedbackName, int rating);
 
-    void changeStatusOfAFeedback(String feedbackName, StatusFeedback status);
 
 }
