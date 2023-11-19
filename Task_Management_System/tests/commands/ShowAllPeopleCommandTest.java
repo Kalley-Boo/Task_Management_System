@@ -2,6 +2,7 @@ package commands;
 
 import commands.contracts.Command;
 import commands.createCommands.CreatePersonCommand;
+import commands.showCommands.ShowAllPeopleCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 //import org.testng.annotations.Test;

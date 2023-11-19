@@ -9,6 +9,7 @@ import commands.createCommands.CreateBoardCommand;
 import commands.createCommands.CreatePersonCommand;
 import commands.createCommands.CreateTeamCommand;
 import commands.enums.CommandType;
+import commands.showCommands.ShowAllPeopleCommand;
 import core.contracts.BoardRepository;
 import core.contracts.CommandFactory;
 import util.Parser;

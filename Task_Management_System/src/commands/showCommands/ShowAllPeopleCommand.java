@@ -1,4 +1,4 @@
-package commands;
+package commands.showCommands;
 
 import Models.Contracts.Person;
 import commands.contracts.Command;
@@ -8,6 +8,8 @@ import java.util.List;
 
 public class ShowAllPeopleCommand implements Command {
 
+    private static final String ALL_PEOPLE_HEADER = "---All people with their tasks---";
+
     private final BoardRepository boardRepository;
 
     public ShowAllPeopleCommand(BoardRepository boardRepository){
@@ -16,9 +18,12 @@ public class ShowAllPeopleCommand implements Command {
 
     private String showAllPeople(){
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(ALL_PEOPLE_HEADER).append("\n");
         for (Person p : boardRepository.getPeople()) {
-            stringBuilder.append(p.toString());// TODO rework when print method in PersonImpl(printable interface)
+            stringBuilder.append(p.print());
+            stringBuilder.append("\n");
         }
+        stringBuilder.append(ALL_PEOPLE_HEADER);
         return new String(stringBuilder);
     }
 
