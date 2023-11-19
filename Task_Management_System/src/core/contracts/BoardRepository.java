@@ -38,6 +38,4 @@ public interface BoardRepository {
 
 
     void createANewBoardInATeam(String boardName, String teamName);
-
-
 }

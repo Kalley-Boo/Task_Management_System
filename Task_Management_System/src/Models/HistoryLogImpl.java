@@ -3,6 +3,7 @@ package Models;
 import Models.Contracts.HistoryLog;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class HistoryLogImpl implements HistoryLog {
     private final String description;
@@ -21,7 +22,9 @@ public class HistoryLogImpl implements HistoryLog {
     }
     @Override
     public String viewInfo() {
-        return String.format("Time:%s ,Event:%s", timestamp, description);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        String formattedTimestamp = timestamp.format(formatter);
+        return String.format("Time: %s \nEvent: %s", formattedTimestamp, description);
     }
 
 }

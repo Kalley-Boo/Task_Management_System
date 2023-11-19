@@ -129,21 +129,21 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
     private void setPriority(Priority priority) {
-        if (assignee == null){
+        if (priority == null){
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "priority"));
         }
         this.priority = priority;
     }
 
     private void setSize(TaskSize size) {
-        if (assignee == null){
+        if (size == null){
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "size"));
         }
         this.size = size;
     }
 
     private void setStatus(StatusStory status) {
-        if (assignee == null){
+        if (status == null){
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "status"));
         }
         this.status = status;

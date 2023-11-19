@@ -20,7 +20,7 @@ public class ShowAllTeamsCommand implements Command {
         List<Team> teams = boardRepository.getTeams();
         stringBuilder.append(ALL_TEAMS_BANNER);
         for(Team t : teams){
-            stringBuilder.append(t.toString()).append(" ");
+            stringBuilder.append(t.getName()).append(" ");
         }
         return new String(stringBuilder);
     }

@@ -1,30 +1,30 @@
 package commands;
 
 import Models.Contracts.Story;
-import Models.Enums.Priority;
+import Models.Enums.TaskSize;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;
 
 import java.util.List;
 
-public class ChangeStoryPriority implements Command {
+public class ChangeStorySizeCommand implements Command {
     private static final int EXPECTED_PARAMETERS_COUNT = 2;
     private static final String INVALID_PARAMETERS_COUNT_MESSAGE = String.format(
-            "Change story priority command expects %d parameters.",
+            "Change story size command expects %d parameters.",
             EXPECTED_PARAMETERS_COUNT);
-    public static final String PRIORITY_UPDATED = "Priority of %s updated to %s.";
+    public static final String SIZE_UPDATED = "Size of %s updated to %s.";
     private final BoardRepository boardRepository;
 
-    public ChangeStoryPriority(BoardRepository boardRepository) {
+    public ChangeStorySizeCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
-    public String changeStoryPriority(String storyName, String priorityStr){
-        Priority newPriority = Priority.valueOf(priorityStr.toUpperCase());
+    public String changeStorySize(String storyName, String sizeStr) {
+        TaskSize newSize = TaskSize.valueOf(sizeStr.toUpperCase());
         Story story = boardRepository.findStoryByName(storyName);
-        story.editPriority(newPriority);
-        return String.format(PRIORITY_UPDATED, storyName, newPriority);
+        story.editSize(newSize);
+        return String.format(SIZE_UPDATED, storyName, newSize);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class ChangeStoryPriority implements Command {
             throw new InvalidInputException(INVALID_PARAMETERS_COUNT_MESSAGE);
         }
         String storyName = parameters.get(0);
-        String priorityStr = parameters.get(1);
-        return changeStoryPriority(storyName, priorityStr);
+        String sizeStr = parameters.get(1);
+        return changeStorySize(storyName, sizeStr);
     }
 }

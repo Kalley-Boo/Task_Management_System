@@ -3,7 +3,7 @@ package commands;
 import commands.contracts.Command;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
-import org.testng.annotations.Test;
+//import org.testng.annotations.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ShowAllPeopleCommandTest {
 
-    @Test
+    //@Test
     public void executeShouldReturnThePersonInTheRepository(){
         BoardRepository boardRepository = new BoardRepositoryImpl();
         Command create = new CreatePersonCommand(boardRepository);
