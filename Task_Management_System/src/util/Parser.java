@@ -1,6 +1,6 @@
 package util;
 
-import commands.CommandType;
+import commands.enums.CommandType;
 
 public abstract class Parser {
 

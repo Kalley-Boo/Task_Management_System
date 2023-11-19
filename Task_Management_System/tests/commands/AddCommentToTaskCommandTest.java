@@ -4,19 +4,14 @@ import Models.CommentImpl;
 import Models.Contracts.Comment;
 import Models.Contracts.Task;
 import Models.Enums.Priority;
-import Models.Enums.Severity;
 import Models.Enums.TaskSize;
-import Models.Enums.TaskStatus;
-import Models.PersonImpl;
-import Models.TaskImpl;
+import commands.addCommands.AddCommentToTaskCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 

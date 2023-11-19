@@ -1,10 +1,7 @@
 package commands.createCommands;
 
-import Models.BoardImpl;
 import commands.contracts.Command;
-import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
-import exceptions.InvalidInputException;
 import util.Validator;
 
 import java.util.List;
