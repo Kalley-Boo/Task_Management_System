@@ -1,4 +1,4 @@
-package commands;
+package commands.changeCommands;
 
 import Models.Contracts.Bug;
 import Models.Enums.StatusBug;
@@ -9,14 +9,14 @@ import util.Validator;
 
 import java.util.List;
 
-public class ChangePriorityOfABug implements Command {
+public class ChangeStatusOfABug implements Command {
 
     private static final String STATUS_OF_BUG_CHANGED = "The status of bug '%s' changed %s -> %s.";
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
 
     private final BoardRepository boardRepository;
 
-    public ChangePriorityOfABug(BoardRepository boardRepository){
+    public ChangeStatusOfABug(BoardRepository boardRepository){
         this.boardRepository = boardRepository;
     }
 
