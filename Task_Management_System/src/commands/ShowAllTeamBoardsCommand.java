@@ -27,9 +27,9 @@ public class ShowAllTeamBoardsCommand implements Command {
     private String showAllTeamBoards(String name) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.format(COMMAND_START, name));
-        stringBuilder.append(ALL_BOARDS_BANNER).append("\n");
+        stringBuilder.append(ALL_BOARDS_BANNER).append("%n");
         for (Board board : boardRepository.findTeamByName(name).getBoards()) {
-            stringBuilder.append(board.print()).append("\n");
+            stringBuilder.append(board.print()).append("%n");
         }
         stringBuilder.append(ALL_BOARDS_BANNER);
         return new String(stringBuilder);

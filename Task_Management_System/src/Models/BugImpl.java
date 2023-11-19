@@ -96,7 +96,7 @@ public class BugImpl extends TaskImpl implements Bug {
     }
 
     private void setPriority(Priority priority){
-        if (assignee == null){
+        if (priority == null){
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "priority"));
         }
         this.priority = priority;

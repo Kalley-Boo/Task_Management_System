@@ -23,7 +23,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case CREATEPERSON:
                 return new CreatePersonCommand(boardRepository);
             case CREATEBOARD:
-                //
+                return new CreateBoardCommand(boardRepository);
             case SHOWALLPEOPLE:
                 return new ShowAllPeopleCommand(boardRepository);
             case SHOWALLTEAMS:
@@ -38,6 +38,20 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ChangeStoryPriority(boardRepository);
             case CHANGESTORYSIZE:
                 return new ChangeStorySize(boardRepository);
+            case CREATEANEWBOARDINATEAM:
+                return new CreateANewBoardInATeamCommand(boardRepository);
+            case SHOWALLTEAMBOARDS:
+                return new ShowAllTeamBoardsCommand(boardRepository);
+            case SHOWBOARDSACTIVITY:
+                return new ShowBoardSActivityCommand(boardRepository);
+            case CHANGERATINGOFAFEEDBACK:
+                return new ChangeRatingOfAFeedbackCommand(boardRepository);
+            case CHANGESTATUSOFAFEEDBACK:
+                return new ChangeStatusOfAFeedback(boardRepository);
+            case ASSIGNTASKTOAPERSON:
+                return new AssignTaskToAPersonCommand(boardRepository);
+            case UNASSIGNTASKTOAPERSON:
+                return new UnassignTaskToAPersonCommand(boardRepository);
             case CHANGESTORYSTATUS:
                 return new ChangeStoryStatus(boardRepository);
             default:

@@ -1,6 +1,7 @@
 package models;
 import Models.BugImpl;
 import Models.CommentImpl;
+import Models.Contracts.Person;
 import Models.Enums.Priority;
 import Models.Enums.Severity;
 import Models.Enums.TaskStatus;
@@ -26,5 +27,10 @@ public class BugImplTest {
                 () -> new BugImpl(
                         2, "Problem", "logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, new PersonImpl("Ivan")));
     }
-
+    @Test
+    public void testEditPriority() {
+        BugImpl bug = new BugImpl(2, "Problem with the system", "Problems with logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, new PersonImpl("Ivan Petkov"));
+        bug.editPriority(Priority.MEDIUM);
+        assertEquals(bug.getPriority(), Priority.MEDIUM);
+    }
 }
