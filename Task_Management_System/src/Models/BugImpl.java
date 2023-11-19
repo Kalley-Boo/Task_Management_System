@@ -30,7 +30,7 @@ public class BugImpl extends TaskImpl implements Bug {
     private List<String> stepsToReproduce;
     private Priority priority;
     private Severity severity;
-    private Person assignee;
+    private PersonImpl assignee;
     private StatusBug status;
 
 
@@ -81,8 +81,8 @@ public class BugImpl extends TaskImpl implements Bug {
         addChange(new HistoryLogImpl(changeLog));
     }
 
-    public void editAssignee(Person newAssignee) {
-        Person oldAssignee = this.assignee;
+    public void editAssignee(PersonImpl newAssignee) {
+        PersonImpl oldAssignee = this.assignee;
         this.assignee = newAssignee;
         String changeLog = String.format("Assignee changed from %s to %s", oldAssignee.getName(), newAssignee.getName());
         addChange(new HistoryLogImpl(changeLog));
@@ -116,7 +116,7 @@ public class BugImpl extends TaskImpl implements Bug {
         this.status = status;
     }
 
-    private void setAssignee(Person assignee){
+    private void setAssignee(PersonImpl assignee){
         if (assignee == null){
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "assignee"));
         }

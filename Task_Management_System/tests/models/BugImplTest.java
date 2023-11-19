@@ -4,6 +4,7 @@ import Models.CommentImpl;
 import Models.Contracts.Person;
 import Models.Enums.Priority;
 import Models.Enums.Severity;
+import Models.Enums.StatusBug;
 import Models.Enums.TaskStatus;
 import Models.PersonImpl;
 import org.junit.jupiter.api.Test;
@@ -33,4 +34,24 @@ public class BugImplTest {
         bug.editPriority(Priority.MEDIUM);
         assertEquals(bug.getPriority(), Priority.MEDIUM);
     }
+    @Test
+    public void testEditSeverity() {
+        BugImpl bug = new BugImpl(2, "Problem with the system", "Problems with logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, new PersonImpl("Ivan Petkov"));
+        bug.editSeverity(Severity.MAJOR);
+        assertEquals(bug.getSeverity(), Severity.MAJOR);
+    }
+    @Test
+    public void testEditStatus() {
+        BugImpl bug = new BugImpl(2, "Problem with the system", "Problems with logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, new PersonImpl("Ivan Petkov"));
+        bug.editStatus(StatusBug.DONE);
+        assertEquals(bug.getTaskStatus(), StatusBug.DONE);
+    }
+//    @Test
+//    public void testEditAssignee() {
+//        BugImpl bug = new BugImpl(2, "Problem with the system", "Problems with logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, new PersonImpl("Ivan Petkov"));
+//        bug.editAssignee(new PersonImpl("Dimitar Dimitrov"));
+//        assertEquals(bug.getAssignee(), "Dimitar Dimitrov");
+//    }
+
+
 }
