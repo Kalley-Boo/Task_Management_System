@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class Validator {
 
-    private static final String VALUE_OUT_OF_RANGE = "Must be between %d and %d";//to edit
+    private static final String VALUE_OUT_OF_RANGE = "Must be between %d and %d";//todo edit
     private static final String INVALID_NUMBER_OF_ARGUMENTS = "Invalid number of arguments. Expected: %d; received: %d.";
 
 
