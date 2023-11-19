@@ -33,6 +33,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case ADDCOMMENTTOTASK:
                 return new AddCommentToTaskCommand(boardRepository);
             default:
+
                 throw new UnsupportedOperationException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, commandTypeValue));
         }
     }

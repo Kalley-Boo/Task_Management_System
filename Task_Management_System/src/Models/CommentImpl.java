@@ -25,12 +25,8 @@ public class CommentImpl implements Comment {
         return author;
     }
 
-    public String toString() {
-        return String.format("Comment: %s%nAuthor: %s%n", getContent(), getAuthor());
-    }
-
     @Override
     public String print() {
-        return null;//TODO
+        return String.format("Comment: %s%nAuthor: %s%n", getContent(), getAuthor());
     }
 }

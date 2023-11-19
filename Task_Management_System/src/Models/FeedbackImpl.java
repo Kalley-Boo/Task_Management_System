@@ -23,9 +23,23 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
 
     private static final int MIN_RATING = 1;
     private static final int MAX_RATING = 10;
+    public static final String CHANGED_RATING = "Rating changed from %d to %d.";
 
     private int rating;
     private StatusFeedback status;
+
+    public void updateRating(int newRating) {
+        Validator.validateIntRange(newRating, MIN_RATING, MAX_RATING);
+        int oldRating = this.rating;
+        setRating(newRating);
+        addChange(new HistoryLogImpl(String.format(CHANGED_RATING, oldRating, newRating)));
+    }
+
+    public void updateStatus(StatusFeedback newStatus) {
+        StatusFeedback oldStatus = this.status;
+        setStatus(newStatus);
+        addChange(new HistoryLogImpl(String.format("Status updated from %s to %s.", oldStatus.toString(), newStatus.toString())));
+    }
 
 
     public FeedbackImpl(int id, String title, String description, int rating) {
@@ -75,12 +89,10 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
 
     @Override
     public void addChange(HistoryLog historyLog) {
-        //TODO
+        super.addHistoryLog(historyLog);
     }
     @Override
     public String getName(){
         return getTitle();
     }
-
-    //TODO implement update rating and status, log the changes
 }
