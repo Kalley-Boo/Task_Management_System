@@ -8,15 +8,15 @@ import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;
 
 import java.util.List;
-public class ChangeStatusOfAFeedback implements Command {
-    private static final String COMMAND_IS_DONE = "Feedback with name %s has changed its status to %s.";
+public class ChangeStatusOfAFeedbackCommand implements Command {
+    public static final String COMMAND_IS_DONE = "Feedback with name %s has changed its status to %s.";
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
     private static final String INVALID_PARAMETERS_COUNT_MESSAGE = String.format(
             "ChangeStatusOfAFeedback Command expects %d parameters.",
             EXPECTED_PARAMETERS_COUNT);
     private BoardRepository boardRepository;
 
-    public ChangeStatusOfAFeedback(BoardRepository boardRepository) {
+    public ChangeStatusOfAFeedbackCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
@@ -38,3 +38,4 @@ public class ChangeStatusOfAFeedback implements Command {
         boardRepository.findFeedbackByName(feedbackName).setStatus(status);
     }
 }
+

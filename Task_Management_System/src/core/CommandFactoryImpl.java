@@ -47,7 +47,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case CHANGERATINGOFAFEEDBACK:
                 return new ChangeRatingOfAFeedbackCommand(boardRepository);
             case CHANGESTATUSOFAFEEDBACK:
-                return new ChangeStatusOfAFeedback(boardRepository);
+                return new ChangeStatusOfAFeedbackCommand(boardRepository);
             case ASSIGNTASKTOAPERSON:
                 return new AssignTaskToAPersonCommand(boardRepository);
             case UNASSIGNTASKTOAPERSON:
