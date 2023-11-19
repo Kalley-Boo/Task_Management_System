@@ -8,7 +8,7 @@ import exceptions.InvalidInputException;
 import java.util.List;
 
 public class ChangeRatingOfAFeedbackCommand implements Command {
-    private static final String COMMAND_IS_DONE = "Feedback with name %s has changed its rating to %d.";
+    public static final String COMMAND_IS_DONE = "Feedback with name %s has changed its rating to %d.";
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
     private static final String INVALID_PARAMETERS_COUNT_MESSAGE = String.format(
             "ChangeRatingOfAFeedback Command expects %d parameters.",

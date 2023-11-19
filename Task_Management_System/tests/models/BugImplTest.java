@@ -46,6 +46,15 @@ public class BugImplTest {
         bug.editStatus(StatusBug.DONE);
         assertEquals(bug.getTaskStatus(), StatusBug.DONE);
     }
+
+//    @Test
+//    public void testEditAssignee(){
+//        BugImpl bug = new BugImpl(2, "Problem with the system", "Problems with logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, new PersonImpl("Ivan Petkov"));
+//        PersonImpl person = new PersonImpl("Petar Ivanov");
+//        bug.editAssignee(person);
+//        assertEquals(bug.getAssignee(), person.getName());
+//    }
+
 //    @Test
 //    public void testEditAssignee() {
 //        BugImpl bug = new BugImpl(2, "Problem with the system", "Problems with logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, new PersonImpl("Ivan Petkov"));
