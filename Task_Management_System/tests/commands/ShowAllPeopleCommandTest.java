@@ -3,7 +3,7 @@ package commands;
 import commands.contracts.Command;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
-import org.junit.Test;
+import org.testng.annotations.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 
