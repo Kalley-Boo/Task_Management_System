@@ -1,16 +1,14 @@
-package commands;
+package commands.showCommands;
 
 import Models.Contracts.Team;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
+import util.Validator;
 
 import java.util.List;
 
 public class ShowTeamMembersCommand implements Command {
     private static final int EXPECTED_PARAM_COUNT = 1;
-    private static final String INVALID_PARAM_COUNT = String.format(
-            "The show team members command expects %d parameters.",
-            EXPECTED_PARAM_COUNT);
     private final BoardRepository boardRepository;
 
     public ShowTeamMembersCommand(BoardRepository boardRepository) {
@@ -24,9 +22,7 @@ public class ShowTeamMembersCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        if (parameters.size() != EXPECTED_PARAM_COUNT){
-            throw new IllegalArgumentException(INVALID_PARAM_COUNT);
-        }
+        Validator.validateArgumentsCount(parameters, EXPECTED_PARAM_COUNT);
         return showTeamMembers(parameters.get(0));
     }
 }

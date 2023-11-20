@@ -12,11 +12,11 @@ public class ShowAllPeopleCommand implements Command {
 
     private final BoardRepository boardRepository;
 
-    public ShowAllPeopleCommand(BoardRepository boardRepository){
+    public ShowAllPeopleCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
-    private String showAllPeople(){
+    private String showAllPeople() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(ALL_PEOPLE_HEADER).append("\n");
         for (Person p : boardRepository.getPeople()) {

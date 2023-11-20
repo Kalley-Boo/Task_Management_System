@@ -1,4 +1,4 @@
-package commands;
+package commands.showCommands;
 
 import Models.Contracts.Team;
 import commands.contracts.Command;
@@ -15,17 +15,17 @@ public class ShowAllTeamsCommand implements Command {
         this.boardRepository = boardRepository;
     }
 
-    private String showAllTeams(){
+    private String showAllTeams() {
         StringBuilder stringBuilder = new StringBuilder();
         List<Team> teams = boardRepository.getTeams();
         stringBuilder.append(ALL_TEAMS_BANNER);
-        for(Team t : teams){
+        for (Team t : teams) {
             stringBuilder.append(t.getName()).append(" ");
         }
         return new String(stringBuilder);
     }
 
-    public String execute(List<String> parameters){
+    public String execute(List<String> parameters) {
         return showAllTeams();
     }
 }

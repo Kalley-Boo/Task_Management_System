@@ -1,5 +1,6 @@
 package commands;
 import commands.contracts.Command;
+import commands.showCommands.ShowAllTeamsCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import org.junit.jupiter.api.Assertions;

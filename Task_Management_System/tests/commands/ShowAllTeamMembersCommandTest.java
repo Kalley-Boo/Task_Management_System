@@ -3,7 +3,7 @@ package commands;
 import Models.Contracts.Person;
 import Models.Contracts.Team;
 import Models.PersonImpl;
-import Models.TeamImpl;
+import commands.showCommands.ShowTeamMembersCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import org.junit.jupiter.api.BeforeEach;
