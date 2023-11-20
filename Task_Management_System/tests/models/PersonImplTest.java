@@ -1,10 +1,8 @@
 package models;
 
-import Models.Contracts.Task;
 import Models.PersonImpl;
-import Models.TaskImpl;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.testng.annotations.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,7 +13,7 @@ public class PersonImplTest {
     public String validDescr = "Description 1" ;
     private PersonImpl person;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         person = new PersonImpl("John Doe");
     }

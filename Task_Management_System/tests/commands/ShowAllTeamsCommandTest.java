@@ -3,13 +3,10 @@ import commands.contracts.Command;
 import commands.showCommands.ShowAllTeamsCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShowAllTeamsCommandTest {
 
@@ -35,7 +32,7 @@ public class ShowAllTeamsCommandTest {
     @Test
     void execute_Should_ReturnEmptyString_When_NoTeamsExist() {
         String result = showAllTeamsCommand.execute(List.of());
-        Assertions.assertEquals("---All teams--- \n", result);
+        assertEquals("---All teams--- \n", result);
     }
 
 }
