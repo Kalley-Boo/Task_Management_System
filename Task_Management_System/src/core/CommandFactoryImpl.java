@@ -24,6 +24,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new CreateNewBugInBoardCommand(boardRepository);
             case CREATENEWSTORYINBOARD:
                 return new CreateNewStoryInBoardCommand(boardRepository);
+            case CREATENEWFEEDBACKINBOARD:
+                return new CreateNewFeedbackInBoardCommand(boardRepository);
             case CREATETEAM:
                 return new CreateTeamCommand(boardRepository);
             case SHOWTEAMSACTIVITYCOMMAND:
