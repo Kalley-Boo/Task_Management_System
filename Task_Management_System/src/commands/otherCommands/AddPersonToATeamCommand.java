@@ -1,4 +1,4 @@
-package commands.addCommands;
+package commands.otherCommands;
 
 import Models.Contracts.Person;
 import Models.Contracts.Team;

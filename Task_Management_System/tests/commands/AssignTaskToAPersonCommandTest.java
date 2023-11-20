@@ -2,6 +2,7 @@ package commands;
 
 import Models.Enums.Priority;
 import Models.Enums.TaskSize;
+import commands.otherCommands.AssignTaskToAPersonCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import org.junit.jupiter.api.BeforeEach;

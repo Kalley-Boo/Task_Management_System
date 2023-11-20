@@ -1,7 +1,6 @@
 package core;
 
-import commands.*;
-import commands.addCommands.AddCommentToTaskCommand;
+import commands.otherCommands.AddCommentToTaskCommand;
 import commands.changeCommands.*;
 import commands.contracts.Command;
 import commands.createCommands.CreateANewBoardInATeamCommand;
@@ -9,6 +8,8 @@ import commands.createCommands.CreateBoardCommand;
 import commands.createCommands.CreatePersonCommand;
 import commands.createCommands.CreateTeamCommand;
 import commands.enums.CommandType;
+import commands.otherCommands.AssignTaskToAPersonCommand;
+import commands.otherCommands.UnassignTaskToAPersonCommand;
 import commands.showCommands.*;
 import core.contracts.BoardRepository;
 import core.contracts.CommandFactory;

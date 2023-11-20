@@ -5,7 +5,7 @@ import Models.Contracts.Comment;
 import Models.Contracts.Task;
 import Models.Enums.Priority;
 import Models.Enums.TaskSize;
-import commands.addCommands.AddCommentToTaskCommand;
+import commands.otherCommands.AddCommentToTaskCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import org.junit.jupiter.api.BeforeEach;

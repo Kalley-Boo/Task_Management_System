@@ -1,11 +1,10 @@
-package commands.addCommands;
+package commands.otherCommands;
 
 import Models.CommentImpl;
 import Models.Contracts.Comment;
 import Models.Contracts.Task;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
-import exceptions.InvalidInputException;
 import util.Validator;
 
 import java.util.List;
