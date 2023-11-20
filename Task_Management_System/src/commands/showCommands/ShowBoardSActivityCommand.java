@@ -19,7 +19,7 @@ public class ShowBoardSActivityCommand implements Command {
     }
 
     private String showBoardSActivity(String boardName) {
-        return Printer.historyPrinter(boardRepository.findBoardByName(boardName).getHistoryLog());
+        return boardRepository.findBoardByName(boardName).print();
     }
 
     @Override
