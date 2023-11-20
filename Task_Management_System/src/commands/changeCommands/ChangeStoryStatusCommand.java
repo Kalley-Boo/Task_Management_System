@@ -15,9 +15,6 @@ import java.util.List;
 public class ChangeStoryStatusCommand implements Command {
     private final List<String> expectedArguments;
     private static final int EXPECTED_PARAMETERS_COUNT = 2;
-    private static final String INVALID_PARAMETERS_COUNT_MESSAGE = String.format(
-            "Change story status command expects %d parameters.",
-            EXPECTED_PARAMETERS_COUNT);
     public static final String STATUS_UPDATED = "Status of %s updated to %s.";
     private final BoardRepository boardRepository;
 

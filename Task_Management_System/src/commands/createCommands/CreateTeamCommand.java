@@ -6,10 +6,11 @@ import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;
 import util.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreateTeamCommand implements Command {
-
+    private final List<String> expectedArguments;
     public static final String TEAM_WAS_CREATED = "Team with name %s was created!";
 
     public static final int EXPECTED_PARAMETERS_COUNT = 1;
@@ -21,6 +22,8 @@ public class CreateTeamCommand implements Command {
     public CreateTeamCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         this.teams = boardRepository.getTeams();
+        expectedArguments = new ArrayList<>();
+        expectedArguments.add("a name");
     }
 
     private boolean teamExists(String name) {
@@ -45,5 +48,10 @@ public class CreateTeamCommand implements Command {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String name = parameters.get(0);
         return createTeam(name);
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return expectedArguments;
     }
 }

@@ -6,11 +6,13 @@ import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;
 import util.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreateBoardCommand implements Command {
-
+    private final List<String> expectedArguments;
     private static final String BOARD_CREATED = "Board with name %s was created!";
+
     public static final int EXPECTED_PARAMETERS_COUNT = 1;
 
 
@@ -18,7 +20,8 @@ public class CreateBoardCommand implements Command {
 
     public CreateBoardCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
-
+        expectedArguments = new ArrayList<>();
+        expectedArguments.add("a name for the board");
     }
     private String createBoard(String name){
         boardRepository.createBoard(name);
@@ -30,5 +33,10 @@ public class CreateBoardCommand implements Command {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String name = parameters.get(0);
         return createBoard(name);
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return expectedArguments;
     }
 }
