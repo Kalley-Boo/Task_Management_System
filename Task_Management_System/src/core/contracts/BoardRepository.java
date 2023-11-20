@@ -22,7 +22,7 @@ public interface BoardRepository {
 
     void createAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status, PersonImpl assignee);
     void createUnassignedAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status);
-    void createAssignedStory(String title, String description, Priority priority, TaskSize size, PersonImpl assignee);
+    void createAssignedStory(String title, String description, Priority priority, TaskSize size, Person assignee);
     void createUnassignedStory(String title, String description, Priority priority, TaskSize size);
     void createFeedback(String title, String description, int rating);
     void createPerson(String name);

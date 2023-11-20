@@ -57,4 +57,11 @@ public class BoardImpl implements Board {
     public List<HistoryLogImpl> getHistoryLog() {
         return historyLog;
     }
+
+    @Override
+    public void addTask(Task task) {
+        if (task != null) {
+            this.tasks.add(task);
+        };
+    }
 }

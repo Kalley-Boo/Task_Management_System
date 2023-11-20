@@ -13,7 +13,7 @@ public interface Story {
      StatusStory getStatus();
      Person getAssignee();
      String getName();
-     void editAssignee(PersonImpl newAssignee);
+     void editAssignee(Person newAssignee);
      void editStatus(StatusStory newStatus);
      void editSize(TaskSize newSize);
      void editPriority(Priority newPriority);

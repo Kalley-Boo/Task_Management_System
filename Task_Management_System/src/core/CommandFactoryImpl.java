@@ -1,12 +1,9 @@
 package core;
 
+import commands.createCommands.*;
 import commands.otherCommands.AddCommentToTaskCommand;
 import commands.changeCommands.*;
 import commands.contracts.Command;
-import commands.createCommands.CreateANewBoardInATeamCommand;
-import commands.createCommands.CreateBoardCommand;
-import commands.createCommands.CreatePersonCommand;
-import commands.createCommands.CreateTeamCommand;
 import commands.enums.CommandType;
 import commands.otherCommands.AssignTaskToAPersonCommand;
 import commands.otherCommands.UnassignTaskToAPersonCommand;
@@ -23,8 +20,10 @@ public class CommandFactoryImpl implements CommandFactory {
         CommandType commandType = Parser.tryParseCommandType(commandTypeValue);
 
         switch (commandType) {
-            case CREATETASK:
-                //
+            case CREATENEWBUGINBOARD:
+                return new CreateNewBugInBoardCommand(boardRepository);
+            case CREATENEWSTORYINBOARD:
+                return new CreateNewStoryInBoardCommand(boardRepository);
             case CREATETEAM:
                 return new CreateTeamCommand(boardRepository);
             case SHOWTEAMSACTIVITYCOMMAND:

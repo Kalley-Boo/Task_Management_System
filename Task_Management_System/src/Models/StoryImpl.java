@@ -32,10 +32,10 @@ public class StoryImpl extends TaskImpl implements Story {
     private Priority priority;
     private TaskSize size;
     private StatusStory status;
-    private PersonImpl assignee;
+    private Person assignee;
 
     //create a Story with an assignee
-    public StoryImpl(int id, String title, String description, Priority priority, TaskSize size, PersonImpl assignee) {
+    public StoryImpl(int id, String title, String description, Priority priority, TaskSize size, Person assignee) {
         super(id, title, description);
         setPriority(priority);
         setSize(size);
@@ -72,8 +72,8 @@ public class StoryImpl extends TaskImpl implements Story {
         addChange(new HistoryLogImpl(changeLog));
     }
 
-    public void editAssignee(PersonImpl newAssignee) {
-        PersonImpl oldAssignee = this.assignee;
+    public void editAssignee(Person newAssignee) {
+        Person oldAssignee = this.assignee;
         this.assignee = newAssignee;
         String changeLog = String.format("Assignee changed from %s to %s", oldAssignee.getName(), newAssignee.getName());
         addChange(new HistoryLogImpl(changeLog));
@@ -153,7 +153,7 @@ public class StoryImpl extends TaskImpl implements Story {
         return getTitle();
     }
 
-    private void setAssignee(PersonImpl assignee) {
+    private void setAssignee(Person assignee) {
         if (assignee == null){
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "assignee"));
         }

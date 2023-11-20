@@ -94,7 +94,7 @@ public class BoardRepositoryImpl implements BoardRepository {
     }
 
     @Override
-    public void createAssignedStory(String title, String description, Priority priority, TaskSize size, PersonImpl assignee) {
+    public void createAssignedStory(String title, String description, Priority priority, TaskSize size, Person assignee) {
         StoryImpl story = new StoryImpl(nextId++, title, description, priority, size, assignee);
         this.tasks.add(story);
         this.stories.add(story);
