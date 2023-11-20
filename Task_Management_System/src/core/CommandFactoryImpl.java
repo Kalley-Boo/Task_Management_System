@@ -16,57 +16,56 @@ public class CommandFactoryImpl implements CommandFactory {
     private static final String COMMAND_NOT_SUPPORTED_MESSAGE = "Command %s is not supported.";
 
     @Override
-    public Command createCommand(String commandTypeValue, BoardRepository boardRepository) {
-        CommandType commandType = Parser.tryParseCommandType(commandTypeValue);
+    public Command createCommand(int commandNumber, BoardRepository boardRepository) {
 
-        switch (commandType) {
-            case CREATENEWBUGINBOARD:
+        switch (commandNumber) {
+            case 1:
                 return new CreateNewBugInBoardCommand(boardRepository);
-            case CREATENEWSTORYINBOARD:
+            case 2:
                 return new CreateNewStoryInBoardCommand(boardRepository);
-            case CREATENEWFEEDBACKINBOARD:
+            case 3:
                 return new CreateNewFeedbackInBoardCommand(boardRepository);
-            case CREATETEAM:
+            case 4:
                 return new CreateTeamCommand(boardRepository);
-            case SHOWTEAMSACTIVITYCOMMAND:
+            case 5:
                 return new ShowTeamsActivityCommand(boardRepository);
-            case CREATEPERSON:
+            case 6:
                 return new CreatePersonCommand(boardRepository);
-            case CREATEBOARD:
+            case 7:
                 return new CreateBoardCommand(boardRepository);
-            case SHOWALLPEOPLE:
+            case 8:
                 return new ShowAllPeopleCommand(boardRepository);
-            case SHOWALLTEAMS:
+            case 9:
                 return new ShowAllTeamsCommand(boardRepository);
-            case SHOWPERSONCACTIVITY:
+            case 10:
                 return new ShowPersonActivityCommand(boardRepository);
-            case ADDCOMMENTTOTASK:
+            case 11:
                 return new AddCommentToTaskCommand(boardRepository);
-            case SHOWTEAMMEMBERS:
+            case 12:
                 return new ShowTeamMembersCommand(boardRepository);
-            case CHANGESTORYPRIORITY:
+            case 13:
                 return new ChangeStoryPriorityCommand(boardRepository);
-            case CHANGESTORYSIZE:
+            case 14:
                 return new ChangeStorySizeCommand(boardRepository);
-            case CREATEANEWBOARDINATEAM:
+            case 15:
                 return new CreateANewBoardInATeamCommand(boardRepository);
-            case SHOWALLTEAMBOARDS:
+            case 16:
                 return new ShowAllTeamBoardsCommand(boardRepository);
-            case SHOWBOARDSACTIVITY:
+            case 17:
                 return new ShowBoardSActivityCommand(boardRepository);
-            case CHANGERATINGOFAFEEDBACK:
+            case 18:
                 return new ChangeRatingOfAFeedbackCommand(boardRepository);
-            case CHANGESTATUSOFAFEEDBACK:
+            case 19:
                 return new ChangeStatusOfAFeedbackCommand(boardRepository);
-            case ASSIGNTASKTOAPERSON:
+            case 20:
                 return new AssignTaskToAPersonCommand(boardRepository);
-            case UNASSIGNTASKTOAPERSON:
+            case 21:
                 return new UnassignTaskToAPersonCommand(boardRepository);
-            case CHANGESTORYSTATUS:
+            case 22:
                 return new ChangeStoryStatusCommand(boardRepository);
             default:
 
-                throw new UnsupportedOperationException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, commandTypeValue));
+                throw new UnsupportedOperationException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, commandNumber));
         }
     }
 }

@@ -7,10 +7,12 @@ import core.contracts.BoardRepository;
 import util.Parser;
 import util.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChangePriorityOfABug implements Command {
 
+    private final List<String> expectedArguments;
     private static final String PRIORITY_OF_BUG_CHANGED = "The priority of bug '%s' changed %s -> %s.";
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
 
@@ -18,6 +20,9 @@ public class ChangePriorityOfABug implements Command {
 
     public ChangePriorityOfABug(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
+        expectedArguments = new ArrayList<>();
+        expectedArguments.add("Title");
+        expectedArguments.add("Priority");
     }
 
 
@@ -35,5 +40,10 @@ public class ChangePriorityOfABug implements Command {
         String title = parameters.get(0);
         Priority priority = Parser.tryParseEnum(parameters.get(1), Priority.class);
         return ChangePriority(title, priority);
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return expectedArguments;
     }
 }

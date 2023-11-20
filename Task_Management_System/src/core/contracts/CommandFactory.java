@@ -4,5 +4,5 @@ import commands.contracts.Command;
 
 public interface CommandFactory {
 
-    Command createCommand(String commandTypeValue, BoardRepository boardRepository);
+    Command createCommand(int commandNumber, BoardRepository boardRepository);
 }
