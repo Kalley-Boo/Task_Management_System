@@ -21,8 +21,8 @@ public class ChangePriorityOfABug implements Command {
     public ChangePriorityOfABug(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("Title");
-        expectedArguments.add("Priority");
+        expectedArguments.add("title");
+        expectedArguments.add("new priority");
     }
 
 

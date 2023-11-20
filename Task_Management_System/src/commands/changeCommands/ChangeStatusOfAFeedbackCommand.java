@@ -9,9 +9,11 @@ import exceptions.InvalidInputException;
 import util.Parser;
 import util.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeStatusOfAFeedbackCommand implements Command {
+    private final List<String> expectedArguments;
     public static final String COMMAND_IS_DONE = "Feedback with title %s has changed its status to %s.";
 
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
@@ -20,6 +22,9 @@ public class ChangeStatusOfAFeedbackCommand implements Command {
 
     public ChangeStatusOfAFeedbackCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
+        expectedArguments = new ArrayList<>();
+        expectedArguments.add("title");
+        expectedArguments.add("new status");
     }
 
     @Override
@@ -28,6 +33,11 @@ public class ChangeStatusOfAFeedbackCommand implements Command {
         String feedbackName = parameters.get(0);
         StatusFeedback status = Parser.tryParseEnum(parameters.get(1), StatusFeedback.class);
         return changeStatusOfAFeedback(feedbackName, status);
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return expectedArguments;
     }
 
     private String changeStatusOfAFeedback(String feedbackName, StatusFeedback status) {

@@ -8,15 +8,20 @@ import exceptions.InvalidInputException;
 import util.Parser;
 import util.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeStorySizeCommand implements Command {
+    private final List<String> expectedArguments;
     private static final int EXPECTED_PARAMETERS_COUNT = 2;
     public static final String SIZE_UPDATED = "Size of %s updated to %s.";
     private final BoardRepository boardRepository;
 
     public ChangeStorySizeCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
+        expectedArguments = new ArrayList<>();
+        expectedArguments.add("title");
+        expectedArguments.add("new size");
     }
 
     public String changeStorySize(String storyName, String sizeStr) {
@@ -32,5 +37,10 @@ public class ChangeStorySizeCommand implements Command {
         String storyName = parameters.get(0);
         String sizeStr = parameters.get(1);
         return changeStorySize(storyName, sizeStr);
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return expectedArguments;
     }
 }

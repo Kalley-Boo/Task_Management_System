@@ -5,9 +5,11 @@ import core.contracts.BoardRepository;
 import util.Parser;
 import util.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeRatingOfAFeedbackCommand implements Command {
+    private final List<String> expectedArguments;
     public static final String COMMAND_IS_DONE = "Feedback with title %s has changed its rating to %d.";
 
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
@@ -17,6 +19,9 @@ public class ChangeRatingOfAFeedbackCommand implements Command {
 
     public ChangeRatingOfAFeedbackCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
+        expectedArguments = new ArrayList<>();
+        expectedArguments.add("title");
+        expectedArguments.add("new rating");
     }
 
 
@@ -31,5 +36,10 @@ public class ChangeRatingOfAFeedbackCommand implements Command {
         String feedbackName = parameters.get(0);
         int rating = Parser.tryParseInt(parameters.get(1), INVALID_RATING);
         return changeRatingOfAFeedback(feedbackName, rating);
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return expectedArguments;
     }
 }

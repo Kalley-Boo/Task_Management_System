@@ -7,10 +7,11 @@ import core.contracts.BoardRepository;
 import util.Parser;
 import util.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeStatusOfABug implements Command {
-
+    private final List<String> expectedArguments;
     private static final String STATUS_OF_BUG_CHANGED = "The status of bug '%s' changed %s -> %s.";
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
 
@@ -18,6 +19,9 @@ public class ChangeStatusOfABug implements Command {
 
     public ChangeStatusOfABug(BoardRepository boardRepository){
         this.boardRepository = boardRepository;
+        expectedArguments = new ArrayList<>();
+        expectedArguments.add("title");
+        expectedArguments.add("new status");
     }
 
 
@@ -36,5 +40,10 @@ public class ChangeStatusOfABug implements Command {
         String title = parameters.get(0);
         StatusBug status = Parser.tryParseEnum(parameters.get(1), StatusBug.class);
         return ChangeStatus(title, status);
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return expectedArguments;
     }
 }
