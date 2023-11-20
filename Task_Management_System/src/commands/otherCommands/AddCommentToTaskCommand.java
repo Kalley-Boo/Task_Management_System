@@ -7,9 +7,11 @@ import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import util.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddCommentToTaskCommand implements Command {
+    private final List<String> expectedArguments;
     private static final int EXPECTED_PARAMETERS_COUNT = 3;
     public static final String COMMENT_ADDED = "Comment added to task %s";
     private final BoardRepository boardRepository;
@@ -17,6 +19,10 @@ public class AddCommentToTaskCommand implements Command {
 
     public AddCommentToTaskCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
+        expectedArguments = new ArrayList<>();
+        expectedArguments.add("the task name");
+        expectedArguments.add("a title for the comment");
+        expectedArguments.add("the comment description");
     }
 
     public String addCommentToTask(String taskName, Comment comment){
@@ -33,5 +39,10 @@ public class AddCommentToTaskCommand implements Command {
         String author = parameters.get(2);
         Comment comment = new CommentImpl(commentContent, author);
         return addCommentToTask(taskName, comment);
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return expectedArguments;
     }
 }

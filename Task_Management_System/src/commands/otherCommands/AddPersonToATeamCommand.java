@@ -6,10 +6,11 @@ import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import util.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddPersonToATeamCommand implements Command {
-
+    private final List<String> expectedArguments;
     private static final String PERSON_ADDED_TO_A_TEAM = "%s added to team %s";
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
 
@@ -17,6 +18,9 @@ public class AddPersonToATeamCommand implements Command {
 
     public AddPersonToATeamCommand(BoardRepository boardRepository){
         this.boardRepository = boardRepository;
+        expectedArguments = new ArrayList<>();
+        expectedArguments.add("the person's name");
+        expectedArguments.add("the team's name, in which to be added");
     }
 
     private String AddPersonToATeam(String personName, String teamName){
@@ -32,5 +36,10 @@ public class AddPersonToATeamCommand implements Command {
         String personName = parameters.get(0);
         String teamName = parameters.get(1);
         return AddPersonToATeam(personName, teamName);
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return expectedArguments;
     }
 }
