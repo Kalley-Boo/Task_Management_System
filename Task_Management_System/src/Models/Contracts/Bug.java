@@ -19,7 +19,7 @@ public interface Bug {
     void editSeverity(Severity newSeverity);
     void editStatus(StatusBug newStatus);
     void editStepsToReproduce(List<String> newSteps);
-    void editAssignee(PersonImpl newAssignee);
+    void editAssignee(Person newAssignee);
     void addComment(Comment comment);
     void addHistoryLog(HistoryLog historyLog);
 }

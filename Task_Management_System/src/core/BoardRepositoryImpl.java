@@ -80,14 +80,14 @@ public class BoardRepositoryImpl implements BoardRepository {
 
     //-----------------CREATE------------------
     @Override
-    public void createAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status, PersonImpl assignee) {
+    public void createAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, Person assignee) {
         BugImpl bug = new BugImpl(nextId++, title, description, stepsToReproduce, priority, severity, assignee);
         this.tasks.add(bug);
         this.bugs.add(bug);
     }
 
     @Override
-    public void createUnassignedAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, TaskStatus status) {
+    public void createUnassignedAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity) {
         BugImpl bug = new BugImpl(nextId++, title, description, stepsToReproduce, priority, severity);
         this.tasks.add(bug);
         this.bugs.add(bug);
