@@ -11,7 +11,7 @@ import util.Validator;
 import java.util.List;
 
 public class ShowAllTeamBoardsCommand implements Command {
-    private static final String COMMAND_START = "These are all boards for team with name %s.";
+    public static final String COMMAND_START = "These are all boards for team with name %s.";
 
     public static final int EXPECTED_PARAMETERS_COUNT = 1;
     public static final String ALL_BOARDS_BANNER = "---BOARDS---";
@@ -25,11 +25,11 @@ public class ShowAllTeamBoardsCommand implements Command {
     private String showAllTeamBoards(String name) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.format(COMMAND_START, name));
+        stringBuilder.append("\n");
         stringBuilder.append(ALL_BOARDS_BANNER).append("\n");
         for (Board board : boardRepository.findTeamByName(name).getBoards()) {
             stringBuilder.append(board.print()).append("\n");
         }
-        stringBuilder.append(ALL_BOARDS_BANNER);
         return new String(stringBuilder);
     }
 
