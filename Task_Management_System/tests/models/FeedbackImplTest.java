@@ -4,7 +4,6 @@ import Models.CommentImpl;
 import Models.Enums.Priority;
 import Models.Enums.Severity;
 import Models.Enums.StatusFeedback;
-import Models.Enums.TaskStatus;
 import Models.FeedbackImpl;
 import Models.PersonImpl;
 import org.junit.jupiter.api.Assertions;

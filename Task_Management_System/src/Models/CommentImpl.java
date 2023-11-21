@@ -1,12 +1,13 @@
 package Models;
 
 import Models.Contracts.Comment;
+import Models.Contracts.Person;
 
 public class CommentImpl implements Comment {
-    private final String author;
+    private final Person author;
     private String content;
 
-    public CommentImpl(String content, String author) {
+    public CommentImpl(String content, Person author) {
         setContent(content);
         this.author = author;
     }
@@ -21,7 +22,7 @@ public class CommentImpl implements Comment {
     }
 
     @Override
-    public String getAuthor() {
+    public Person getAuthor() {
         return author;
     }
 

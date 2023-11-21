@@ -5,7 +5,7 @@ import Models.Contracts.Person;
 import Models.Enums.Priority;
 import Models.Enums.Severity;
 import Models.Enums.StatusBug;
-import Models.Enums.TaskStatus;
+
 import Models.PersonImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;

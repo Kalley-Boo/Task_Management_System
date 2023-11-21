@@ -2,6 +2,7 @@ package commands.otherCommands;
 
 import Models.CommentImpl;
 import Models.Contracts.Comment;
+import Models.Contracts.Person;
 import Models.Contracts.Task;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
@@ -21,8 +22,8 @@ public class AddCommentToTaskCommand implements Command {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
         expectedArguments.add("the task name");
-        expectedArguments.add("a title for the comment");
-        expectedArguments.add("the comment description");
+        expectedArguments.add("the content of the comment");
+        expectedArguments.add("the name of the author");
     }
 
     public String addCommentToTask(String taskName, Comment comment){
@@ -36,7 +37,7 @@ public class AddCommentToTaskCommand implements Command {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String taskName = parameters.get(0);
         String commentContent= parameters.get(1);
-        String author = parameters.get(2);
+        Person author = boardRepository.findPersonByName(parameters.get(2));
         Comment comment = new CommentImpl(commentContent, author);
         return addCommentToTask(taskName, comment);
     }
