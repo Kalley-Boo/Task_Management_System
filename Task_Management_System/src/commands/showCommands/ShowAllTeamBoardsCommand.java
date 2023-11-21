@@ -8,9 +8,11 @@ import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;
 import util.Validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowAllTeamBoardsCommand implements Command {
+    private final List<String> expectedArguments;
     public static final String COMMAND_START = "These are all boards for team with name %s.";
 
     public static final int EXPECTED_PARAMETERS_COUNT = 1;
@@ -20,6 +22,8 @@ public class ShowAllTeamBoardsCommand implements Command {
 
     public ShowAllTeamBoardsCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
+        expectedArguments = new ArrayList<>();
+        expectedArguments.add("the team's name");
     }
 
     private String showAllTeamBoards(String name) {
@@ -40,4 +44,8 @@ public class ShowAllTeamBoardsCommand implements Command {
 
     }
 
+    @Override
+    public List<String> getExpectedArguments() {
+        return expectedArguments;
+    }
 }

@@ -68,6 +68,11 @@ public class EngineImpl implements Engine {
     public void processCommand(int commandNumber) {
         Command command = commandFactory.createCommand(commandNumber, boardRepository);
         List<String> expectedArguments = command.getExpectedArguments();
+        if (expectedArguments.size() == 0){
+            String executionResult = command.execute(new ArrayList<>());
+            System.out.println(executionResult);
+            return;
+        }
         List<String> args = collectArguments(expectedArguments);
         String executionResult = command.execute(args);
         System.out.println(executionResult);

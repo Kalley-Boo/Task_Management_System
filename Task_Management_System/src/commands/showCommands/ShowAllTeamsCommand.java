@@ -4,6 +4,7 @@ import Models.Contracts.Team;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowAllTeamsCommand implements Command {
@@ -27,5 +28,10 @@ public class ShowAllTeamsCommand implements Command {
 
     public String execute(List<String> parameters) {
         return showAllTeams();
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return new ArrayList<>();
     }
 }

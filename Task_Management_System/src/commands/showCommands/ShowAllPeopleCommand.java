@@ -4,6 +4,7 @@ import Models.Contracts.Person;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowAllPeopleCommand implements Command {
@@ -30,5 +31,10 @@ public class ShowAllPeopleCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
         return showAllPeople();
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return new ArrayList<>();
     }
 }
