@@ -21,8 +21,8 @@ public class ChangeStoryStatusCommand implements Command {
     public ChangeStoryStatusCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("Title of Story:");
-        expectedArguments.add("New status (not done, in progress, done):");
+        expectedArguments.add("title of Story");
+        expectedArguments.add("new status (not_done, in_progress, done)");
     }
 
     public String changeStoryStatus(String storyName, String statusStr){

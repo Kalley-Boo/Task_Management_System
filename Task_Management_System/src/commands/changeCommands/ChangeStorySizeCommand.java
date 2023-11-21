@@ -20,8 +20,8 @@ public class ChangeStorySizeCommand implements Command {
     public ChangeStorySizeCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("Title of Story: ");
-        expectedArguments.add("New size (small, medium, large):");
+        expectedArguments.add("title of Story");
+        expectedArguments.add("new size (small, medium, large)");
     }
 
     public String changeStorySize(String storyName, String sizeStr) {

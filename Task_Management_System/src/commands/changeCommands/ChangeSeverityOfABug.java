@@ -20,8 +20,8 @@ public class ChangeSeverityOfABug implements Command {
     public ChangeSeverityOfABug(BoardRepository boardRepository){
         this.boardRepository = boardRepository;
         this.expectedArguments = new ArrayList<>();
-        expectedArguments.add("Title of bug: ");
-        expectedArguments.add("New severity (minor, major, critical):");
+        expectedArguments.add("title of bug");
+        expectedArguments.add("new severity (minor, major, critical)");
     }
 
 
