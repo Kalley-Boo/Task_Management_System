@@ -97,6 +97,7 @@ public class EngineImpl implements Engine {
     @Override
     public void showOptions() {
         int counter = 1;
+
         CommandType[] commandTypes = CommandType.values();
 
         for (CommandType commandType : commandTypes) {
