@@ -19,8 +19,8 @@ public class ChangeStoryPriorityCommand implements Command {
     public ChangeStoryPriorityCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("title");
-        expectedArguments.add("new priority");
+        expectedArguments.add("Title of Story: ");
+        expectedArguments.add("New priority (low, medium, high):");
     }
 
     public String changeStoryPriority(String storyName, String priorityStr){

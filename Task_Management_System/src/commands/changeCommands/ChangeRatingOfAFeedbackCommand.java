@@ -20,8 +20,8 @@ public class ChangeRatingOfAFeedbackCommand implements Command {
     public ChangeRatingOfAFeedbackCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("title");
-        expectedArguments.add("new rating");
+        expectedArguments.add("Title of feedback:");
+        expectedArguments.add("New rating (1 to 10):");
     }
 
 

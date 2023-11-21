@@ -20,8 +20,8 @@ public class ChangeStatusOfABug implements Command {
     public ChangeStatusOfABug(BoardRepository boardRepository){
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("title");
-        expectedArguments.add("new status");
+        expectedArguments.add("Title of bug: ");
+        expectedArguments.add("New status (active, done):");
     }
 
 

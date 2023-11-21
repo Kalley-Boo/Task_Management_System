@@ -21,8 +21,8 @@ public class ChangePriorityOfABug implements Command {
     public ChangePriorityOfABug(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("title");
-        expectedArguments.add("new priority");
+        expectedArguments.add("Title of the bug:");
+        expectedArguments.add("New priority (high, medium or low):");
     }
 
 
