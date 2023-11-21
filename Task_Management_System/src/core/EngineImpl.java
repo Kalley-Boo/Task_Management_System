@@ -6,8 +6,9 @@ import core.contracts.BoardRepository;
 import core.contracts.CommandFactory;
 import core.contracts.Engine;
 import util.Parser;
+import util.Printer;
+import util.Validator;
 
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,11 +20,17 @@ public class EngineImpl implements Engine {
     private static final String EMPTY_COMMAND_ERROR = "Command cannot be empty.";
     private static final String COMMAND_ERROR = "You must select from the list of existing commands by typing in its number!";
     private static final String ENTER_ARGUMENT_MESSAGE = "Please enter %s:";
-
+    private static final String MENU_OPTIONS = """
+            Please select from the following options by typing the number of the command:
+            1. Show commands\s
+            2. Select command\s
+            3. Exit""";
+    private final static int MIN_MENU_OPTION = 1;
+    private final static int MAX_MENU_OPTION = 3;
 
     private final CommandFactory commandFactory;
     private final BoardRepository boardRepository;
-    Scanner scanner = new Scanner(System.in);
+
 
     public EngineImpl(){
         this.commandFactory = new CommandFactoryImpl();
@@ -31,18 +38,12 @@ public class EngineImpl implements Engine {
     }
     @Override
     public void start() {
-
         while (true) {
             try {
-                showOptions();
-                int commandNumber = selectCommand();
-                if (commandNumber == 0){
-                    continue;
-                }
-                if (commandNumber == -1){
+                if (showMenu() == 3){
+                    System.out.println(TERMINATION_COMMAND_MESSAGE);
                     break;
                 }
-                processCommand(commandNumber);
             } catch (Exception ex) {
                 if (ex.getMessage() != null && !ex.getMessage().isEmpty()) {
                     System.out.println(ex.getMessage());
@@ -55,15 +56,11 @@ public class EngineImpl implements Engine {
 
     @Override
     public int selectCommand() {
-
-        String inputLine = scanner.nextLine();
+        Scanner sc = new Scanner(System.in);
+        String inputLine = sc.nextLine();
         if (inputLine.isBlank()) {
             System.out.println(EMPTY_COMMAND_ERROR);
             return 0;
-        }
-        if (inputLine.equalsIgnoreCase(TERMINATION_COMMAND)) {
-            System.out.println(TERMINATION_COMMAND_MESSAGE);
-            return -1;
         }
         return extractCommandNumber(inputLine);
     }
@@ -99,14 +96,15 @@ public class EngineImpl implements Engine {
         List<String> args = new ArrayList<>();
         for (String argument : expectedArguments) {
             System.out.println(String.format(ENTER_ARGUMENT_MESSAGE, argument));
-            String arg = scanner.nextLine().trim();
+            Scanner sc = new Scanner(System.in);
+            String arg = sc.nextLine().trim();
             args.add(arg);
         }
         return args;
     }
 
     @Override
-    public void showOptions() {
+    public void showCommandsOptions() {
         int counter = 1;
 
         CommandType[] commandTypes = CommandType.values();
@@ -116,20 +114,40 @@ public class EngineImpl implements Engine {
         }
     }
 
-
     @Override
     public int extractCommandNumber(String commandInput) {
         return Parser.tryParseInt(commandInput.trim(), COMMAND_ERROR);
     }
 
-
-    @Override
-    public List<String> extractCommandParameters(String inputLine) {
-        String[] commandParts = inputLine.split(" ");
-        List<String> parameters = new ArrayList<>();
-        for (int i = 1; i < commandParts.length; i++) {
-            parameters.add(commandParts[i]);
+    public int showMenu(){
+        System.out.println(MENU_OPTIONS);
+        int command = 0;
+        while (true) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                command = sc.nextInt();
+                Validator.validateIntRange(command, MIN_MENU_OPTION, MAX_MENU_OPTION);
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
-        return parameters;
+
+        switch (command){
+            case 1:
+                showCommandsOptions();
+                return 1;
+            case 2:
+                int commandNumber = selectCommand();
+                if (commandNumber == 0){
+                    return 2;
+                }
+                processCommand(commandNumber);
+                return 2;
+            case 3:
+                return 3;
+            default:
+                return 4;
+        }
     }
 }
