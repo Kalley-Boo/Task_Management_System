@@ -23,8 +23,8 @@ public class ChangeStatusOfAFeedbackCommand implements Command {
     public ChangeStatusOfAFeedbackCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("title");
-        expectedArguments.add("new status");
+        expectedArguments.add("title of feedback");
+        expectedArguments.add("new status (new, unscheduled, scheduled, done)");
     }
 
     @Override
