@@ -1,11 +1,13 @@
 package core;
 
 import commands.contracts.Command;
+import commands.enums.CommandType;
 import core.contracts.BoardRepository;
 import core.contracts.CommandFactory;
 import core.contracts.Engine;
 import util.Parser;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -32,6 +34,7 @@ public class EngineImpl implements Engine {
 
         while (true) {
             try {
+                showOptions();
                 int commandNumber = selectCommand();
                 if (commandNumber == 0){
                     continue;
@@ -39,7 +42,7 @@ public class EngineImpl implements Engine {
                 if (commandNumber == -1){
                     break;
                 }
-                //arguments
+                processCommand(commandNumber);
             } catch (Exception ex) {
                 if (ex.getMessage() != null && !ex.getMessage().isEmpty()) {
                     System.out.println(ex.getMessage());
@@ -52,6 +55,7 @@ public class EngineImpl implements Engine {
 
     @Override
     public int selectCommand() {
+
         String inputLine = scanner.nextLine();
         if (inputLine.isBlank()) {
             System.out.println(EMPTY_COMMAND_ERROR);
@@ -89,6 +93,17 @@ public class EngineImpl implements Engine {
         }
         return args;
     }
+
+    @Override
+    public void showOptions() {
+        int counter = 1;
+        CommandType[] commandTypes = CommandType.values();
+
+        for (CommandType commandType : commandTypes) {
+            System.out.println(counter++ + ". " + commandType);
+        }
+    }
+
 
     @Override
     public int extractCommandNumber(String commandInput) {

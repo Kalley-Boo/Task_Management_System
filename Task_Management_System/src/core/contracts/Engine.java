@@ -12,4 +12,5 @@ public interface Engine {
     int extractCommandNumber(String inputLine);
     List<String> extractCommandParameters(String inputLine);
     List<String> collectArguments(List<String> expectedArguments);
-}
+    void showOptions();
+    }
