@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class EngineImpl implements Engine {
 
-    private static final String TERMINATION_COMMAND = "Exit";
+    private static final String SELECT_COMMAND = "Please select a command number";
     private static final String TERMINATION_COMMAND_MESSAGE = "You exited the application";
     private static final String EMPTY_COMMAND_ERROR = "Command cannot be empty.";
     private static final String COMMAND_ERROR = "You must select from the list of existing commands by typing in its number!";
@@ -56,6 +56,7 @@ public class EngineImpl implements Engine {
 
     @Override
     public int selectCommand() {
+        System.out.println(SELECT_COMMAND);
         Scanner sc = new Scanner(System.in);
         String inputLine = sc.nextLine();
         if (inputLine.isBlank()) {
