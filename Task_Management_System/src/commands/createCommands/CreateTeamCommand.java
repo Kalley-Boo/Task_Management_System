@@ -15,6 +15,8 @@ public class CreateTeamCommand implements Command {
 
     public static final int EXPECTED_PARAMETERS_COUNT = 1;
     public static final String TEAM_SAME_NAME_EXISTS = "Team with the same name already exists.";
+    public static final String INVALID_NAME_LENGTH = "The length of the title must be 10-15";
+
 
     private final BoardRepository boardRepository;
     private final List<Team> teams;
@@ -23,7 +25,7 @@ public class CreateTeamCommand implements Command {
         this.boardRepository = boardRepository;
         this.teams = boardRepository.getTeams();
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("a name");
+        expectedArguments.add("a name (5-15 characters)");
     }
 
     private boolean teamExists(String name) {
@@ -47,6 +49,7 @@ public class CreateTeamCommand implements Command {
     public String execute(List<String> parameters) {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String name = parameters.get(0);
+        Validator.validateStringLength(name, 5, 15, INVALID_NAME_LENGTH);
         return createTeam(name);
     }
 

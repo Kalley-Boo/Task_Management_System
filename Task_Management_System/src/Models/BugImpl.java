@@ -14,13 +14,13 @@ import java.util.List;
 public class BugImpl extends TaskImpl implements Bug {
 
     private static final String PRINT_template = """
-            Id: + %d +\s
-             + Title: %s +\s
-             + Description: %s + \s
-             + Priority: %s + \s
-             + Severity: %s + \s
-             + Assignee: %s + \n
-             + Status: %s + \n
+            Id: %d \s
+              Title: %s \s
+              Description: %s \s
+              Priority: %s \s
+              Severity: %s \s
+              Assignee: %s \n
+              Status: %s \n
              """;
     private static final String NO_COMMENTS = "There are no comments for this bug";
     private static final String COMMENTS_HEADER = "---COMMENTS---";

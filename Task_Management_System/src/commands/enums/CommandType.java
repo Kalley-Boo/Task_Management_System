@@ -3,7 +3,7 @@ package commands.enums;
 public enum CommandType {
 
     CREATEPERSON,
-    CREATEBOARD,
+    EMPTY,
     CREATENEWBUGINBOARD,
     CREATENEWSTORYINBOARD,
     CREATENEWFEEDBACKINBOARD,

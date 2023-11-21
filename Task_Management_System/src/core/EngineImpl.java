@@ -77,9 +77,20 @@ public class EngineImpl implements Engine {
             System.out.println(executionResult);
             return;
         }
-        List<String> args = collectArguments(expectedArguments);
-        String executionResult = command.execute(args);
-        System.out.println(executionResult);
+        while (true){
+            try{
+                List<String> args = collectArguments(expectedArguments);
+                String executionResult = command.execute(args);
+                System.out.println(executionResult);
+                break;
+            }catch (RuntimeException ex){
+                if (ex.getMessage() != null && !ex.getMessage().isEmpty()) {
+                    System.out.println(ex.getMessage());
+                } else {
+                    System.out.println(ex);
+                }
+            }
+        }
     }
 
 

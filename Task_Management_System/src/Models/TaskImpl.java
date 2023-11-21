@@ -32,12 +32,12 @@ public abstract  class TaskImpl implements Task {
         this.id = id;
     }
 
-    public void setTitle(String title) {
+    private void setTitle(String title) {
         Validator.validateStringLength(title, TITLE_MIN_VALUE, TITLE_MAX_VALUE, TITLE_ERROR_MESSAGE);
         this.title = title;
     }
 
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         Validator.validateStringLength(description, DESCRIPTION_MIN_VALUE, DESCRIPTION_MAX_VALUE, DESCRIPTION_ERROR_MESSAGE);
         this.description = description;
 

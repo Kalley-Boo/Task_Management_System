@@ -18,16 +18,18 @@ public class CreateNewStoryInBoardCommand implements Command {
     public static final int EXPECTED_PARAMETERS_COUNT = 6;
     private static final String ASSIGNED_STORY_CREATED = "Story with title %s was created and assigned to %s!";
     private static final String UNASSIGNED_STORY_CREATED = "Story with title %s was created!";
+    public static final String INVALID_TITLE_LENGTH = "The length of the title must be 10-100";
+    public static final String INVALID_DESCRIPTION_LENGTH = "The length of the description must be 10-500";
     private final BoardRepository boardRepository;
 
 
     public CreateNewStoryInBoardCommand(BoardRepository boardRepository){
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("a title for the story");
-        expectedArguments.add("description");
-        expectedArguments.add("priority");
-        expectedArguments.add("size");
+        expectedArguments.add("a title for the story (10-100 characters)");
+        expectedArguments.add("description (10-500 characters)");
+        expectedArguments.add("priority (HIGH, MEDIUM, LOW)");
+        expectedArguments.add("size (LARGE, MEDIUM, SMALL)");
         expectedArguments.add("assignee(type unassigned to leave it unassigned)");
         expectedArguments.add("board on which this story should be");
     }
@@ -49,7 +51,9 @@ public class CreateNewStoryInBoardCommand implements Command {
     public String execute(List<String> parameters) {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String title = parameters.get(0);
+        Validator.validateStringLength(title, 10, 100, INVALID_TITLE_LENGTH);
         String description = parameters.get(1);
+        Validator.validateStringLength(description, 10, 500, INVALID_DESCRIPTION_LENGTH);
         Priority priority = Parser.tryParseEnum(parameters.get(2), Priority.class);
         TaskSize taskSize = Parser.tryParseEnum(parameters.get(3), TaskSize.class);
         Board board = boardRepository.findBoardByName(parameters.get(4));

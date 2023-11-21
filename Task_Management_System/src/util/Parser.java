@@ -5,7 +5,7 @@ import commands.enums.CommandType;
 public abstract class Parser {
 
     private static final String COMMAND_NOT_SUPPORTED_MESSAGE = "Command %s is not supported.";
-    public static final String NO_SUCH_ENUM = "There is no %s in %ss.";
+    public static final String NO_SUCH_ENUM = "There is no %s in %s.";
 
 
     public static CommandType tryParseCommandType(String value) {

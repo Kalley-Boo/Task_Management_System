@@ -19,17 +19,21 @@ public class CreateNewBugInBoardCommand implements Command {
     public static final int EXPECTED_PARAMETERS_COUNT = 7;
     private static final String ASSIGNED_BUG_CREATED = "Bug with title %s was created and assigned to %s!";
     private static final String UNASSIGNED_BUG_CREATED = "Bug with title %s was created!";
+    public static final String INVALID_TITLE_LENGTH = "The length of the title must be 10-100";
+    public static final String INVALID_DESCRIPTION_LENGTH = "The length of the description must be 10-500";
+
+
 
     private final BoardRepository boardRepository;
 
     public CreateNewBugInBoardCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("a title for the bug");
-        expectedArguments.add("description");
+        expectedArguments.add("a title for the bug (10-100 characters)");
+        expectedArguments.add("description (10-500 characters)");
         expectedArguments.add("steps to reproduce separated by ','");
-        expectedArguments.add("priority");
-        expectedArguments.add("severity");
+        expectedArguments.add("priority (HIGH, MEDIUM, LOW)");
+        expectedArguments.add("severity (CRITICAL, MAJOR, MINOR)");
         expectedArguments.add("assignee(type unassigned to leave it unassigned)");
         expectedArguments.add("board on which this bug should be");
     }
@@ -50,7 +54,9 @@ public class CreateNewBugInBoardCommand implements Command {
     public String execute(List<String> parameters) {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String title = parameters.get(0);
+        Validator.validateStringLength(title, 10, 100, INVALID_TITLE_LENGTH);
         String description = parameters.get(1);
+        Validator.validateStringLength(description, 10, 500, INVALID_DESCRIPTION_LENGTH);
         List<String> steps = Arrays.asList(parameters.get(2).split(","));
         Priority priority = Parser.tryParseEnum(parameters.get(3), Priority.class);
         Severity severity = Parser.tryParseEnum(parameters.get(4), Severity.class);

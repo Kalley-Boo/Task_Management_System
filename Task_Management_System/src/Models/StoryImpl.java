@@ -6,12 +6,7 @@ import Models.Contracts.Story;
 import Models.Enums.Priority;
 import Models.Enums.StatusStory;
 import Models.Enums.TaskSize;
-import Models.Enums.TaskStatus;
 import exceptions.InvalidInputException;
-import util.Parser;
-
-import javax.swing.plaf.basic.BasicIconFactory;
-import java.util.List;
 
 
 public class StoryImpl extends TaskImpl implements Story {

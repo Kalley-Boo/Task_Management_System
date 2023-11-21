@@ -22,7 +22,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case 1:
                 return new CreatePersonCommand(boardRepository);
             case 2:
-                return new CreateBoardCommand(boardRepository);
+                //
             case 3:
                 return new CreateNewBugInBoardCommand(boardRepository);
             case 4:
