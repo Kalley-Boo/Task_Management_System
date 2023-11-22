@@ -1,11 +1,14 @@
 package commands.createCommands;
 
 import Models.Contracts.Board;
+import Models.Contracts.Feedback;
 import Models.Contracts.Person;
+import Models.Contracts.Story;
 import Models.Enums.Priority;
 import Models.Enums.TaskSize;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
+import exceptions.InvalidInputException;
 import util.Parser;
 import util.Validator;
 
@@ -19,6 +22,7 @@ public class CreateNewStoryInBoardCommand implements Command {
     private static final String ASSIGNED_STORY_CREATED = "Story with title %s was created and assigned to %s!";
     private static final String UNASSIGNED_STORY_CREATED = "Story with title %s was created!";
     public static final String INVALID_TITLE_LENGTH = "The length of the title must be 10-100";
+    public static final String STORY_EXISTS = "Story with this name already exists.";
     public static final String INVALID_DESCRIPTION_LENGTH = "The length of the description must be 10-500";
     private final BoardRepository boardRepository;
 
@@ -33,7 +37,12 @@ public class CreateNewStoryInBoardCommand implements Command {
         expectedArguments.add("assignee(type unassigned to leave it unassigned)");
         expectedArguments.add("board on which this story should be");
     }
+    private boolean storyExists(String title){
+        for (Story story: boardRepository.getStories())
+        {if (story.getName().equals(title)){return true;}
 
+        } return false;
+    }
     private String creteAssignedStory(String title, String description, Priority priority, TaskSize taskSize, Person assignee, Board board){
         boardRepository.createAssignedStory(title, description, priority, taskSize, assignee);
         board.addTask(boardRepository.findTaskByTitle(title));
@@ -51,7 +60,11 @@ public class CreateNewStoryInBoardCommand implements Command {
     public String execute(List<String> parameters) {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String title = parameters.get(0);
+//        if (storyExists(title)){
+//            throw new InvalidInputException(STORY_EXISTS);}
         Validator.validateStringLength(title, 10, 100, INVALID_TITLE_LENGTH);
+        if (storyExists(title)){
+            throw new InvalidInputException(STORY_EXISTS);}
         String description = parameters.get(1);
         Validator.validateStringLength(description, 10, 500, INVALID_DESCRIPTION_LENGTH);
         Priority priority = Parser.tryParseEnum(parameters.get(2), Priority.class);
