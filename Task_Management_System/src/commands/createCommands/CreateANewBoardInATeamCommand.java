@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CreateANewBoardInATeamCommand implements Command {
     private final List<String> expectedArguments;
-    public static final String BOARD_CREATED = "Board with name %s was created in team with name%s!";
+    public static final String BOARD_CREATED = "Board with name %s was created in team with name %s!";
     public static final String INVALID_TITLE_LENGTH = "The length of the title must be 5-10";
 
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
@@ -29,6 +29,7 @@ public class CreateANewBoardInATeamCommand implements Command {
         String boardName = parameters.get(0);
         Validator.validateStringLength(boardName, 5, 10, INVALID_TITLE_LENGTH);
         String teamName = parameters.get(1);
+        //todo validate if the board already exists in the team
         return createANewBoardInATeam(boardName, teamName);
     }
 

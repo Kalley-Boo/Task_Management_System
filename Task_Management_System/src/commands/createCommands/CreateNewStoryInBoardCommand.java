@@ -56,7 +56,7 @@ public class CreateNewStoryInBoardCommand implements Command {
         Validator.validateStringLength(description, 10, 500, INVALID_DESCRIPTION_LENGTH);
         Priority priority = Parser.tryParseEnum(parameters.get(2), Priority.class);
         TaskSize taskSize = Parser.tryParseEnum(parameters.get(3), TaskSize.class);
-        Board board = boardRepository.findBoardByName(parameters.get(4));
+        Board board = boardRepository.findBoardByName(parameters.get(5));
         if (parameters.get(4).equalsIgnoreCase("unassigned")){
             return this.createUnassignedStory(title, description, priority, taskSize, board);
 

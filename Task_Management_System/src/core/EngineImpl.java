@@ -18,7 +18,7 @@ public class EngineImpl implements Engine {
     private static final String SELECT_COMMAND = "Please select a command number";
     private static final String TERMINATION_COMMAND_MESSAGE = "You exited the application";
     private static final String EMPTY_COMMAND_ERROR = "Command cannot be empty.";
-    private static final String COMMAND_ERROR = "You must select from the list of existing commands by typing in its number!";
+    private static final String COMMAND_ERROR = "You must select from the list of existing commands by typing in its number from the list of commands!";
     private static final String ENTER_ARGUMENT_MESSAGE = "Please enter %s:";
     private static final String MENU_OPTIONS = """
             Please select from the following options by typing the number of the command:
@@ -32,15 +32,16 @@ public class EngineImpl implements Engine {
     private final BoardRepository boardRepository;
 
 
-    public EngineImpl(){
+    public EngineImpl() {
         this.commandFactory = new CommandFactoryImpl();
         this.boardRepository = new BoardRepositoryImpl();
     }
+
     @Override
     public void start() {
         while (true) {
             try {
-                if (showMenu() == 3){
+                if (showMenu() == 3) {
                     System.out.println(TERMINATION_COMMAND_MESSAGE);
                     break;
                 }
@@ -70,18 +71,18 @@ public class EngineImpl implements Engine {
     public void processCommand(int commandNumber) {
         Command command = commandFactory.createCommand(commandNumber, boardRepository);
         List<String> expectedArguments = command.getExpectedArguments();
-        if (expectedArguments.size() == 0){
+        if (expectedArguments.size() == 0) {
             String executionResult = command.execute(new ArrayList<>());
             System.out.println(executionResult);
             return;
         }
-        while (true){
-            try{
+        while (true) {
+            try {
                 List<String> args = collectArguments(expectedArguments);
                 String executionResult = command.execute(args);
                 System.out.println(executionResult);
                 break;
-            }catch (RuntimeException ex){
+            } catch (RuntimeException ex) {
                 if (ex.getMessage() != null && !ex.getMessage().isEmpty()) {
                     System.out.println(ex.getMessage());
                 } else {
@@ -120,27 +121,27 @@ public class EngineImpl implements Engine {
         return Parser.tryParseInt(commandInput.trim(), COMMAND_ERROR);
     }
 
-    public int showMenu(){
+    public int showMenu() {
         System.out.println(MENU_OPTIONS);
-        int command = 0;
+        int command;
         while (true) {
             try {
                 Scanner sc = new Scanner(System.in);
                 command = sc.nextInt();
                 Validator.validateIntRange(command, MIN_MENU_OPTION, MAX_MENU_OPTION);
                 break;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        switch (command){
+        switch (command) {
             case 1:
                 showCommandsOptions();
                 return 1;
             case 2:
                 int commandNumber = selectCommand();
-                if (commandNumber == 0){
+                if (commandNumber == 0) {
                     return 2;
                 }
                 processCommand(commandNumber);
