@@ -16,7 +16,7 @@ public class CreateANewBoardInATeamCommand implements Command {
     public static final String INVALID_TITLE_LENGTH = "The length of the title must be 5-10";
 
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
-    public static final String BOARD_EXISTS = "Board with the same name already exists.";
+    public static final String BOARD_EXISTS = "Board with the same name already exists in this team.";
     private final BoardRepository boardRepository;
 
 
