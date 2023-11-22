@@ -1,6 +1,7 @@
 package Models;
 
 import Models.Contracts.Comment;
+import Models.Contracts.Commentable;
 import Models.Contracts.HistoryLog;
 import Models.Contracts.Task;
 import util.Validator;

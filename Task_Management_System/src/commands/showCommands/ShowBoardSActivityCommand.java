@@ -10,6 +10,7 @@ import java.util.List;
 
 
 public class ShowBoardSActivityCommand implements Command {
+    public static final String THE_HISTORY_LOG_IS_EMPTY = "The history log is empty";
     private final List<String> expectedArguments;
 
     public static final int EXPECTED_PARAMETERS_COUNT = 1;
@@ -23,6 +24,9 @@ public class ShowBoardSActivityCommand implements Command {
     }
 
     private String showBoardSActivity(String boardName) {
+        if(boardRepository.findBoardByName(boardName).getHistoryLog().isEmpty()){
+            return THE_HISTORY_LOG_IS_EMPTY;
+        }
         return Printer.historyPrinter(boardRepository.findBoardByName(boardName).getHistoryLog());
     }
 

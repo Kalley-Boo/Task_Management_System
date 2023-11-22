@@ -28,7 +28,6 @@ public class AddCommentToTaskCommandTest {
     public void testExecute_ShouldReturnCorrectResult_WhenCalledWithValidParameters() {
         String taskName = "taskTestTest";
         String commentContent = "This is a comment.";
-        //String author1 = "Author";
         Person author = new PersonImpl("testT");
         boardRepository.createPerson("testT");
         Comment comment = new CommentImpl(commentContent, author);
