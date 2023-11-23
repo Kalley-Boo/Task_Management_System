@@ -32,7 +32,8 @@ public enum CommandType {
     SHOWBOARDSACTIVITY("Show Board's Activity"),
     SHOWTASKSACTIVITY("Show a Task's activity log"),
     FILTERTASKS("Filter tasks by title"),
-
+    SORTTASKS("Sort tasks by title"),
+    SHOWALLTASKS("Show all tasks")
     ;
 
     private final String command;

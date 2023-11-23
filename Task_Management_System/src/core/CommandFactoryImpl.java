@@ -48,7 +48,8 @@ public class CommandFactoryImpl implements CommandFactory {
             case 24 -> new ShowAllTeamBoardsCommand(boardRepository);
             case 25 -> new ShowBoardSActivityCommand(boardRepository);
             case 26 -> new ShowTaskActivityCommand(boardRepository);
-            case 27 -> new FilterTasksCommand(boardRepository);
+            case 27 -> new FilterTasksByTitleCommand(boardRepository);
+            case 28 -> new SortTasksByTitleCommand(boardRepository);
             default ->
                     throw new UnsupportedOperationException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, commandNumber));
         };

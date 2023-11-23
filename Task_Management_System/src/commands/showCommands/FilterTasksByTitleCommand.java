@@ -3,29 +3,27 @@ package commands.showCommands;
 import Models.Contracts.Task;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
-import util.Parser;
 import util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class FilterTasksCommand implements Command {
+public class FilterTasksByTitleCommand implements Command {
     public static final String TITLE = "Enter sentence (will show all tasks that contain this sentence in their title)";
     public static final String NO_TASKS_FOUND = "No tasks with similar title found";
     private static final int EXPECTED_PARAMETERS_COUNT = 1;
     private final List<String> expectedArguments;
     private final BoardRepository boardRepository;
 
-    public FilterTasksCommand(BoardRepository boardRepository){
+    public FilterTasksByTitleCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         this.expectedArguments = new ArrayList<>();
         expectedArguments.add(TITLE);
     }
 
-    private String filterTasks(String sentence){
+    private String filterTasks(String sentence) {
         List<Task> filteredTasks = boardRepository.getTasks().stream().filter(task -> task.getTitle().contains(sentence)).toList();
-        if (filteredTasks.isEmpty()){
+        if (filteredTasks.isEmpty()) {
             return NO_TASKS_FOUND;
         }
         StringBuilder stringBuilder = new StringBuilder();
