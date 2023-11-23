@@ -35,7 +35,7 @@ public class CreateNewFeedbackInBoardCommand implements Command {
     }
 
     private boolean feedbackExists(String title) {
-        for (Feedback feedback : boardRepository.getFeedbacks()) {
+        for (Feedback feedback : boardRepository.getFeedbacks()) {//TODO stream
             if (feedback.getName().equals(title)) {
                 return true;
             }

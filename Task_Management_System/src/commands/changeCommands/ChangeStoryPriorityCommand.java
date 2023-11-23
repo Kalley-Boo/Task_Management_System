@@ -25,7 +25,7 @@ public class ChangeStoryPriorityCommand implements Command {
         expectedArguments.add(NEW_PRIORITY);
     }
 
-    public String changeStoryPriority(String storyName, Priority priority) {
+    private String changeStoryPriority(String storyName, Priority priority) {
         Story story = boardRepository.findStoryByName(storyName);
         story.editPriority(priority);
         return String.format(PRIORITY_UPDATED, storyName, priority);

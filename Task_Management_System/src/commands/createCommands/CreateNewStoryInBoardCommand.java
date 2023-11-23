@@ -43,7 +43,7 @@ public class CreateNewStoryInBoardCommand implements Command {
         expectedArguments.add(BOARD);
     }
 
-    private boolean storyExists(String title) {
+    private boolean storyExists(String title) {//TODO stream
         for (Story story : boardRepository.getStories()) {
             if (story.getName().equals(title)) {
                 return true;

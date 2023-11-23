@@ -33,6 +33,9 @@ public class CreateANewBoardInATeamCommand implements Command {
         String boardName = parameters.get(0);
         Validator.validateStringLength(boardName, 5, 10, INVALID_TITLE_LENGTH);
         String teamName = parameters.get(1);
+        if (boardExists(boardName, teamName)) {
+            throw new InvalidInputException(BOARD_EXISTS);
+        }
         return createANewBoardInATeam(boardName, teamName);
     }
 
@@ -42,7 +45,7 @@ public class CreateANewBoardInATeamCommand implements Command {
     }
 
     private boolean boardExists(String boardName, String teamName) {
-        for (Board bord : boardRepository.findTeamByName(teamName).getBoards()) {
+        for (Board bord : boardRepository.findTeamByName(teamName).getBoards()) {//TODO use stream
             if (bord.getName().equals(boardName)) {
                 return true;
             }
@@ -51,9 +54,6 @@ public class CreateANewBoardInATeamCommand implements Command {
     }
 
     private String createANewBoardInATeam(String boardName, String teamName) {
-        if (boardExists(boardName, teamName)) {
-            throw new InvalidInputException(BOARD_EXISTS);
-        }
         Board board1 = boardRepository.createBoard(boardName);
         boardRepository.findTeamByName(teamName).addBoard(board1);
         return String.format(BOARD_CREATED, boardName, teamName);

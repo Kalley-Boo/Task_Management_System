@@ -27,7 +27,7 @@ public class ChangeStoryStatusCommand implements Command {
         expectedArguments.add(NEW_STATUS);
     }
 
-    public String changeStoryStatus(String storyName, StatusStory status) {
+    private String changeStoryStatus(String storyName, StatusStory status) {
         Story story = boardRepository.findStoryByName(storyName);
         story.editStatus(status);
         return String.format(STATUS_UPDATED, storyName, status);

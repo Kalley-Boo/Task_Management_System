@@ -27,7 +27,7 @@ public class CreateTeamCommand implements Command {
         expectedArguments.add(A_NAME);
     }
 
-    private boolean teamExists(String name) {
+    private boolean teamExists(String name) {//TODO stream
         for (Team team : teams) {
             if (team.getName().equals(name)) {
                 return true;
@@ -37,9 +37,6 @@ public class CreateTeamCommand implements Command {
     }
 
     private String createTeam(String name) {
-        if (teamExists(name)) {
-            throw new InvalidInputException(TEAM_SAME_NAME_EXISTS);
-        }
         boardRepository.createTeam(name);
         return String.format(TEAM_WAS_CREATED, name);
     }
@@ -49,6 +46,9 @@ public class CreateTeamCommand implements Command {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String name = parameters.get(0);
         Validator.validateStringLength(name, 5, 15, INVALID_NAME_LENGTH);
+        if (teamExists(name)) {
+            throw new InvalidInputException(TEAM_SAME_NAME_EXISTS);
+        }
         return createTeam(name);
     }
 

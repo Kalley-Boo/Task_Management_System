@@ -26,7 +26,7 @@ public class ChangeStorySizeCommand implements Command {
         expectedArguments.add(NEW_SIZE);
     }
 
-    public String changeStorySize(String storyName, TaskSize size) {
+    private String changeStorySize(String storyName, TaskSize size) {
         Story story = boardRepository.findStoryByName(storyName);
         story.editSize(size);
         return String.format(SIZE_UPDATED, storyName, size);

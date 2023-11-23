@@ -41,7 +41,7 @@ public class CreateNewBugInBoardCommand implements Command {
         expectedArguments.add("board on which this bug should be");
     }
 
-    private boolean bugExists(String title) {
+    private boolean bugExists(String title) {//TODO override to string, stream
         for (Bug bug : boardRepository.getBugs()) {
             if (bug.getTitle().equals(title)) {
                 return true;
@@ -52,9 +52,6 @@ public class CreateNewBugInBoardCommand implements Command {
     }
 
     private String createUnassignedBug(String title, String description, List<String> steps, Priority priority, Severity severity, Board board) {
-        if (bugExists(title)) {
-            throw new InvalidInputException(BUG_EXISTS);
-        }
         boardRepository.createUnassignedAssignedBug(title, description, steps, priority, severity);
         board.addTask(boardRepository.findTaskByTitle(title));
         return String.format(UNASSIGNED_BUG_CREATED, title);
@@ -70,11 +67,9 @@ public class CreateNewBugInBoardCommand implements Command {
     public String execute(List<String> parameters) {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String title = parameters.get(0);
-
         if (bugExists(title)) {
             throw new InvalidInputException(BUG_EXISTS);
         }
-
         Validator.validateStringLength(title, 10, 100, INVALID_TITLE_LENGTH);
         String description = parameters.get(1);
         Validator.validateStringLength(description, 10, 500, INVALID_DESCRIPTION_LENGTH);
