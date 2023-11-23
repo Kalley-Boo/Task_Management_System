@@ -15,14 +15,12 @@ public class UnassignTaskToAPersonCommand implements Command {
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
     private final BoardRepository boardRepository;
 
-
     public UnassignTaskToAPersonCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         this.expectedArguments = new ArrayList<>();
         expectedArguments.add("the name of the assignee");
         expectedArguments.add("the title of the task");
     }
-
 
     @Override
     public String execute(List<String> parameters) {

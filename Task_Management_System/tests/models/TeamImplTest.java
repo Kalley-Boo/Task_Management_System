@@ -4,7 +4,7 @@ import Models.BoardImpl;
 import Models.Contracts.Person;
 import Models.PersonImpl;
 import Models.TeamImpl;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.*;
