@@ -2,6 +2,7 @@ package commands.createCommands;
 
 import Models.Contracts.Board;
 import Models.Contracts.Person;
+import Models.Contracts.Task;
 import Models.Enums.Priority;
 import Models.Enums.Severity;
 import commands.contracts.Command;
@@ -49,7 +50,9 @@ public class CreateNewBugInBoardCommand implements Command {
 
     private String createAssignedBug(String title, String description, List<String> steps, Priority priority, Severity severity, Person person, Board board) {
         boardRepository.createAssignedBug(title, description, steps, priority, severity, person);
-        board.addTask(boardRepository.findTaskByTitle(title));
+        Task task = boardRepository.findTaskByTitle(title);
+        board.addTask(task);
+        person.addTask(task);
         return String.format(ASSIGNED_BUG_CREATED, title, person.getName());
     }
 

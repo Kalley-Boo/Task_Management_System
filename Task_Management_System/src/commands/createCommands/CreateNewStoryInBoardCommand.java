@@ -2,6 +2,7 @@ package commands.createCommands;
 
 import Models.Contracts.Board;
 import Models.Contracts.Person;
+import Models.Contracts.Task;
 import Models.Enums.Priority;
 import Models.Enums.TaskSize;
 import commands.contracts.Command;
@@ -48,7 +49,9 @@ public class CreateNewStoryInBoardCommand implements Command {
 
     private String creteAssignedStory(String title, String description, Priority priority, TaskSize taskSize, Person assignee, Board board) {
         boardRepository.createAssignedStory(title, description, priority, taskSize, assignee);
-        board.addTask(boardRepository.findTaskByTitle(title));
+        Task task = boardRepository.findTaskByTitle(title);
+        board.addTask(task);
+        assignee.addTask(task);
         return String.format(ASSIGNED_STORY_CREATED, title, assignee.getName());
     }
 
