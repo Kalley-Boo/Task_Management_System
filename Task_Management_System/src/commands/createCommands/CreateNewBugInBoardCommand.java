@@ -41,14 +41,8 @@ public class CreateNewBugInBoardCommand implements Command {
         expectedArguments.add("board on which this bug should be");
     }
 
-    private boolean bugExists(String title) {//TODO override to string, stream
-        for (Bug bug : boardRepository.getBugs()) {
-            if (bug.getTitle().equals(title)) {
-                return true;
-            }
-
-        }
-        return false;
+    private boolean bugExists(String title) {
+        return boardRepository.getBugs().stream().anyMatch(bug -> bug.getTitle().equals(title));
     }
 
     private String createUnassignedBug(String title, String description, List<String> steps, Priority priority, Severity severity, Board board) {
