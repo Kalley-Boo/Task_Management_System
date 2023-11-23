@@ -48,9 +48,9 @@ public class CreateTeamCommandTest {
     public void execute_Should_ThrowExceptionOnDuplicateTeamName() {
         Command command = new CreateTeamCommand(boardRepository);
         command.execute(validInput);
-        //TODO eddit
+        Command command1 = new CreateTeamCommand(boardRepository);
         Assertions.assertThrows(InvalidInputException.class, () -> {
-            command.execute(validInput);
+            command1.execute(validInput);
         });
     }
 }
