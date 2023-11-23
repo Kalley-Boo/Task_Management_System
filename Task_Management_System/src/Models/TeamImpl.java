@@ -27,16 +27,17 @@ public class TeamImpl implements Team, Printable {
     public static final String BOARD_S_ADDED = "Board %s added to this team";
 
     private String name;
-    private List<Person> members;
-    private List<Board> boards;
+    private final List<Person> members;
+    private final List<Board> boards;
     private final List<HistoryLogImpl> history;
+
 
     public TeamImpl(String name) {
         this.history = new ArrayList<>();
         this.members = new ArrayList<>();
         this.boards = new ArrayList<>();
         setName(name);
-    }//constructor
+    }
 
     //----------------------------------------methods--------------------------------------------
 
@@ -107,7 +108,6 @@ public class TeamImpl implements Team, Printable {
         logEvent(String.format(SET_TO, name));
         this.name = name;
     }
-
     public String getName() {
         return name;
     }

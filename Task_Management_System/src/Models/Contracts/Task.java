@@ -10,4 +10,5 @@ public interface Task extends Printable{
     List<Comment> getComments();
     List<HistoryLog> getHistory();
     void addComment(Comment comment);
+    void addHistoryLog(HistoryLog historyLog);
 }

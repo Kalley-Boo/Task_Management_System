@@ -12,10 +12,10 @@ import java.util.List;
 public abstract class TaskImpl implements Task {
     public static final int TITLE_MIN_VALUE = 10;
     public static final int TITLE_MAX_VALUE = 100;
-    private static final String TITLE_ERROR_MESSAGE = "Title should has between 10 and 100 symbols.";
+    public static final String TITLE_ERROR_MESSAGE = "Title should has between 10 and 100 symbols.";
     public static final int DESCRIPTION_MIN_VALUE = 10;
     public static final int DESCRIPTION_MAX_VALUE = 500;
-    private static final String DESCRIPTION_ERROR_MESSAGE = "Description should have between 10 and 500 symbols.";
+    public static final String DESCRIPTION_ERROR_MESSAGE = "Description should have between 10 and 500 symbols.";
     private int id;
     private String title;
     private String description;
@@ -55,12 +55,10 @@ public abstract class TaskImpl implements Task {
     public int getId() {
         return id;
     }
-
     @Override
     public String getTitle() {
         return title;
     }
-
     @Override
     public String getDescription() {
         return description;
@@ -69,18 +67,15 @@ public abstract class TaskImpl implements Task {
     public List<Comment> getComments() {
         return comments;
     }
-
-    public abstract void addChange(HistoryLog historyLog);
-
+    @Override
     public List<HistoryLog> getHistory() {
         return historyLog;
     }
-
     @Override
     public void addComment(Comment comment) {
         comments.add(comment);
     }
-
+    @Override
     public void addHistoryLog(HistoryLog historyLog) {
         this.historyLog.add(historyLog);
     }
