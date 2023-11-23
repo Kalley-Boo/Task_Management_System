@@ -1,7 +1,6 @@
 package Models;
 
 import Models.Contracts.Comment;
-import Models.Contracts.Commentable;
 import Models.Contracts.HistoryLog;
 import Models.Contracts.Task;
 import util.Validator;
@@ -36,17 +35,17 @@ public abstract class TaskImpl implements Task {
 
     private void setTitle(String title) {
         Validator.validateStringLength(title,
-                                TITLE_MIN_VALUE,
-                                TITLE_MAX_VALUE,
-                                TITLE_ERROR_MESSAGE);
+                TITLE_MIN_VALUE,
+                TITLE_MAX_VALUE,
+                TITLE_ERROR_MESSAGE);
         this.title = title;
     }
 
     private void setDescription(String description) {
         Validator.validateStringLength(description,
-                                DESCRIPTION_MIN_VALUE,
-                                DESCRIPTION_MAX_VALUE,
-                                DESCRIPTION_ERROR_MESSAGE);
+                DESCRIPTION_MIN_VALUE,
+                DESCRIPTION_MAX_VALUE,
+                DESCRIPTION_ERROR_MESSAGE);
         this.description = description;
 
     }
@@ -55,10 +54,12 @@ public abstract class TaskImpl implements Task {
     public int getId() {
         return id;
     }
+
     @Override
     public String getTitle() {
         return title;
     }
+
     @Override
     public String getDescription() {
         return description;
@@ -67,19 +68,23 @@ public abstract class TaskImpl implements Task {
     public List<Comment> getComments() {
         return comments;
     }
+
     @Override
     public List<HistoryLog> getHistory() {
         return historyLog;
     }
+
     @Override
     public void addComment(Comment comment) {
         comments.add(comment);
     }
+
     @Override
     public void addHistoryLog(HistoryLog historyLog) {
         this.historyLog.add(historyLog);
     }
 
     public abstract String print();
+    abstract void addChange(HistoryLog historyLog);
 
 }

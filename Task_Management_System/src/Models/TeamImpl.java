@@ -4,7 +4,6 @@ import Models.Contracts.Board;
 import Models.Contracts.Person;
 import Models.Contracts.Printable;
 import Models.Contracts.Team;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,6 +107,7 @@ public class TeamImpl implements Team, Printable {
         logEvent(String.format(SET_TO, name));
         this.name = name;
     }
+
     public String getName() {
         return name;
     }

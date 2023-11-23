@@ -3,7 +3,7 @@ package Models.Contracts;
 
 import java.util.List;
 
-public interface Task extends Printable{
+public interface Task extends Printable, Commentable{
     int getId();
     String getTitle();
     String getDescription();

@@ -12,7 +12,7 @@ import exceptions.InvalidInputException;
 
 public class StoryImpl extends TaskImpl implements Story {
 
-    private static final String PRINT_template = """
+    public static final String PRINT_template = """
             Id: + %d +\s
              + Title: %s +\s
              + Description: %s + \s
@@ -21,10 +21,10 @@ public class StoryImpl extends TaskImpl implements Story {
              + Assignee: %s + \n
              + Status: %s + \n
              """;
-    private static final String NO_COMMENTS = "There are no comments for this story";
-    private static final String COMMENTS_HEADER = "---COMMENTS---";
-    private static final String INVALID_INPUT_MESSAGE = "The %s can not be NULL";
-    private static final String UNASSIGNED = "Unassigned";
+    public static final String NO_COMMENTS = "There are no comments for this story";
+    public static final String COMMENTS_HEADER = "---COMMENTS---";
+    public static final String INVALID_INPUT_MESSAGE = "The %s can not be NULL";
+    public static final String UNASSIGNED = "Unassigned";
     public static final String PRIORITY_CHANGED = "Priority changed from %s to %s";
     public static final String TASK_SIZE_CHANGED = "Task size changed from %s to %s";
     public static final String STATUS_CHANGED = "Status changed from %s to %s";
@@ -55,27 +55,56 @@ public class StoryImpl extends TaskImpl implements Story {
         this.status = StatusStory.NOT_DONE;
     }
 
+
+    private void setPriority(Priority priority) {
+        if (priority == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, PRIORITY));
+        }
+        this.priority = priority;
+    }
+
+    private void setSize(TaskSize size) {
+        if (size == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, SIZE));
+        }
+        this.size = size;
+    }
+
+    private void setStatus(StatusStory status) {
+        if (status == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, STATUS));
+        }
+        this.status = status;
+    }
+
+    private void setAssignee(Person assignee) {
+        if (assignee == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, ASSIGNEE));
+        }
+        this.assignee = assignee;
+    }
+    @Override
     public void editPriority(Priority newPriority) {
         Priority oldPriority = this.priority;
         setPriority(newPriority);
         String changeLog = String.format(PRIORITY_CHANGED, oldPriority, newPriority);
         addChange(new HistoryLogImpl(changeLog));
     }
-
+    @Override
     public void editSize(TaskSize newSize) {
         TaskSize oldSize = this.size;
         setSize(newSize);
         String changeLog = String.format(TASK_SIZE_CHANGED, oldSize, newSize);
         addChange(new HistoryLogImpl(changeLog));
     }
-
+    @Override
     public void editStatus(StatusStory newStatus) {
         StatusStory oldStatus = this.status;
         setStatus(newStatus);
         String changeLog = String.format(STATUS_CHANGED, oldStatus, newStatus);
         addChange(new HistoryLogImpl(changeLog));
     }
-
+    @Override
     public void editAssignee(Person newAssignee) {
         Person oldAssignee = this.assignee;
         this.assignee = newAssignee;
@@ -86,31 +115,6 @@ public class StoryImpl extends TaskImpl implements Story {
     @Override
     public void addChange(HistoryLog historyLog) {
         super.addHistoryLog(historyLog);
-    }
-
-    @Override
-    public String print() {
-        StringBuilder stringBuilder = new StringBuilder();
-        String assignee;
-        if (this.assignee == null) {
-            assignee = UNASSIGNED;
-        } else {
-            assignee = this.assignee.getName();
-        }
-        stringBuilder.append(String.format(PRINT_template, super.getId(),
-                                            super.getTitle(), super.getDescription(), this.priority.toString(),
-                                            this.size.toString(), assignee, this.status.toString()));
-
-        if (super.getComments().isEmpty()) {
-            stringBuilder.append(NO_COMMENTS);
-            return new String(stringBuilder);
-        }
-        stringBuilder.append("\n").append(COMMENTS_HEADER).append("\n");
-        for (Comment comment : super.getComments()) {
-            stringBuilder.append(comment.print()).append("\n");
-        }
-        stringBuilder.append(COMMENTS_HEADER);
-        return new String(stringBuilder);
     }
 
     @Override
@@ -132,41 +136,38 @@ public class StoryImpl extends TaskImpl implements Story {
     public Person getAssignee() {
         return assignee;
     }
-
-    private void setPriority(Priority priority) {
-        if (priority == null) {
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, PRIORITY));
-        }
-        this.priority = priority;
-    }
-
-    private void setSize(TaskSize size) {
-        if (size == null) {
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, SIZE));
-        }
-        this.size = size;
-    }
-
-    private void setStatus(StatusStory status) {//TODO
-        if (status == null) {
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, STATUS));
-        }
-        this.status = status;
-    }
-
+    @Override
     public String getName() {
         return getTitle();
-    }
-
-    private void setAssignee(Person assignee) {
-        if (assignee == null) {
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, ASSIGNEE));
-        }
-        this.assignee = assignee;
     }
 
     @Override
     public void updateAssignee(Person person) {
         this.assignee = person;
+    }
+
+    @Override
+    public String print() {
+        StringBuilder stringBuilder = new StringBuilder();
+        String assignee;
+        if (this.assignee == null) {
+            assignee = UNASSIGNED;
+        } else {
+            assignee = this.assignee.getName();
+        }
+        stringBuilder.append(String.format(PRINT_template, super.getId(),
+                super.getTitle(), super.getDescription(), this.priority.toString(),
+                this.size.toString(), assignee, this.status.toString()));
+
+        if (super.getComments().isEmpty()) {
+            stringBuilder.append(NO_COMMENTS);
+            return new String(stringBuilder);
+        }
+        stringBuilder.append("\n").append(COMMENTS_HEADER).append("\n");
+        for (Comment comment : super.getComments()) {
+            stringBuilder.append(comment.print()).append("\n");
+        }
+        stringBuilder.append(COMMENTS_HEADER);
+        return new String(stringBuilder);
     }
 }

@@ -4,7 +4,6 @@ import Models.Contracts.*;
 import Models.Enums.Priority;
 import Models.Enums.Severity;
 import Models.Enums.StatusBug;
-
 import exceptions.InvalidInputException;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
 
 public class BugImpl extends TaskImpl implements Bug {
 
-    private static final String PRINT_template = """
+    public static final String PRINT_template = """
             Id: %d \s
               Title: %s \s
               Description: %s \s
@@ -22,10 +21,10 @@ public class BugImpl extends TaskImpl implements Bug {
               Assignee: %s \n
               Status: %s \n
              """;
-    private static final String NO_COMMENTS = "There are no comments for this bug";
-    private static final String COMMENTS_HEADER = "---COMMENTS---";
-    private static final String UNASSIGNED = "Unassigned";
-    private static final String INVALID_INPUT_MESSAGE = "The %s can not be NULL";
+    public static final String NO_COMMENTS = "There are no comments for this bug";
+    public static final String COMMENTS_HEADER = "---COMMENTS---";
+    public static final String UNASSIGNED = "Unassigned";
+    public static final String INVALID_INPUT_MESSAGE = "The %s can not be NULL";
     public static final String PRIORITY_CHANGED = "Priority changed from %s to %s";
     public static final String SEVERITY_CHANGED = "Severity changed from %s to %s";
     public static final String STATUS_CHANGED = "Status changed from %s to %s";
@@ -134,6 +133,43 @@ public class BugImpl extends TaskImpl implements Bug {
         this.assignee = assignee;
     }
 
+    public void addHistoryLog(HistoryLog historyLog) {
+        super.addHistoryLog(historyLog);
+    }
+
+    @Override
+    public String print() {
+        String assignee;
+        if (this.assignee == null) {
+            assignee = UNASSIGNED;
+        } else {
+            assignee = this.assignee.getName();
+        }
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format(PRINT_template, super.getId(), super.getTitle(),
+                super.getDescription(), this.priority.toString(), this.severity.toString(),
+                assignee, this.status.toString()));
+
+        if (super.getComments().isEmpty()) {
+            stringBuilder.append(NO_COMMENTS);
+            return new String(stringBuilder);
+        }
+
+        stringBuilder.append("\n").append(COMMENTS_HEADER).append("\n");
+        for (Comment comment : super.getComments()) {
+            stringBuilder.append(comment.print()).append("\n");
+        }
+
+        stringBuilder.append(COMMENTS_HEADER);
+        return new String(stringBuilder);
+    }
+
+
+    @Override
+    public void updateAssignee(Person person) {
+        this.assignee = person;
+    }
 
     @Override
     public List<String> getStepsToReproduce() {
@@ -170,48 +206,4 @@ public class BugImpl extends TaskImpl implements Bug {
         super.addHistoryLog(historyLog);
     }
 
-    public void addComment(Comment comment) {
-        if (comment == null) {
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, COMMENT));
-        }
-        super.addComment(comment);
-    }
-
-    public void addHistoryLog(HistoryLog historyLog) {
-        super.addHistoryLog(historyLog);
-    }
-
-    @Override
-    public String print() {
-        String assignee;
-        if (this.assignee == null) {
-            assignee = UNASSIGNED;
-        } else {
-            assignee = this.assignee.getName();
-        }
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format(PRINT_template, super.getId(), super.getTitle(),
-                                            super.getDescription(), this.priority.toString(), this.severity.toString(),
-                                            assignee, this.status.toString()));
-
-        if (super.getComments().isEmpty()) {
-            stringBuilder.append(NO_COMMENTS);
-            return new String(stringBuilder);
-        }
-
-        stringBuilder.append("\n").append(COMMENTS_HEADER).append("\n");
-        for (Comment comment : super.getComments()) {
-            stringBuilder.append(comment.print()).append("\n");
-        }
-
-        stringBuilder.append(COMMENTS_HEADER);
-        return new String(stringBuilder);
-    }
-
-
-    @Override
-    public void updateAssignee(Person person) {
-        this.assignee = person;
-    }
 }

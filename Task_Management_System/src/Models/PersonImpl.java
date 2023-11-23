@@ -27,9 +27,15 @@ public class PersonImpl implements Person {
         this.tasks = new ArrayList<>();
         this.history = new ArrayList<>();
         setName(name);
-    }//constructor
+    }
 
     //-----------------------------------------methods-----------------------------------------
+
+    private void setName(String name) {
+        validateName(name);
+        logEvent(String.format(NAME_SET, name));
+        this.name = name;
+    }
 
     public String displayHistory() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -76,6 +82,10 @@ public class PersonImpl implements Person {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String print() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(MEMBER).append(this.name);
@@ -89,16 +99,5 @@ public class PersonImpl implements Person {
             }
         }
         return new String(stringBuilder);
-    }
-
-    //-----------------------------------setters and getters------------------------------------
-    private void setName(String name) {
-        validateName(name);
-        logEvent(String.format(NAME_SET, name));
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 }
