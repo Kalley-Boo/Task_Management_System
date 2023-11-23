@@ -16,7 +16,7 @@ public class UnassignTaskToAPersonCommand implements Command {
     private final List<String> expectedArguments;
     public static final String COMMAND_IS_DONE = "Task with name %s has been unassigned to person with name %s.";
 
-    public static final int EXPECTED_PARAMETERS_COUNT = 2;
+    public static final int EXPECTED_PARAMETERS_COUNT = 1;
     private final BoardRepository boardRepository;
 
     public UnassignTaskToAPersonCommand(BoardRepository boardRepository) {
