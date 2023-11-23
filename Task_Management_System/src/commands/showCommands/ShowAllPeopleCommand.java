@@ -10,6 +10,7 @@ import java.util.List;
 public class ShowAllPeopleCommand implements Command {
 
     private static final String ALL_PEOPLE_HEADER = "---All people with their tasks---";
+    private static final String NO_PEOPLE = "There are no people.";
     private final BoardRepository boardRepository;
 
     public ShowAllPeopleCommand(BoardRepository boardRepository) {
@@ -17,6 +18,9 @@ public class ShowAllPeopleCommand implements Command {
     }
 
     private String showAllPeople() {
+        if (boardRepository.getPeople().isEmpty()){
+            return NO_PEOPLE;
+        }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(ALL_PEOPLE_HEADER).append("\n");
 
