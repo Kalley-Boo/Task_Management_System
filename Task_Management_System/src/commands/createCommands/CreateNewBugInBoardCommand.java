@@ -20,7 +20,7 @@ public class CreateNewBugInBoardCommand implements Command {
     private final List<String> expectedArguments;
 
     public static final int EXPECTED_PARAMETERS_COUNT = 7;
-    private static final String ASSIGNED_BUG_CREATED = "Bug with title %s was created and assigned to %s!";
+    public static final String ASSIGNED_BUG_CREATED = "Bug with title %s was created and assigned to %s!";
     private static final String UNASSIGNED_BUG_CREATED = "Bug with title %s was created!";
     private static final String BUG_EXISTS = "Bug with this title already exists.";
     public static final String INVALID_TITLE_LENGTH = "The length of the title must be 10-100";
