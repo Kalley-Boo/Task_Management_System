@@ -1,5 +1,6 @@
 package Models;
 
+import Models.Contracts.HistoryLog;
 import Models.Contracts.Person;
 import Models.Contracts.Task;
 
@@ -23,7 +24,7 @@ public class PersonImpl implements Person {
 
     private String name;
     private final List<Task> tasks;
-    private final List<HistoryLogImpl> history;
+    private final List<HistoryLog> history;
 
     public PersonImpl(String name) {
         this.tasks = new ArrayList<>();
@@ -41,7 +42,7 @@ public class PersonImpl implements Person {
 
     public String displayHistory() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (HistoryLogImpl log : history) {
+        for (HistoryLog log : history) {
             stringBuilder.append(log.viewInfo());
         }
         return new String(stringBuilder);

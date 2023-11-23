@@ -1,6 +1,7 @@
 package Models;
 
 import Models.Contracts.Board;
+import Models.Contracts.HistoryLog;
 import Models.Contracts.Task;
 import util.Validator;
 
@@ -17,7 +18,7 @@ public class BoardImpl implements Board {
     public static final String BOARD_CREATED = "Board with name %s was created";
     private String name;
     private final List<Task> tasks;
-    private final List<HistoryLogImpl> historyLog;
+    private final List<HistoryLog> historyLog;
 
     public BoardImpl(String name) {
         tasks = new ArrayList<>();
@@ -49,7 +50,7 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public List<HistoryLogImpl> getHistoryLog() {
+    public List<HistoryLog> getHistoryLog() {
         return historyLog;
     }
 

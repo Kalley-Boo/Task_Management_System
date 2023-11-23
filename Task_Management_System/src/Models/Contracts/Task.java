@@ -1,6 +1,8 @@
 package Models.Contracts;
 
 
+import Models.HistoryLogImpl;
+
 import java.util.List;
 
 public interface Task extends Printable, Commentable{

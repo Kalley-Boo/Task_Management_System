@@ -1,9 +1,7 @@
 package Models;
 
-import Models.Contracts.Board;
-import Models.Contracts.Person;
-import Models.Contracts.Printable;
-import Models.Contracts.Team;
+import Models.Contracts.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class TeamImpl implements Team, Printable {
     private String name;
     private final List<Person> members;
     private final List<Board> boards;
-    private final List<HistoryLogImpl> history;
+    private final List<HistoryLog> history;
 
 
     public TeamImpl(String name) {
@@ -42,7 +40,7 @@ public class TeamImpl implements Team, Printable {
 
     public String displayHistory() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (HistoryLogImpl log : history) {
+        for (HistoryLog log : history) {
             stringBuilder.append(log.viewInfo());
         }
         return new String(stringBuilder);

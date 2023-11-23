@@ -30,6 +30,9 @@ public enum CommandType {
     SHOWTEAMMEMBERS("Show Team's Members"),
     SHOWALLTEAMBOARDS("Show Team's Boards"),
     SHOWBOARDSACTIVITY("Show Board's Activity"),
+    SHOWTASKSACTIVITY("Show a Task's activity log"),
+    LISTALLTASKS("List all tasks"),
+
     ;
 
     private final String command;
