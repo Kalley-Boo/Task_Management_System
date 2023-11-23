@@ -19,6 +19,8 @@ public class PersonImpl implements Person {
     public static final String HAS_TASKS = " has tasks: ";
     public static final String HAS_NO_TASKS_ASSIGNED_YET = " - has no tasks assigned yet.";
     public static final String MEMBER = "Member: ";
+    public static final String USER_WAS_CREATED = "A user with name %s was created.";
+
     private String name;
     private final List<Task> tasks;
     private final List<HistoryLogImpl> history;
@@ -27,13 +29,13 @@ public class PersonImpl implements Person {
         this.tasks = new ArrayList<>();
         this.history = new ArrayList<>();
         setName(name);
+        logEvent(String.format(USER_WAS_CREATED, name));
     }
 
     //-----------------------------------------methods-----------------------------------------
 
     private void setName(String name) {
         validateName(name);
-        logEvent(String.format(NAME_SET, name));
         this.name = name;
     }
 

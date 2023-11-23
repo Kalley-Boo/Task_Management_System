@@ -24,6 +24,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     public static final int MIN_RATING = 1;
     public static final int MAX_RATING = 10;
     public static final String CHANGED_RATING = "Rating changed from %d to %d.";
+    public static final String FEEDBACK_WAS_CREATED = "A feedback with title %s was created.";
     private int rating;
     private StatusFeedback status;
 
@@ -31,6 +32,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         super(id, title, description);
         setRating(rating);
         this.status = StatusFeedback.NEW;
+        addChange(new HistoryLogImpl(String.format(FEEDBACK_WAS_CREATED, title)));
     }
 
     private void setRating(int rating) {

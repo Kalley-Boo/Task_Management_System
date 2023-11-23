@@ -33,6 +33,7 @@ public class StoryImpl extends TaskImpl implements Story {
     public static final String SIZE = "size";
     public static final String STATUS = "status";
     public static final String ASSIGNEE = "assignee";
+    public static final String STORY_WAS_CREATED = "A story with title %s was created.";
     private Priority priority;
     private TaskSize size;
     private StatusStory status;
@@ -45,6 +46,7 @@ public class StoryImpl extends TaskImpl implements Story {
         setSize(size);
         this.status = StatusStory.NOT_DONE;
         setAssignee(assignee);
+        addChange(new HistoryLogImpl(String.format(STORY_WAS_CREATED, title)));
     }
 
     //create unassigned Story
@@ -53,6 +55,7 @@ public class StoryImpl extends TaskImpl implements Story {
         setPriority(priority);
         setSize(size);
         this.status = StatusStory.NOT_DONE;
+        addChange(new HistoryLogImpl(String.format(STORY_WAS_CREATED, title)));
     }
 
 

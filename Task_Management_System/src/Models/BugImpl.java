@@ -36,6 +36,7 @@ public class BugImpl extends TaskImpl implements Bug {
     public static final String STATUS = "status";
     public static final String ASSIGNEE = "assignee";
     public static final String COMMENT = "comment";
+    public static final String BUG_WAS_CREATED = "A bug with title %s was created.";
 
     private List<String> stepsToReproduce;
     private Priority priority;
@@ -52,6 +53,7 @@ public class BugImpl extends TaskImpl implements Bug {
         setSeverity(severity);
         this.status = StatusBug.ACTIVE;
         setAssignee(assignee);
+        addChange(new HistoryLogImpl(String.format(BUG_WAS_CREATED, title)));
     }
 
     // create unassigned bug
@@ -61,6 +63,7 @@ public class BugImpl extends TaskImpl implements Bug {
         setPriority(priority);
         setSeverity(severity);
         this.status = StatusBug.ACTIVE;
+        addChange(new HistoryLogImpl(String.format(BUG_WAS_CREATED, title)));
     }
 
     public void editPriority(Priority newPriority) {
@@ -119,7 +122,7 @@ public class BugImpl extends TaskImpl implements Bug {
         this.severity = severity;
     }
 
-    private void setStatus(StatusBug status) {//TODO
+    private void setStatus(StatusBug status) {
         if (status == null) {
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, STATUS));
         }
@@ -131,10 +134,6 @@ public class BugImpl extends TaskImpl implements Bug {
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, ASSIGNEE));
         }
         this.assignee = assignee;
-    }
-
-    public void addHistoryLog(HistoryLog historyLog) {
-        super.addHistoryLog(historyLog);
     }
 
     @Override
