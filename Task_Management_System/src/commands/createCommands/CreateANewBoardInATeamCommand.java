@@ -45,12 +45,7 @@ public class CreateANewBoardInATeamCommand implements Command {
     }
 
     private boolean boardExists(String boardName, String teamName) {
-        for (Board bord : boardRepository.findTeamByName(teamName).getBoards()) {//TODO use stream
-            if (bord.getName().equals(boardName)) {
-                return true;
-            }
-        }
-        return false;
+        return boardRepository.findTeamByName(teamName).getBoards().stream().anyMatch(board -> board.getName().equals(boardName));
     }
 
     private String createANewBoardInATeam(String boardName, String teamName) {
