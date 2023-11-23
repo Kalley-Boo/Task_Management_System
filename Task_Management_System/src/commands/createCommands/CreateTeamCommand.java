@@ -10,13 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateTeamCommand implements Command {
+    public static final String A_NAME = "a name (5-15 characters)";
     private final List<String> expectedArguments;
     public static final String TEAM_WAS_CREATED = "Team with name %s was created!";
-
     public static final int EXPECTED_PARAMETERS_COUNT = 1;
     public static final String TEAM_SAME_NAME_EXISTS = "Team with the same name already exists.";
     public static final String INVALID_NAME_LENGTH = "The length of the title must be 10-15";
-
 
     private final BoardRepository boardRepository;
     private final List<Team> teams;
@@ -25,7 +24,7 @@ public class CreateTeamCommand implements Command {
         this.boardRepository = boardRepository;
         this.teams = boardRepository.getTeams();
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("a name (5-15 characters)");
+        expectedArguments.add(A_NAME);
     }
 
     private boolean teamExists(String name) {
@@ -37,7 +36,7 @@ public class CreateTeamCommand implements Command {
         return false;
     }
 
-    private String createTeam(String name){
+    private String createTeam(String name) {
         if (teamExists(name)) {
             throw new InvalidInputException(TEAM_SAME_NAME_EXISTS);
         }

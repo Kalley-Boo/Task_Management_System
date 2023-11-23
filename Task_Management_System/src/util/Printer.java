@@ -6,10 +6,9 @@ import Models.HistoryLogImpl;
 import java.util.List;
 
 public abstract class Printer {
-
     private final static String ACTIVITY_BANNER = "---ACTIVITY---";
 
-    public static String historyPrinter(List<HistoryLogImpl> historyLogs){
+    public static String historyPrinter(List<HistoryLogImpl> historyLogs) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(ACTIVITY_BANNER).append("\n");
         for (HistoryLog log : historyLogs) {

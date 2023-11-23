@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeStatusOfAFeedbackCommand implements Command {
+    public static final String TITLE_OF_FEEDBACK = "title of feedback";
+    public static final String NEW_STATUS = "new status (new, unscheduled, scheduled, done)";
     private final List<String> expectedArguments;
     public static final String COMMAND_IS_DONE = "Feedback with title %s has changed its status to %s.";
 
@@ -23,8 +25,8 @@ public class ChangeStatusOfAFeedbackCommand implements Command {
     public ChangeStatusOfAFeedbackCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("title of feedback");
-        expectedArguments.add("new status (new, unscheduled, scheduled, done)");
+        expectedArguments.add(TITLE_OF_FEEDBACK);
+        expectedArguments.add(NEW_STATUS);
     }
 
     @Override
@@ -43,6 +45,5 @@ public class ChangeStatusOfAFeedbackCommand implements Command {
     private String changeStatusOfAFeedback(String feedbackName, StatusFeedback status) {
         boardRepository.findFeedbackByName(feedbackName).setStatus(status);
         return String.format(COMMAND_IS_DONE, feedbackName, status);
-
     }
 }

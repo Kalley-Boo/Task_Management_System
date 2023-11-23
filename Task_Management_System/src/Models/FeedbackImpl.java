@@ -10,6 +10,7 @@ import util.Validator;
 
 public class FeedbackImpl extends TaskImpl implements Feedback {
 
+    public static final String STATUS_UPDATED = "Status updated from %s to %s.";
     private static final String PRINT_template = """
             Id: + %d +\s
              + Title: %s +\s
@@ -20,11 +21,9 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     private static final String NO_COMMENTS = "There are no comments for this feedback";
     private static final String COMMENTS_HEADER = "---COMMENTS---";
     private static final String INVALID_INPUT_MESSAGE = "The %s can not be NULL";
-
     private static final int MIN_RATING = 1;
     private static final int MAX_RATING = 10;
     public static final String CHANGED_RATING = "Rating changed from %d to %d.";
-
     private int rating;
     private StatusFeedback status;
 
@@ -38,7 +37,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     public void updateStatus(StatusFeedback newStatus) {
         StatusFeedback oldStatus = this.status;
         setStatus(newStatus);
-        addChange(new HistoryLogImpl(String.format("Status updated from %s to %s.", oldStatus.toString(), newStatus.toString())));
+        addChange(new HistoryLogImpl(String.format(STATUS_UPDATED, oldStatus.toString(), newStatus.toString())));
     }
 
     public FeedbackImpl(int id, String title, String description, int rating) {
@@ -46,14 +45,16 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         setRating(rating);
         this.status = StatusFeedback.NEW;
     }
+
     @Override
-    public void setRating(int rating){
+    public void setRating(int rating) {
         Validator.validateIntRange(rating, MIN_RATING, MAX_RATING);
         this.rating = rating;
     }
+
     @Override
-    public void setStatus(StatusFeedback taskStatus){
-        if (taskStatus == null){
+    public void setStatus(StatusFeedback taskStatus) {
+        if (taskStatus == null) {
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "status"));
         }
         this.status = taskStatus;
@@ -74,10 +75,12 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(String.format(PRINT_template, super.getId(), super.getTitle(), super.getDescription(),
                 this.rating, this.status.toString()));
-        if (super.getComments().isEmpty()){
+
+        if (super.getComments().isEmpty()) {
             stringBuilder.append(NO_COMMENTS);
             return new String(stringBuilder);
         }
+
         stringBuilder.append("\n").append(COMMENTS_HEADER).append("\n");
         for (Comment comment : super.getComments()) {
             stringBuilder.append(comment.print()).append("\n");
@@ -92,7 +95,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     }
 
     @Override
-    public String getName(){
+    public String getName() {
         return getTitle();
     }
 }

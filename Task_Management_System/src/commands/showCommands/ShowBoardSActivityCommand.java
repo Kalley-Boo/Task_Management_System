@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ShowBoardSActivityCommand implements Command {
     public static final String THE_HISTORY_LOG_IS_EMPTY = "The history log is empty";
+    public static final String THE_BOARD_S_TITLE = "the board's title";
     private final List<String> expectedArguments;
 
     public static final int EXPECTED_PARAMETERS_COUNT = 1;
@@ -20,11 +21,11 @@ public class ShowBoardSActivityCommand implements Command {
     public ShowBoardSActivityCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("the board's title");
+        expectedArguments.add(THE_BOARD_S_TITLE);
     }
 
     private String showBoardSActivity(String boardName) {
-        if(boardRepository.findBoardByName(boardName).getHistoryLog().isEmpty()){
+        if (boardRepository.findBoardByName(boardName).getHistoryLog().isEmpty()) {
             return THE_HISTORY_LOG_IS_EMPTY;
         }
         return Printer.historyPrinter(boardRepository.findBoardByName(boardName).getHistoryLog());

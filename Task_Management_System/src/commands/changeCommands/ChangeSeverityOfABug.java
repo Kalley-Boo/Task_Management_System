@@ -11,28 +11,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeSeverityOfABug implements Command {
+    public static final String TITLE_OF_BUG = "title of bug";
+    public static final String NEW_SEVERITY = "new severity (minor, major, critical)";
     private final List<String> expectedArguments;
     private static final String SEVERITY_OF_BUG_CHANGED = "The severity of bug '%s' changed %s -> %s.";
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
 
     private final BoardRepository boardRepository;
 
-    public ChangeSeverityOfABug(BoardRepository boardRepository){
+    public ChangeSeverityOfABug(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         this.expectedArguments = new ArrayList<>();
-        expectedArguments.add("title of bug");
-        expectedArguments.add("new severity (minor, major, critical)");
+        expectedArguments.add(TITLE_OF_BUG);
+        expectedArguments.add(NEW_SEVERITY);
     }
 
-
-    private String ChangeStatus(String title, Severity severity){
+    private String ChangeStatus(String title, Severity severity) {
         Bug bug = boardRepository.findBugByTitle(title);
         String oldSeverity = bug.getSeverity().toString();
         bug.editSeverity(severity);
         return String.format(SEVERITY_OF_BUG_CHANGED, title, oldSeverity, severity.toString());
     }
-
-
 
     @Override
     public String execute(List<String> parameters) {

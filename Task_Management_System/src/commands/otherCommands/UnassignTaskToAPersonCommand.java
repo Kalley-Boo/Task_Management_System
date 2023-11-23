@@ -9,6 +9,8 @@ import java.util.List;
 
 
 public class UnassignTaskToAPersonCommand implements Command {
+    public static final String NAME_ASSIGNEE = "the name of the assignee";
+    public static final String THE_TITLE = "the title of the task";
     private final List<String> expectedArguments;
     public static final String COMMAND_IS_DONE = "Task with name %s has been unassigned to person with name %s.";
 
@@ -18,8 +20,8 @@ public class UnassignTaskToAPersonCommand implements Command {
     public UnassignTaskToAPersonCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         this.expectedArguments = new ArrayList<>();
-        expectedArguments.add("the name of the assignee");
-        expectedArguments.add("the title of the task");
+        expectedArguments.add(NAME_ASSIGNEE);
+        expectedArguments.add(THE_TITLE);
     }
 
     @Override

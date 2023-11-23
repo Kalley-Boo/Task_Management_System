@@ -11,10 +11,10 @@ import java.util.List;
 
 public class CreatePersonCommand implements Command {
 
+    public static final String A_NAME_5_15_CHARACTERS = "a name (5-15 characters)";
     private final List<String> expectedArguments;
     private static final String PERSON_CREATED = "Person with name %s was created!";
     private static final String PERSON_ALREADY_EXISTS = "Person with name %s already exists";
-
     public static final int EXPECTED_PARAMETERS_COUNT = 1;
     public static final String INVALID_NAME_LENGTH = "The length of the title must be 10-15";
 
@@ -23,7 +23,7 @@ public class CreatePersonCommand implements Command {
     public CreatePersonCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("a name (5-15 characters)");
+        expectedArguments.add(A_NAME_5_15_CHARACTERS);
     }
 
     private String createPerson(String name) {
@@ -36,6 +36,7 @@ public class CreatePersonCommand implements Command {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String name = parameters.get(0);
         Validator.validateStringLength(name, 5, 15, INVALID_NAME_LENGTH);
+
         try {
             boardRepository.findPersonByName(name);
             return String.format(PERSON_ALREADY_EXISTS, name);

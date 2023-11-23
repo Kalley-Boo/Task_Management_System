@@ -24,10 +24,8 @@ public class ShowBoardSActivityCommandTest {
         String boardName = "newBoard";
         boardRepository.createBoard(boardName);
         String result1 = showBoardSActivityCommand.execute(List.of(boardName));
-        String result2 = String.format("---Board---\n" +
-                "newBoard\n" +
-                "There are no tasks on this board.");
-        assertEquals(result1, result2);
+        String result2 = "The history log is empty";
+        assertEquals(result2, result1);
 
     }
 

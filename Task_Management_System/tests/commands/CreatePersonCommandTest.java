@@ -38,7 +38,7 @@ public class CreatePersonCommandTest {
     @Test
     public void execute_Should_throwException_When_InValidParameters() {
         Command command = new CreatePersonCommand(boardRepository);
-        Assertions.assertThrows(InvalidInputException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             command.execute(invalidInput);
         });
         }

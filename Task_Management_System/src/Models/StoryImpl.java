@@ -1,4 +1,5 @@
 package Models;
+
 import Models.Contracts.Comment;
 import Models.Contracts.HistoryLog;
 import Models.Contracts.Person;
@@ -24,6 +25,14 @@ public class StoryImpl extends TaskImpl implements Story {
     private static final String COMMENTS_HEADER = "---COMMENTS---";
     private static final String INVALID_INPUT_MESSAGE = "The %s can not be NULL";
     private static final String UNASSIGNED = "Unassigned";
+    public static final String PRIORITY_CHANGED = "Priority changed from %s to %s";
+    public static final String TASK_SIZE_CHANGED = "Task size changed from %s to %s";
+    public static final String STATUS_CHANGED = "Status changed from %s to %s";
+    public static final String ASSIGNEE_CHANGED = "Assignee changed from %s to %s";
+    public static final String PRIORITY = "priority";
+    public static final String SIZE = "size";
+    public static final String STATUS = "status";
+    public static final String ASSIGNEE = "assignee";
     private Priority priority;
     private TaskSize size;
     private StatusStory status;
@@ -49,31 +58,30 @@ public class StoryImpl extends TaskImpl implements Story {
     public void editPriority(Priority newPriority) {
         Priority oldPriority = this.priority;
         this.priority = newPriority;
-        String changeLog = String.format("Priority changed from %s to %s", oldPriority, newPriority);
+        String changeLog = String.format(PRIORITY_CHANGED, oldPriority, newPriority);
         addChange(new HistoryLogImpl(changeLog));
     }
 
     public void editSize(TaskSize newSize) {
         TaskSize oldSize = this.size;
         this.size = newSize;
-        String changeLog = String.format("Task size changed from %s to %s", oldSize, newSize);
+        String changeLog = String.format(TASK_SIZE_CHANGED, oldSize, newSize);
         addChange(new HistoryLogImpl(changeLog));
     }
 
     public void editStatus(StatusStory newStatus) {
         StatusStory oldStatus = this.status;
         this.status = newStatus;
-        String changeLog = String.format("Status changed from %s to %s", oldStatus, newStatus);
+        String changeLog = String.format(STATUS_CHANGED, oldStatus, newStatus);
         addChange(new HistoryLogImpl(changeLog));
     }
 
     public void editAssignee(Person newAssignee) {
         Person oldAssignee = this.assignee;
         this.assignee = newAssignee;
-        String changeLog = String.format("Assignee changed from %s to %s", oldAssignee.getName(), newAssignee.getName());
+        String changeLog = String.format(ASSIGNEE_CHANGED, oldAssignee.getName(), newAssignee.getName());
         addChange(new HistoryLogImpl(changeLog));
     }
-
 
     @Override
     public void addChange(HistoryLog historyLog) {
@@ -84,14 +92,16 @@ public class StoryImpl extends TaskImpl implements Story {
     public String print() {
         StringBuilder stringBuilder = new StringBuilder();
         String assignee;
-        if (this.assignee == null){
+        if (this.assignee == null) {
             assignee = UNASSIGNED;
-        }else {
+        } else {
             assignee = this.assignee.getName();
         }
-        stringBuilder.append(String.format(PRINT_template, super.getId(), super.getTitle(), super.getDescription(),
-                this.priority.toString(), this.size.toString(), assignee, this.status.toString()));
-        if (super.getComments().isEmpty()){
+        stringBuilder.append(String.format(PRINT_template, super.getId(),
+                                            super.getTitle(), super.getDescription(), this.priority.toString(),
+                                            this.size.toString(), assignee, this.status.toString()));
+
+        if (super.getComments().isEmpty()) {
             stringBuilder.append(NO_COMMENTS);
             return new String(stringBuilder);
         }
@@ -124,33 +134,33 @@ public class StoryImpl extends TaskImpl implements Story {
     }
 
     private void setPriority(Priority priority) {
-        if (priority == null){
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "priority"));
+        if (priority == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, PRIORITY));
         }
         this.priority = priority;
     }
 
     private void setSize(TaskSize size) {
-        if (size == null){
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "size"));
+        if (size == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, SIZE));
         }
         this.size = size;
     }
 
     private void setStatus(StatusStory status) {
-        if (status == null){
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "status"));
+        if (status == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, STATUS));
         }
         this.status = status;
     }
 
-    public String getName(){
+    public String getName() {
         return getTitle();
     }
 
     private void setAssignee(Person assignee) {
-        if (assignee == null){
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "assignee"));
+        if (assignee == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, ASSIGNEE));
         }
         this.assignee = assignee;
     }

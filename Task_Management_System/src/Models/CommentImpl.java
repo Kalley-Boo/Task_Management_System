@@ -4,6 +4,7 @@ import Models.Contracts.Comment;
 import Models.Contracts.Person;
 
 public class CommentImpl implements Comment {
+    public static final String COMMENT = "Comment: %s%nAuthor: %s%n";
     private final Person author;
     private String content;
 
@@ -28,6 +29,6 @@ public class CommentImpl implements Comment {
 
     @Override
     public String print() {
-        return String.format("Comment: %s%nAuthor: %s%n", getContent(), getAuthor());
+        return String.format(COMMENT, getContent(), getAuthor());
     }
 }

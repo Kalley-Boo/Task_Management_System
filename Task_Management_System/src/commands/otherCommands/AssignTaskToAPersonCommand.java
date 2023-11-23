@@ -8,18 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AssignTaskToAPersonCommand implements Command {
+    public static final String THE_NEW_ASSIGNEE = "the new assignee's name";
+    public static final String THE_TASK_TITLE = "the task's title";
     private final List<String> expectedArguments;
     public static final String COMMAND_IS_DONE = "Task with name %s has been assigned to person with name %s.";
 
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
     private final BoardRepository boardRepository;
 
-
     public AssignTaskToAPersonCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("the new assignee's name");
-        expectedArguments.add("the task's title");
+        expectedArguments.add(THE_NEW_ASSIGNEE);
+        expectedArguments.add(THE_TASK_TITLE);
     }
 
     @Override

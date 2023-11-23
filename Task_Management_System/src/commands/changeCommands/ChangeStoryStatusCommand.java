@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeStoryStatusCommand implements Command {
+    public static final String TITLE_OF_STORY = "title of Story";
+    public static final String NEW_STATUS = "new status (not_done, in_progress, done)";
     private final List<String> expectedArguments;
     private static final int EXPECTED_PARAMETERS_COUNT = 2;
     public static final String STATUS_UPDATED = "Status of %s updated to %s.";
@@ -21,16 +23,17 @@ public class ChangeStoryStatusCommand implements Command {
     public ChangeStoryStatusCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("title of Story");
-        expectedArguments.add("new status (not_done, in_progress, done)");
+        expectedArguments.add(TITLE_OF_STORY);
+        expectedArguments.add(NEW_STATUS);
     }
 
-    public String changeStoryStatus(String storyName, String statusStr){
+    public String changeStoryStatus(String storyName, String statusStr) {
         StatusStory newStatus = Parser.tryParseEnum(statusStr, StatusStory.class);
         Story story = boardRepository.findStoryByName(storyName);
         story.editStatus(newStatus);
         return String.format(STATUS_UPDATED, storyName, newStatus);
     }
+
     @Override
     public String execute(List<String> parameters) {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);

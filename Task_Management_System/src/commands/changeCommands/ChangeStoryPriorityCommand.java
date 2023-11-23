@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeStoryPriorityCommand implements Command {
+    public static final String TITLE_OF_STORY = "title of Story";
+    public static final String NEW_PRIORITY = "new priority (low, medium, high)";
     private final List<String> expectedArguments;
     private static final int EXPECTED_PARAMETERS_COUNT = 2;
     public static final String PRIORITY_UPDATED = "Priority of %s updated to %s.";
@@ -19,11 +21,11 @@ public class ChangeStoryPriorityCommand implements Command {
     public ChangeStoryPriorityCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("title of Story");
-        expectedArguments.add("new priority (low, medium, high)");
+        expectedArguments.add(TITLE_OF_STORY);
+        expectedArguments.add(NEW_PRIORITY);
     }
 
-    public String changeStoryPriority(String storyName, String priorityStr){
+    public String changeStoryPriority(String storyName, String priorityStr) {
         Priority newPriority = Parser.tryParseEnum(priorityStr, Priority.class);
         Story story = boardRepository.findStoryByName(storyName);
         story.editPriority(newPriority);

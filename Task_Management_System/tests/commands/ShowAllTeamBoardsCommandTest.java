@@ -27,7 +27,8 @@ public class ShowAllTeamBoardsCommandTest {
        String teamName = "Power5";
        String boardName = "newBoard";
        boardRepository.createTeam(teamName);
-       boardRepository.createANewBoardInATeam(boardName,teamName);
+            Board board1 = boardRepository.createBoard(boardName);
+            boardRepository.findTeamByName(teamName).addBoard(board1);
             String result = showAllTeamBoardsCommand.execute(Arrays.asList(teamName));
             String result2 = String.format("These are all boards for team with name Power5.\n---BOARDS---\n---Board---\nnewBoard\nThere are no tasks on this board.\n");
             assertEquals(result2, result);

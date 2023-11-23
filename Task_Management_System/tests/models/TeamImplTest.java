@@ -24,9 +24,9 @@ public class TeamImplTest {
 
     @Test
     public void testAddMember() {
-        Person person = new PersonImpl("John Doe");
+        Person person = new PersonImpl("JohnDoe");
         team.addMember(person);
-        assertTrue(team.getMembers().contains("John Doe"));
+        assertTrue(team.displayMembers().contains("JohnDoe"));
     }
 
     @Test

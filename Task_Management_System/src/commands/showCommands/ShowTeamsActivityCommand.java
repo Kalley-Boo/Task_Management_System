@@ -9,17 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShowTeamsActivityCommand implements Command {
+    public static final String THE_TEAM_S_NAME = "the team's name";
     private final List<String> expectedArguments;
     private static final int EXPECTED_PARAM_COUNT = 1;
     private final BoardRepository boardRepository;
 
-    public ShowTeamsActivityCommand(BoardRepository boardRepository){
+    public ShowTeamsActivityCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         this.expectedArguments = new ArrayList<>();
-        expectedArguments.add("the team's name");
+        expectedArguments.add(THE_TEAM_S_NAME);
     }
 
-    public String showTeamsActivity(String name){
+    public String showTeamsActivity(String name) {
         Team foundTeam = this.boardRepository.findTeamByName(name);
         return foundTeam.displayHistory();
     }

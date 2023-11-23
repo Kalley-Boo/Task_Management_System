@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShowAllTeamsCommand implements Command {
-
     public static final String ALL_TEAMS_BANNER = "---All teams--- \n";
     private final BoardRepository boardRepository;
 
@@ -20,6 +19,7 @@ public class ShowAllTeamsCommand implements Command {
         StringBuilder stringBuilder = new StringBuilder();
         List<Team> teams = boardRepository.getTeams();
         stringBuilder.append(ALL_TEAMS_BANNER);
+
         for (Team t : teams) {
             stringBuilder.append(t.getName()).append(" ");
         }

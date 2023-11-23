@@ -31,7 +31,6 @@ public class EngineImpl implements Engine {
     private final CommandFactory commandFactory;
     private final BoardRepository boardRepository;
 
-
     public EngineImpl() {
         this.commandFactory = new CommandFactoryImpl();
         this.boardRepository = new BoardRepositoryImpl();
@@ -71,7 +70,7 @@ public class EngineImpl implements Engine {
     public void processCommand(int commandNumber) {
         Command command = commandFactory.createCommand(commandNumber, boardRepository);
         List<String> expectedArguments = command.getExpectedArguments();
-        if (expectedArguments.size() == 0) {
+        if (expectedArguments.isEmpty()) {
             String executionResult = command.execute(new ArrayList<>());
             System.out.println(executionResult);
             return;
@@ -92,7 +91,6 @@ public class EngineImpl implements Engine {
         }
     }
 
-
     @Override
     public List<String> collectArguments(List<String> expectedArguments) {
         List<String> args = new ArrayList<>();
@@ -108,7 +106,6 @@ public class EngineImpl implements Engine {
     @Override
     public void showCommandsOptions() {
         int counter = 1;
-
         CommandType[] commandTypes = CommandType.values();
 
         for (CommandType commandType : commandTypes) {

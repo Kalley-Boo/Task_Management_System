@@ -9,7 +9,7 @@ import util.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract  class TaskImpl implements Task {
+public abstract class TaskImpl implements Task {
     public static final int TITLE_MIN_VALUE = 10;
     public static final int TITLE_MAX_VALUE = 100;
     private static final String TITLE_ERROR_MESSAGE = "Title should has between 10 and 100 symbols.";
@@ -22,27 +22,35 @@ public abstract  class TaskImpl implements Task {
     private final List<Comment> comments;
     private final List<HistoryLog> historyLog;
 
-    public TaskImpl(int id, String title, String description){
+    public TaskImpl(int id, String title, String description) {
         setId(id);
         setTitle(title);
         setDescription(description);
         this.comments = new ArrayList<>();
         this.historyLog = new ArrayList<>();
     }
+
     private void setId(int id) {
         this.id = id;
     }
 
     private void setTitle(String title) {
-        Validator.validateStringLength(title, TITLE_MIN_VALUE, TITLE_MAX_VALUE, TITLE_ERROR_MESSAGE);
+        Validator.validateStringLength(title,
+                                TITLE_MIN_VALUE,
+                                TITLE_MAX_VALUE,
+                                TITLE_ERROR_MESSAGE);
         this.title = title;
     }
 
     private void setDescription(String description) {
-        Validator.validateStringLength(description, DESCRIPTION_MIN_VALUE, DESCRIPTION_MAX_VALUE, DESCRIPTION_ERROR_MESSAGE);
+        Validator.validateStringLength(description,
+                                DESCRIPTION_MIN_VALUE,
+                                DESCRIPTION_MAX_VALUE,
+                                DESCRIPTION_ERROR_MESSAGE);
         this.description = description;
 
     }
+
     @Override
     public int getId() {
         return id;
@@ -58,13 +66,13 @@ public abstract  class TaskImpl implements Task {
         return description;
     }
 
-    public List<Comment> getComments(){
+    public List<Comment> getComments() {
         return comments;
     }
 
     public abstract void addChange(HistoryLog historyLog);
 
-    public List<HistoryLog> getHistory(){
+    public List<HistoryLog> getHistory() {
         return historyLog;
     }
 
@@ -73,7 +81,7 @@ public abstract  class TaskImpl implements Task {
         comments.add(comment);
     }
 
-    public void addHistoryLog(HistoryLog historyLog){
+    public void addHistoryLog(HistoryLog historyLog) {
         this.historyLog.add(historyLog);
     }
 

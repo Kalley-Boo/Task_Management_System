@@ -18,11 +18,12 @@ public class PersonImpl implements Person {
     public static final String TASKS_FOR = "Tasks for ";
     public static final String HAS_TASKS = " has tasks: ";
     public static final String HAS_NO_TASKS_ASSIGNED_YET = " - has no tasks assigned yet.";
+    public static final String MEMBER = "Member: ";
     private String name;
     private final List<Task> tasks;
     private final List<HistoryLogImpl> history;
 
-    public PersonImpl(String name){
+    public PersonImpl(String name) {
         this.tasks = new ArrayList<>();
         this.history = new ArrayList<>();
         setName(name);
@@ -42,8 +43,8 @@ public class PersonImpl implements Person {
         history.add(new HistoryLogImpl(event));
     }
 
-    private void validateName(String name){
-        if(name.length() < NAME_MIN_LEN || name.length() > NAME_MAX_LEN){
+    private void validateName(String name) {
+        if (name.length() < NAME_MIN_LEN || name.length() > NAME_MAX_LEN) {
             throw new IllegalArgumentException(NAME_NOT_VALID);
         }
     }
@@ -55,6 +56,7 @@ public class PersonImpl implements Person {
         tasks.add(task);
         logEvent(String.format(ADDED, task.getDescription()));
     }
+
     public void removeTask(Task task) {
         if (task == null) {
             throw new IllegalArgumentException(TASK_CANNOT_BE_NULL);
@@ -74,13 +76,12 @@ public class PersonImpl implements Person {
         }
     }
 
-    public String print(){
+    public String print() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Member: ").append(this.name);
-        if (this.tasks.isEmpty()){
+        stringBuilder.append(MEMBER).append(this.name);
+        if (this.tasks.isEmpty()) {
             stringBuilder.append(HAS_NO_TASKS_ASSIGNED_YET);
-        }
-        else {
+        } else {
             stringBuilder.append(HAS_TASKS);
             for (Task task : this.tasks) {
                 stringBuilder.append(task.print());
@@ -91,12 +92,13 @@ public class PersonImpl implements Person {
     }
 
     //-----------------------------------setters and getters------------------------------------
-    private void setName(String name){
+    private void setName(String name) {
         validateName(name);
         logEvent(String.format(NAME_SET, name));
         this.name = name;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
 }

@@ -8,7 +8,7 @@ import Models.Contracts.Team;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamImpl  implements Team, Printable {
+public class TeamImpl implements Team, Printable {
     public static final String MEMBER_CANT_BE_NULL = "Member cannot be null";
     public static final String PERSON_EXISTS = "Person with the same name already exists in the team";
     public static final String BOARD_CANT_BE_NUL = "Board cannot be null";
@@ -22,13 +22,16 @@ public class TeamImpl  implements Team, Printable {
     public static final String NO_BOARDS_ERROR = "There are no boards in this team.";
     public static final String ADDED_TO_THIS_TEAM = "%s has been successfully added to this team!";
     public static final String SET_TO = "Name set to: %s";
+    public static final String MEMBERS = "---Members---\n";
+    public static final String BOARDS_IN_TEAM = "Boards in team ";
+    public static final String BOARD_S_ADDED = "Board %s added to this team";
 
     private String name;
     private List<Person> members;
     private List<Board> boards;
     private final List<HistoryLogImpl> history;
 
-    public TeamImpl(String name){
+    public TeamImpl(String name) {
         this.history = new ArrayList<>();
         this.members = new ArrayList<>();
         this.boards = new ArrayList<>();
@@ -54,7 +57,7 @@ public class TeamImpl  implements Team, Printable {
         if (members.isEmpty()) {
             return new String(stringBuilder.append(EMPTY_TEAM).append(name));
         } else {
-            stringBuilder.append("---Members---\n");
+            stringBuilder.append(MEMBERS);
             for (Person member : members) {
                 stringBuilder.append(member.getName()).append(" ");
             }
@@ -66,7 +69,7 @@ public class TeamImpl  implements Team, Printable {
         if (boards.isEmpty()) {
             System.out.println(NO_BOARDS_IN_TEAM + name);
         } else {
-            System.out.println("Boards in team " + name + ":");
+            System.out.println(BOARDS_IN_TEAM + name + ":");
             for (Board board : boards) {
                 System.out.println(board.getName());
                 System.out.println(" ");
@@ -75,11 +78,11 @@ public class TeamImpl  implements Team, Printable {
     }
 
     public void addMember(Person member) {
-        if(member == null) {
+        if (member == null) {
             throw new IllegalArgumentException(MEMBER_CANT_BE_NULL);
         }
-        for(Person person : this.members){
-            if(member.getName().equals(person.getName())){
+        for (Person person : this.members) {
+            if (member.getName().equals(person.getName())) {
                 throw new IllegalArgumentException(PERSON_EXISTS);
             }
         }
@@ -87,31 +90,32 @@ public class TeamImpl  implements Team, Printable {
         members.add(member);
     }
 
-    public void addBoard(Board board){
-        if(board == null){
+    public void addBoard(Board board) {
+        if (board == null) {
             throw new IllegalArgumentException(BOARD_CANT_BE_NUL);
         }
-        if(boards.contains(board)){
+        if (boards.contains(board)) {
             throw new IllegalArgumentException(BOARD_EXISTS);
         }
-        logEvent(String.format("Board %s added to this team", board.getName()));
+        logEvent(String.format(BOARD_S_ADDED, board.getName()));
         boards.add(board);
     }
 
     //-----------------------------------setters and getters----------------------------------------
 
-    private void setName(String name){
+    private void setName(String name) {
         logEvent(String.format(SET_TO, name));
         this.name = name;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
     public List<Person> getMembers() {
         return members;
     }
+
     @Override
     public List<Board> getBoards() {
         return boards;
@@ -122,19 +126,21 @@ public class TeamImpl  implements Team, Printable {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(TEAM_HEADER).append("\n");
         stringBuilder.append(this.name).append("\n");
-        if(this.members.isEmpty()){
+        if (this.members.isEmpty()) {
             return new String(stringBuilder.append(NO_MEMBERS_ERROR));
         }
+
         stringBuilder.append(MEMBERS_HEADER).append("\n");
-        for(Person member : this.members){
+        for (Person member : this.members) {
             stringBuilder.append(member.print()).append(" ");
         }
         stringBuilder.append("\n");
-        if(this.boards.isEmpty()){
+
+        if (this.boards.isEmpty()) {
             return new String(stringBuilder.append(NO_BOARDS_ERROR));
         }
         stringBuilder.append(BOARDS_HEADER).append("\n");
-        for(Board board : this.boards){
+        for (Board board : this.boards) {
             stringBuilder.append(board.print());
             stringBuilder.append("\n");
         }

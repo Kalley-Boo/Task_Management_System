@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeRatingOfAFeedbackCommand implements Command {
+    public static final String TITLE_OF_FEEDBACK = "title of feedback";
+    public static final String RATING_1_TO_10 = "rating (1 to 10)";
     private final List<String> expectedArguments;
     public static final String COMMAND_IS_DONE = "Feedback with title %s has changed its rating to %d.";
-
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
     public static final String INVALID_RATING = "Invalid value for rating. Should be a number.";
 
@@ -20,10 +21,9 @@ public class ChangeRatingOfAFeedbackCommand implements Command {
     public ChangeRatingOfAFeedbackCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("title of feedback");
-        expectedArguments.add("rating (1 to 10)");
+        expectedArguments.add(TITLE_OF_FEEDBACK);
+        expectedArguments.add(RATING_1_TO_10);
     }
-
 
     private String changeRatingOfAFeedback(String feedbackName, int rating) {
         boardRepository.findFeedbackByName(feedbackName).setRating(rating);

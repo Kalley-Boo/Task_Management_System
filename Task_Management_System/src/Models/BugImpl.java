@@ -26,6 +26,17 @@ public class BugImpl extends TaskImpl implements Bug {
     private static final String COMMENTS_HEADER = "---COMMENTS---";
     private static final String UNASSIGNED = "Unassigned";
     private static final String INVALID_INPUT_MESSAGE = "The %s can not be NULL";
+    public static final String PRIORITY_CHANGED = "Priority changed from %s to %s";
+    public static final String SEVERITY_CHANGED = "Severity changed from %s to %s";
+    public static final String STATUS_CHANGED = "Status changed from %s to %s";
+    public static final String STEPS_TO_REPRODUCE_CHANGED = "Steps to reproduce changed from %s to %s";
+    public static final String ASSIGNEE_CHANGED = "Assignee changed from %s to %s";
+    public static final String STEPS = "steps";
+    public static final String PRIORITY = "priority";
+    public static final String SEVERITY = "severity";
+    public static final String STATUS = "status";
+    public static final String ASSIGNEE = "assignee";
+    public static final String COMMENT = "comment";
 
     private List<String> stepsToReproduce;
     private Priority priority;
@@ -53,72 +64,72 @@ public class BugImpl extends TaskImpl implements Bug {
         this.status = StatusBug.ACTIVE;
     }
 
-    public void editPriority(Priority newPriority){
+    public void editPriority(Priority newPriority) {
         Priority oldPriority = this.priority;
         this.priority = newPriority;
-        String changeLog = String.format("Priority changed from %s to %s", oldPriority, newPriority);
+        String changeLog = String.format(PRIORITY_CHANGED, oldPriority, newPriority);
         addChange(new HistoryLogImpl(changeLog));
     }
 
-    public void editSeverity(Severity newSeverity){
+    public void editSeverity(Severity newSeverity) {
         Severity oldSeverity = this.severity;
         this.severity = newSeverity;
-        String changeLog = String.format("Severity changed from %s to %s", oldSeverity, newSeverity);
+        String changeLog = String.format(SEVERITY_CHANGED, oldSeverity, newSeverity);
         addChange(new HistoryLogImpl(changeLog));
     }
 
     public void editStatus(StatusBug newStatus) {
         StatusBug oldStatus = this.status;
         this.status = newStatus;
-        String changeLog = String.format("Status changed from %s to %s", oldStatus, newStatus);
+        String changeLog = String.format(STATUS_CHANGED, oldStatus, newStatus);
         addChange(new HistoryLogImpl(changeLog));
     }
 
     public void editStepsToReproduce(List<String> newSteps) {
         List<String> oldSteps = new ArrayList<>(this.stepsToReproduce);
         this.stepsToReproduce = new ArrayList<>(newSteps);
-        String changeLog = String.format("Steps to reproduce changed from %s to %s", oldSteps, newSteps);
+        String changeLog = String.format(STEPS_TO_REPRODUCE_CHANGED, oldSteps, newSteps);
         addChange(new HistoryLogImpl(changeLog));
     }
 
     public void editAssignee(Person newAssignee) {
         Person oldAssignee = this.assignee;
         this.assignee = newAssignee;
-        String changeLog = String.format("Assignee changed from %s to %s", oldAssignee.getName(), newAssignee.getName());
+        String changeLog = String.format(ASSIGNEE_CHANGED, oldAssignee.getName(), newAssignee.getName());
         addChange(new HistoryLogImpl(changeLog));
     }
 
-    private void setStepsToReproduce(List<String> steps){
-        if (steps == null){
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "steps"));
+    private void setStepsToReproduce(List<String> steps) {
+        if (steps == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, STEPS));
         }
         this.stepsToReproduce = steps;
     }
 
-    private void setPriority(Priority priority){
-        if (priority == null){
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "priority"));
+    private void setPriority(Priority priority) {
+        if (priority == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, PRIORITY));
         }
         this.priority = priority;
     }
 
-    private void setSeverity(Severity severity){
-        if (severity == null){
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "severity"));
+    private void setSeverity(Severity severity) {
+        if (severity == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, SEVERITY));
         }
         this.severity = severity;
     }
 
-    private void setStatus(StatusBug status){
-        if (status == null){
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "status"));
+    private void setStatus(StatusBug status) {
+        if (status == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, STATUS));
         }
         this.status = status;
     }
 
-    private void setAssignee(Person assignee){
-        if (assignee == null){
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "assignee"));
+    private void setAssignee(Person assignee) {
+        if (assignee == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, ASSIGNEE));
         }
         this.assignee = assignee;
     }
@@ -150,7 +161,7 @@ public class BugImpl extends TaskImpl implements Bug {
     }
 
     @Override
-    public String getTitle(){
+    public String getTitle() {
         return super.getTitle();
     }
 
@@ -159,36 +170,41 @@ public class BugImpl extends TaskImpl implements Bug {
         super.addHistoryLog(historyLog);
     }
 
-    public void addComment(Comment comment){
-        if (comment == null){
-            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "comment"));
+    public void addComment(Comment comment) {
+        if (comment == null) {
+            throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, COMMENT));
         }
         super.addComment(comment);
     }
 
-    public void addHistoryLog(HistoryLog historyLog){
+    public void addHistoryLog(HistoryLog historyLog) {
         super.addHistoryLog(historyLog);
     }
 
     @Override
     public String print() {
         String assignee;
-        if (this.assignee == null){
+        if (this.assignee == null) {
             assignee = UNASSIGNED;
-        }else {
+        } else {
             assignee = this.assignee.getName();
         }
+
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format(PRINT_template, super.getId(), super.getTitle(), super.getDescription(),
-                this.priority.toString(), this.severity.toString(), assignee, this.status.toString()));
-        if (super.getComments().isEmpty()){
+        stringBuilder.append(String.format(PRINT_template, super.getId(), super.getTitle(),
+                                            super.getDescription(), this.priority.toString(), this.severity.toString(),
+                                            assignee, this.status.toString()));
+
+        if (super.getComments().isEmpty()) {
             stringBuilder.append(NO_COMMENTS);
             return new String(stringBuilder);
         }
+
         stringBuilder.append("\n").append(COMMENTS_HEADER).append("\n");
         for (Comment comment : super.getComments()) {
             stringBuilder.append(comment.print()).append("\n");
         }
+
         stringBuilder.append(COMMENTS_HEADER);
         return new String(stringBuilder);
     }

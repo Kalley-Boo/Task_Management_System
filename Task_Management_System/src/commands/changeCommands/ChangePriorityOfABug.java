@@ -12,6 +12,8 @@ import java.util.List;
 
 public class ChangePriorityOfABug implements Command {
 
+    public static final String TITLE_OF_THE_BUG = "title of the bug";
+    public static final String PRIORITY_HIGH_MEDIUM_OR_LOW = "priority (high, medium or low)";
     private final List<String> expectedArguments;
     private static final String PRIORITY_OF_BUG_CHANGED = "The priority of bug '%s' changed %s -> %s.";
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
@@ -21,10 +23,9 @@ public class ChangePriorityOfABug implements Command {
     public ChangePriorityOfABug(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("title of the bug");
-        expectedArguments.add("priority (high, medium or low)");
+        expectedArguments.add(TITLE_OF_THE_BUG);
+        expectedArguments.add(PRIORITY_HIGH_MEDIUM_OR_LOW);
     }
-
 
     private String ChangePriority(String title, Priority priority) {
         Bug bug = boardRepository.findBugByTitle(title);

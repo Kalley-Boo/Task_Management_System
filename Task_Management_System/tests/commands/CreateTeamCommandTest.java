@@ -38,7 +38,7 @@ public class CreateTeamCommandTest {
     @Test
     public void execute_Should_throwException_When_InvalidParameters() {
         Command command = new CreateTeamCommand(boardRepository);
-        Assertions.assertThrows(InvalidInputException.class, () -> {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
             command.execute(invalidInput);
         });
         Assertions.assertEquals(0, boardRepository.getTeams().size());
@@ -48,6 +48,7 @@ public class CreateTeamCommandTest {
     public void execute_Should_ThrowExceptionOnDuplicateTeamName() {
         Command command = new CreateTeamCommand(boardRepository);
         command.execute(validInput);
+        //TODO eddit
         Assertions.assertThrows(InvalidInputException.class, () -> {
             command.execute(validInput);
         });

@@ -22,10 +22,9 @@ public class CreateNewBugInBoardCommand implements Command {
     public static final int EXPECTED_PARAMETERS_COUNT = 7;
     private static final String ASSIGNED_BUG_CREATED = "Bug with title %s was created and assigned to %s!";
     private static final String UNASSIGNED_BUG_CREATED = "Bug with title %s was created!";
-    private static final String BUG_EXISTS ="Bug with this title already exists.";
+    private static final String BUG_EXISTS = "Bug with this title already exists.";
     public static final String INVALID_TITLE_LENGTH = "The length of the title must be 10-100";
     public static final String INVALID_DESCRIPTION_LENGTH = "The length of the description must be 10-500";
-
 
 
     private final BoardRepository boardRepository;
@@ -41,15 +40,21 @@ public class CreateNewBugInBoardCommand implements Command {
         expectedArguments.add("assignee(type unassigned to leave it unassigned)");
         expectedArguments.add("board on which this bug should be");
     }
-    private boolean bugExists(String title){
-        for (Bug bug: boardRepository.getBugs())
-         {if (bug.getTitle().equals(title)){return true;}
 
-        } return false;
+    private boolean bugExists(String title) {
+        for (Bug bug : boardRepository.getBugs()) {
+            if (bug.getTitle().equals(title)) {
+                return true;
+            }
+
+        }
+        return false;
     }
+
     private String createUnassignedBug(String title, String description, List<String> steps, Priority priority, Severity severity, Board board) {
-        if (bugExists(title)){
-            throw new InvalidInputException(BUG_EXISTS);}
+        if (bugExists(title)) {
+            throw new InvalidInputException(BUG_EXISTS);
+        }
         boardRepository.createUnassignedAssignedBug(title, description, steps, priority, severity);
         board.addTask(boardRepository.findTaskByTitle(title));
         return String.format(UNASSIGNED_BUG_CREATED, title);
@@ -65,8 +70,11 @@ public class CreateNewBugInBoardCommand implements Command {
     public String execute(List<String> parameters) {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String title = parameters.get(0);
-        if (bugExists(title)){
-            throw new InvalidInputException(BUG_EXISTS);}
+
+        if (bugExists(title)) {
+            throw new InvalidInputException(BUG_EXISTS);
+        }
+
         Validator.validateStringLength(title, 10, 100, INVALID_TITLE_LENGTH);
         String description = parameters.get(1);
         Validator.validateStringLength(description, 10, 500, INVALID_DESCRIPTION_LENGTH);
@@ -75,7 +83,7 @@ public class CreateNewBugInBoardCommand implements Command {
         Severity severity = Parser.tryParseEnum(parameters.get(4), Severity.class);
         Board board = boardRepository.findBoardByName(parameters.get(6));
 
-        if (parameters.get(5).equalsIgnoreCase("unassigned")){
+        if (parameters.get(5).equalsIgnoreCase("unassigned")) {
             return this.createUnassignedBug(title, description, steps, priority, severity, board);
         } else {
             Person assignee = boardRepository.findPersonByName(parameters.get(5));

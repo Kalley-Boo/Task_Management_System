@@ -3,10 +3,8 @@ package util;
 import commands.enums.CommandType;
 
 public abstract class Parser {
-
     private static final String COMMAND_NOT_SUPPORTED_MESSAGE = "Command %s is not supported.";
     public static final String NO_SUCH_ENUM = "There is no %s in %s.";
-
 
     public static CommandType tryParseCommandType(String value) {
         try {
@@ -16,6 +14,7 @@ public abstract class Parser {
             throw new IllegalArgumentException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, value));
         }
     }
+
     public static <E extends Enum<E>> E tryParseEnum(String valueToParse, Class<E> type) {
         try {
             return Enum.valueOf(type, valueToParse.replace(" ", "_").toUpperCase());

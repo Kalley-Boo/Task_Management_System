@@ -18,7 +18,7 @@ public class BoardImpl implements Board {
     private final List<Task> tasks;
     private final List<HistoryLogImpl> historyLog;
 
-    public BoardImpl(String name){
+    public BoardImpl(String name) {
         tasks = new ArrayList<>();
         historyLog = new ArrayList<>();
         setName(name);
@@ -29,10 +29,12 @@ public class BoardImpl implements Board {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(BOARD_HEADER).append("\n");
         stringBuilder.append(this.name).append("\n");
-        if (this.tasks.isEmpty()){
+
+        if (this.tasks.isEmpty()) {
             return new String(stringBuilder.append(NO_TASKS_ON_THIS_BOARD));
         }
         stringBuilder.append(TASKS_HEADER).append("\n");
+
         for (Task task : this.tasks) {
             stringBuilder.append(task.print());
             stringBuilder.append("\n");
@@ -53,6 +55,7 @@ public class BoardImpl implements Board {
     public String getName() {
         return this.name;
     }
+
     @Override
     public List<HistoryLogImpl> getHistoryLog() {
         return historyLog;
@@ -62,6 +65,6 @@ public class BoardImpl implements Board {
     public void addTask(Task task) {
         if (task != null) {
             this.tasks.add(task);
-        };
+        }
     }
 }

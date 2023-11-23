@@ -11,20 +11,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateANewBoardInATeamCommand implements Command {
+    public static final String TITLE_5_10_CHARACTERS = "a title for the board (5-10 characters)";
+    public static final String A_TEAM = "a team to which it will be assigned";
     private final List<String> expectedArguments;
     public static final String BOARD_CREATED = "Board with name %s was created in team with name %s!";
     public static final String INVALID_TITLE_LENGTH = "The length of the title must be 5-10";
-
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
     public static final String BOARD_EXISTS = "Board with the same name already exists in this team.";
     private final BoardRepository boardRepository;
 
-
     public CreateANewBoardInATeamCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("a title for the board (5-10 characters)");
-        expectedArguments.add("a team to which it will be assigned");
+        expectedArguments.add(TITLE_5_10_CHARACTERS);
+        expectedArguments.add(A_TEAM);
     }
 
     @Override
@@ -33,7 +33,6 @@ public class CreateANewBoardInATeamCommand implements Command {
         String boardName = parameters.get(0);
         Validator.validateStringLength(boardName, 5, 10, INVALID_TITLE_LENGTH);
         String teamName = parameters.get(1);
-        //todo validate if the board already exists in the team
         return createANewBoardInATeam(boardName, teamName);
     }
 
@@ -47,7 +46,6 @@ public class CreateANewBoardInATeamCommand implements Command {
             if (bord.getName().equals(boardName)) {
                 return true;
             }
-
         }
         return false;
     }
@@ -56,8 +54,8 @@ public class CreateANewBoardInATeamCommand implements Command {
         if (boardExists(boardName, teamName)) {
             throw new InvalidInputException(BOARD_EXISTS);
         }
-        boardRepository.createANewBoardInATeam(boardName, teamName);
+        Board board1 = boardRepository.createBoard(boardName);
+        boardRepository.findTeamByName(teamName).addBoard(board1);
         return String.format(BOARD_CREATED, boardName, teamName);
     }
-
 }

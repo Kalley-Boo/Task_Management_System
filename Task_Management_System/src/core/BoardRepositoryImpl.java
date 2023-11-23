@@ -22,7 +22,6 @@ public class BoardRepositoryImpl implements BoardRepository {
     private static final String TASK_NOT_FOUND_EXCEPTION = "Task with title %s not found.";
     private static final String BUG_NOT_FOUND_EXCEPTION = "Bug with title %s not found.";
 
-
     private final List<Task> tasks;
     private final List<Bug> bugs;
     private final List<Feedback> feedbacks;
@@ -77,7 +76,6 @@ public class BoardRepositoryImpl implements BoardRepository {
         return new ArrayList<>(teams);
     }
 
-
     //-----------------CREATE------------------
     @Override
     public void createAssignedBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity, Person assignee) {
@@ -114,7 +112,6 @@ public class BoardRepositoryImpl implements BoardRepository {
         this.feedbacks.add(feedback);
     }
 
-
     @Override
     public void createPerson(String name) {
         this.people.add(new PersonImpl(name));
@@ -135,8 +132,8 @@ public class BoardRepositoryImpl implements BoardRepository {
     //------------------FIND------------------------
     @Override
     public Person findPersonByName(String name) {
-        List <Person> found = people.stream().filter(person -> person.getName().equals(name)).toList();
-        if (found.size() == 0){
+        List<Person> found = people.stream().filter(person -> person.getName().equals(name)).toList();
+        if (found.size() == 0) {
             throw new PersonNotFoundException(String.format(PERSON_NOT_FOUND_EXCEPTION, name));
         }
         return found.get(0);
@@ -162,9 +159,9 @@ public class BoardRepositoryImpl implements BoardRepository {
         throw new TaskNotFoundException(String.format(TASK_NOT_FOUND_EXCEPTION, title));
     }
 
-    public Story findStoryByName(String name){
-        for(Story story : this.stories){
-            if(story.getName().equals(name)){
+    public Story findStoryByName(String name) {
+        for (Story story : this.stories) {
+            if (story.getName().equals(name)) {
                 return story;
             }
         }
@@ -180,31 +177,24 @@ public class BoardRepositoryImpl implements BoardRepository {
         }
         throw new BoardNotFoundException(String.format(BOARD_NOT_FOUND_EXCEPTION, name));
     }
+
     @Override
     public Feedback findFeedbackByName(String feedbackName) {
         for (Feedback feedback : feedbacks) {
             if (feedback.getName().equals(feedbackName)) {
                 return feedback;
             }
-        } throw new IllegalArgumentException (String.format(FEEDBACK_WITH_NAME_S_WAS_NOT_FOUND, feedbackName));
+        }
+        throw new IllegalArgumentException(String.format(FEEDBACK_WITH_NAME_S_WAS_NOT_FOUND, feedbackName));
     }
 
     @Override
     public Bug findBugByTitle(String bugTitle) {
         for (Bug bug : bugs) {
-            if (bug.getTitle().equals(bugTitle)){
+            if (bug.getTitle().equals(bugTitle)) {
                 return bug;
             }
         }
         throw new BugNotFoundException(String.format(BUG_NOT_FOUND_EXCEPTION, bugTitle));
     }
-
-
-    //------------------OTHERS----------------------
-
-    @Override
-    public void createANewBoardInATeam(String boardName, String teamName) {
-        findTeamByName(teamName).addBoard(createBoard(boardName));
-    }
-
 }

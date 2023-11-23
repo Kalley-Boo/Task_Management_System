@@ -13,6 +13,9 @@ import java.util.List;
 
 public class CreateNewFeedbackInBoardCommand implements Command {
 
+    public static final String TITLE_FOR_THE_FEEDBACK = "a title for the feedback (10-100 characters)";
+    public static final String DESCRIPTION = "description (10-500 characters)";
+    public static final String RATING_1_10 = "rating (1-10)";
     private final List<String> expectedArguments;
 
     public static final int EXPECTED_PARAMETERS_COUNT = 3;
@@ -23,20 +26,24 @@ public class CreateNewFeedbackInBoardCommand implements Command {
     public static final String INVALID_DESCRIPTION_LENGTH = "The length of the description must be 10-500";
     private final BoardRepository boardRepository;
 
-    public CreateNewFeedbackInBoardCommand(BoardRepository boardRepository){
+    public CreateNewFeedbackInBoardCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("a title for the feedback (10-100 characters)");
-        expectedArguments.add("description (10-500 characters)");
-        expectedArguments.add("rating (1-10)");
+        expectedArguments.add(TITLE_FOR_THE_FEEDBACK);
+        expectedArguments.add(DESCRIPTION);
+        expectedArguments.add(RATING_1_10);
     }
-    private boolean feedbackExists(String title){
-        for (Feedback feedback: boardRepository.getFeedbacks())
-        {if (feedback.getName().equals(title)){return true;}
 
-        } return false;
+    private boolean feedbackExists(String title) {
+        for (Feedback feedback : boardRepository.getFeedbacks()) {
+            if (feedback.getName().equals(title)) {
+                return true;
+            }
+        }
+        return false;
     }
-    private String createFeedback(String title, String description, int rating){
+
+    private String createFeedback(String title, String description, int rating) {
         boardRepository.createFeedback(title, description, rating);
         return String.format(FEEDBACK_CREATED, title);
     }
@@ -45,8 +52,9 @@ public class CreateNewFeedbackInBoardCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
         String title = parameters.get(0);
-        if (feedbackExists(title)){
-            throw new InvalidInputException(FEEDBACK_EXISTS);}
+        if (feedbackExists(title)) {
+            throw new InvalidInputException(FEEDBACK_EXISTS);
+        }
         Validator.validateStringLength(title, 10, 100, INVALID_TITLE_LENGTH);
         String description = parameters.get(1);
         Validator.validateStringLength(description, 10, 500, INVALID_DESCRIPTION_LENGTH);

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeStorySizeCommand implements Command {
+    public static final String TITLE_OF_STORY = "title of Story";
+    public static final String NEW_SIZE = "new size (small, medium, large)";
     private final List<String> expectedArguments;
     private static final int EXPECTED_PARAMETERS_COUNT = 2;
     public static final String SIZE_UPDATED = "Size of %s updated to %s.";
@@ -20,8 +22,8 @@ public class ChangeStorySizeCommand implements Command {
     public ChangeStorySizeCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("title of Story");
-        expectedArguments.add("new size (small, medium, large)");
+        expectedArguments.add(TITLE_OF_STORY);
+        expectedArguments.add(NEW_SIZE);
     }
 
     public String changeStorySize(String storyName, String sizeStr) {

@@ -5,7 +5,6 @@ import Models.Enums.StatusStory;
 import Models.Enums.TaskSize;
 
 public interface Story {
-
      Priority getPriority();
      TaskSize getSize();
      StatusStory getStatus();

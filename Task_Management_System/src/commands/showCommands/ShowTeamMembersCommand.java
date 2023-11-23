@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShowTeamMembersCommand implements Command {
+    public static final String THE_TEAM = "the team's name";
     private final List<String> expectedArguments;
     private static final int EXPECTED_PARAM_COUNT = 1;
     private final BoardRepository boardRepository;
@@ -16,10 +17,10 @@ public class ShowTeamMembersCommand implements Command {
     public ShowTeamMembersCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
-        expectedArguments.add("the team's name");
+        expectedArguments.add(THE_TEAM);
     }
 
-    public String showTeamMembers(String name){
+    public String showTeamMembers(String name) {
         Team foundTeam = this.boardRepository.findTeamByName(name);
         return foundTeam.displayMembers();
     }

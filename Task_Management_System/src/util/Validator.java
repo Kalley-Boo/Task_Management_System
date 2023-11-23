@@ -9,16 +9,18 @@ public abstract class Validator {
     private static final String INVALID_NUMBER_OF_ARGUMENTS = "Invalid number of arguments. Expected: %d; received: %d.";
 
 
-    public static void validateIntRange(int value, int min, int max){
-        if (value < min || value > max){
+    public static void validateIntRange(int value, int min, int max) {
+        if (value < min || value > max) {
             throw new IllegalArgumentException(String.format(INT_OUT_OF_RANGE, min, max));
         }
     }
+
     public static void validateValueInRange(double value, double min, double max, String errorMessage) {
         if (value < min || value > max) {
             throw new IllegalArgumentException(errorMessage);
         }
     }
+
     public static void validateStringLength(String stringToValidate, int minLength, int maxLength, String errorMessage) {
         validateValueInRange(stringToValidate.length(), minLength, maxLength, errorMessage);
     }
