@@ -11,14 +11,14 @@ import java.util.List;
 
 public class CreateTeamCommand implements Command {
     public static final String A_NAME = "a name (5-15 characters)";
-    private final List<String> expectedArguments;
     public static final String TEAM_WAS_CREATED = "Team with name %s was created!";
+
     public static final int EXPECTED_PARAMETERS_COUNT = 1;
     public static final String TEAM_SAME_NAME_EXISTS = "Team with the same name already exists.";
     public static final String INVALID_NAME_LENGTH = "The length of the title must be 10-15";
-
+    private final List<String> expectedArguments;
     private final BoardRepository boardRepository;
-    private final List<Team> teams;
+
 
     public CreateTeamCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;

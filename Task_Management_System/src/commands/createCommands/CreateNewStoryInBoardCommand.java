@@ -21,13 +21,14 @@ public class CreateNewStoryInBoardCommand implements Command {
     public static final String ASSIGNEE = "assignee(type unassigned to leave it unassigned)";
     public static final String BOARD = "board on which this story should be";
 
-    private final List<String> expectedArguments;
     public static final int EXPECTED_PARAMETERS_COUNT = 6;
     private static final String ASSIGNED_STORY_CREATED = "Story with title %s was created and assigned to %s!";
     private static final String UNASSIGNED_STORY_CREATED = "Story with title %s was created!";
     public static final String INVALID_TITLE_LENGTH = "The length of the title must be 10-100";
     public static final String STORY_EXISTS = "Story with this title already exists.";
     public static final String INVALID_DESCRIPTION_LENGTH = "The length of the description must be 10-500";
+    private final List<String> expectedArguments;
+
     private final BoardRepository boardRepository;
 
     public CreateNewStoryInBoardCommand(BoardRepository boardRepository) {

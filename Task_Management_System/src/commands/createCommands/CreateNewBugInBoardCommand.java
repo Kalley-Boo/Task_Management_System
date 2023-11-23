@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CreateNewBugInBoardCommand implements Command {
-    private final List<String> expectedArguments;
 
     public static final int EXPECTED_PARAMETERS_COUNT = 7;
     public static final String ASSIGNED_BUG_CREATED = "Bug with title %s was created and assigned to %s!";
@@ -23,8 +22,7 @@ public class CreateNewBugInBoardCommand implements Command {
     private static final String BUG_EXISTS = "Bug with this title already exists.";
     public static final String INVALID_TITLE_LENGTH = "The length of the title must be 10-100";
     public static final String INVALID_DESCRIPTION_LENGTH = "The length of the description must be 10-500";
-
-
+    private final List<String> expectedArguments;
     private final BoardRepository boardRepository;
 
     public CreateNewBugInBoardCommand(BoardRepository boardRepository) {
