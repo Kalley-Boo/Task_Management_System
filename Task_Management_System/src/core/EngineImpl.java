@@ -5,6 +5,7 @@ import commands.enums.CommandType;
 import core.contracts.BoardRepository;
 import core.contracts.CommandFactory;
 import core.contracts.Engine;
+import exceptions.CommandInterruptedException;
 import util.Parser;
 import util.Printer;
 import util.Validator;
@@ -20,14 +21,15 @@ public class EngineImpl implements Engine {
     private static final String EMPTY_COMMAND_ERROR = "Command cannot be empty.";
     private static final String COMMAND_ERROR = "You must select from the list of existing commands by typing in its number from the list of commands!";
     private static final String ENTER_ARGUMENT_MESSAGE = "Please enter %s:";
+    private static final String INTERRUPT_COMMAND = "back";
+    private static final String COMMAND_INTERRUPTED_MESSAGE = "You interrupted the command";
     private static final String MENU_OPTIONS = """
             -----------------------------------------------------------------------------
             Please select from the following options by typing the number of the command:
             1. Show commands\s
             2. Select command\s
             3. Exit
-            -----------------------------------------------------------------------------
-            """;
+            -----------------------------------------------------------------------------""";
     private final static int MIN_MENU_OPTION = 1;
     private final static int MAX_MENU_OPTION = 3;
 
@@ -84,6 +86,9 @@ public class EngineImpl implements Engine {
                 String executionResult = command.execute(args);
                 System.out.println(executionResult);
                 break;
+            } catch (CommandInterruptedException ex) {
+                System.out.println(ex.getMessage());
+                return;
             } catch (RuntimeException ex) {
                 if (ex.getMessage() != null && !ex.getMessage().isEmpty()) {
                     System.out.println(ex.getMessage());
@@ -101,6 +106,9 @@ public class EngineImpl implements Engine {
             System.out.println(String.format(ENTER_ARGUMENT_MESSAGE, argument));
             Scanner sc = new Scanner(System.in);
             String arg = sc.nextLine().trim();
+            if (arg.equalsIgnoreCase(INTERRUPT_COMMAND)) {
+                throw new CommandInterruptedException(COMMAND_INTERRUPTED_MESSAGE);
+            }
             args.add(arg);
         }
         return args;
