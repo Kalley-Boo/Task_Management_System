@@ -14,9 +14,9 @@ import java.util.List;
 public class ChangeStorySizeCommand implements Command {
     public static final String TITLE_OF_STORY = "title of Story";
     public static final String NEW_SIZE = "new size (small, medium, large)";
-    private final List<String> expectedArguments;
     private static final int EXPECTED_PARAMETERS_COUNT = 2;
     public static final String SIZE_UPDATED = "Size of %s updated to %s.";
+    private final List<String> expectedArguments;
     private final BoardRepository boardRepository;
 
     public ChangeStorySizeCommand(BoardRepository boardRepository) {

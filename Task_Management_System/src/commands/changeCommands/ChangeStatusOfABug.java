@@ -13,10 +13,9 @@ import java.util.List;
 public class ChangeStatusOfABug implements Command {
     public static final String TITLE_OF_BUG = "title of bug";
     public static final String NEW_STATUS_ACTIVE_DONE = "new status (active, done)";
-    private final List<String> expectedArguments;
     private static final String STATUS_OF_BUG_CHANGED = "The status of bug '%s' changed %s -> %s.";
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
-
+    private final List<String> expectedArguments;
     private final BoardRepository boardRepository;
 
     public ChangeStatusOfABug(BoardRepository boardRepository) {

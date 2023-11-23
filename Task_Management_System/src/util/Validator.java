@@ -5,7 +5,7 @@ import java.util.List;
 public abstract class Validator {
 
     private static final String DOUBLE_OUT_OF_RANGE = "Must be between %f and %f";
-    private static final String INT_OUT_OF_RANGE = "Must be between %d and %d";//todo edit
+    private static final String INT_OUT_OF_RANGE = "Must be between %d and %d";
     private static final String INVALID_NUMBER_OF_ARGUMENTS = "Invalid number of arguments. Expected: %d; received: %d.";
 
 

@@ -13,9 +13,9 @@ import java.util.List;
 public class ChangeSeverityOfABug implements Command {
     public static final String TITLE_OF_BUG = "title of bug";
     public static final String NEW_SEVERITY = "new severity (minor, major, critical)";
-    private final List<String> expectedArguments;
     private static final String SEVERITY_OF_BUG_CHANGED = "The severity of bug '%s' changed %s -> %s.";
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
+    private final List<String> expectedArguments;
 
     private final BoardRepository boardRepository;
 

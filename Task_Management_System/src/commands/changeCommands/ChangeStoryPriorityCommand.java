@@ -13,9 +13,9 @@ import java.util.List;
 public class ChangeStoryPriorityCommand implements Command {
     public static final String TITLE_OF_STORY = "title of Story";
     public static final String NEW_PRIORITY = "new priority (low, medium, high)";
-    private final List<String> expectedArguments;
     private static final int EXPECTED_PARAMETERS_COUNT = 2;
     public static final String PRIORITY_UPDATED = "Priority of %s updated to %s.";
+    private final List<String> expectedArguments;
     private final BoardRepository boardRepository;
 
     public ChangeStoryPriorityCommand(BoardRepository boardRepository) {

@@ -14,9 +14,9 @@ public class ChangePriorityOfABug implements Command {
 
     public static final String TITLE_OF_THE_BUG = "title of the bug";
     public static final String PRIORITY_HIGH_MEDIUM_OR_LOW = "priority (high, medium or low)";
-    private final List<String> expectedArguments;
     private static final String PRIORITY_OF_BUG_CHANGED = "The priority of bug '%s' changed %s -> %s.";
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
+    private final List<String> expectedArguments;
 
     private final BoardRepository boardRepository;
 

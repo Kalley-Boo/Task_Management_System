@@ -17,10 +17,10 @@ import java.util.List;
 public class ChangeStatusOfAFeedbackCommand implements Command {
     public static final String TITLE_OF_FEEDBACK = "title of feedback";
     public static final String NEW_STATUS = "new status (new, unscheduled, scheduled, done)";
-    private final List<String> expectedArguments;
     public static final String COMMAND_IS_DONE = "The status of bug '%s' changed %s -> %s.";
 
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
+    private final List<String> expectedArguments;
 
     private final BoardRepository boardRepository;
 

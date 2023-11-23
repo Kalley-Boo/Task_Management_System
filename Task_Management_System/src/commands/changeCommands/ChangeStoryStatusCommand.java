@@ -15,9 +15,9 @@ import java.util.List;
 public class ChangeStoryStatusCommand implements Command {
     public static final String TITLE_OF_STORY = "title of Story";
     public static final String NEW_STATUS = "new status (not_done, in_progress, done)";
-    private final List<String> expectedArguments;
     private static final int EXPECTED_PARAMETERS_COUNT = 2;
     public static final String STATUS_UPDATED = "Status of %s updated to %s.";
+    private final List<String> expectedArguments;
     private final BoardRepository boardRepository;
 
     public ChangeStoryStatusCommand(BoardRepository boardRepository) {
