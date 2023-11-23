@@ -135,12 +135,11 @@ public class BoardRepositoryImpl implements BoardRepository {
     //------------------FIND------------------------
     @Override
     public Person findPersonByName(String name) {
-        for (Person p : this.people) {
-            if (p.getName().equals(name)) {
-                return p;
-            }
+        List <Person> found = people.stream().filter(person -> person.getName().equals(name)).toList();
+        if (found.size() == 0){
+            throw new PersonNotFoundException(String.format(PERSON_NOT_FOUND_EXCEPTION, name));
         }
-        throw new PersonNotFoundException(String.format(PERSON_NOT_FOUND_EXCEPTION, name));
+        return found.get(0);
     }
 
     @Override
