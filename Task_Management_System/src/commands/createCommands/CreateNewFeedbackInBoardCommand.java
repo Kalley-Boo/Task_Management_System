@@ -1,7 +1,10 @@
 package commands.createCommands;
 
+import Models.Contracts.Bug;
+import Models.Contracts.Feedback;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
+import exceptions.InvalidInputException;
 import util.Parser;
 import util.Validator;
 
@@ -16,6 +19,7 @@ public class CreateNewFeedbackInBoardCommand implements Command {
     public final static String INVALID_RATING = "Invalid rating. Expected a number.";
     private static final String FEEDBACK_CREATED = "Feedback with title %s was created!";
     public static final String INVALID_TITLE_LENGTH = "The length of the title must be 10-100";
+    public static final String FEEDBACK_EXISTS = "Feedback with this name already exists.";
     public static final String INVALID_DESCRIPTION_LENGTH = "The length of the description must be 10-500";
     private final BoardRepository boardRepository;
 
@@ -26,7 +30,12 @@ public class CreateNewFeedbackInBoardCommand implements Command {
         expectedArguments.add("description (10-500 characters)");
         expectedArguments.add("rating (1-10)");
     }
+    private boolean feedbackExists(String title){
+        for (Feedback feedback: boardRepository.getFeedbacks())
+        {if (feedback.getName().equals(title)){return true;}
 
+        } return false;
+    }
     private String createFeedback(String title, String description, int rating){
         boardRepository.createFeedback(title, description, rating);
         return String.format(FEEDBACK_CREATED, title);
@@ -36,6 +45,8 @@ public class CreateNewFeedbackInBoardCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
         String title = parameters.get(0);
+        if (feedbackExists(title)){
+            throw new InvalidInputException(FEEDBACK_EXISTS);}
         Validator.validateStringLength(title, 10, 100, INVALID_TITLE_LENGTH);
         String description = parameters.get(1);
         Validator.validateStringLength(description, 10, 500, INVALID_DESCRIPTION_LENGTH);

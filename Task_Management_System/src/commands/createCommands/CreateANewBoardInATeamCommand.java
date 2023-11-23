@@ -1,7 +1,10 @@
 package commands.createCommands;
 
+import Models.BoardImpl;
+import Models.Contracts.Board;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
+import exceptions.InvalidInputException;
 import util.Validator;
 
 import java.util.ArrayList;
@@ -13,6 +16,7 @@ public class CreateANewBoardInATeamCommand implements Command {
     public static final String INVALID_TITLE_LENGTH = "The length of the title must be 5-10";
 
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
+    public static final String BOARD_EXISTS = "Board with the same name already exists in this team.";
     private final BoardRepository boardRepository;
 
 
@@ -38,8 +42,22 @@ public class CreateANewBoardInATeamCommand implements Command {
         return expectedArguments;
     }
 
+    private boolean boardExists(String boardName, String teamName) {
+        for (Board bord : boardRepository.findTeamByName(teamName).getBoards()) {
+            if (bord.getName().equals(boardName)) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
     private String createANewBoardInATeam(String boardName, String teamName) {
+        if (boardExists(boardName, teamName)) {
+            throw new InvalidInputException(BOARD_EXISTS);
+        }
         boardRepository.createANewBoardInATeam(boardName, teamName);
         return String.format(BOARD_CREATED, boardName, teamName);
     }
+
 }
