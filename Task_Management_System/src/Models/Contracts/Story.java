@@ -4,7 +4,7 @@ import Models.Enums.Priority;
 import Models.Enums.StatusStory;
 import Models.Enums.TaskSize;
 
-public interface Story {
+public interface Story extends Assigneable{
      Priority getPriority();
      TaskSize getSize();
      StatusStory getStatus();

@@ -21,10 +21,13 @@ public class EngineImpl implements Engine {
     private static final String COMMAND_ERROR = "You must select from the list of existing commands by typing in its number from the list of commands!";
     private static final String ENTER_ARGUMENT_MESSAGE = "Please enter %s:";
     private static final String MENU_OPTIONS = """
+            -----------------------------------------------------------------------------
             Please select from the following options by typing the number of the command:
             1. Show commands\s
             2. Select command\s
-            3. Exit""";
+            3. Exit
+            -----------------------------------------------------------------------------
+            """;
     private final static int MIN_MENU_OPTION = 1;
     private final static int MAX_MENU_OPTION = 3;
 

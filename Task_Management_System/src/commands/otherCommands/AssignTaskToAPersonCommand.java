@@ -1,5 +1,8 @@
 package commands.otherCommands;
 
+import Models.Contracts.Bug;
+import Models.Contracts.Person;
+import Models.Contracts.Story;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import util.Validator;
@@ -28,6 +31,7 @@ public class AssignTaskToAPersonCommand implements Command {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String personName = parameters.get(0);
         String task = parameters.get(1);
+
         return assignTaskToAPerson(personName, task);
     }
 
@@ -37,8 +41,15 @@ public class AssignTaskToAPersonCommand implements Command {
     }
 
     private String assignTaskToAPerson(String personName, String task) {
-        boardRepository.findPersonByName(personName).addTask(boardRepository.findTaskByTitle(task));
+        Person person = boardRepository.findPersonByName(personName);
+        Bug bug = boardRepository.findBugByTitle(task);
+        if (bug != null){
+            bug.editAssignee(person);
+        }else {
+            Story story = boardRepository.findStoryByName(task);
+            story.editAssignee(person);
+        }
+        person.addTask(boardRepository.findTaskByTitle(task));
         return String.format(COMMAND_IS_DONE, task, personName);
-        //TODO the assignee is not being added to the task (Assigneable interface)
     }
 }

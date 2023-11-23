@@ -57,21 +57,21 @@ public class StoryImpl extends TaskImpl implements Story {
 
     public void editPriority(Priority newPriority) {
         Priority oldPriority = this.priority;
-        this.priority = newPriority;
+        setPriority(newPriority);
         String changeLog = String.format(PRIORITY_CHANGED, oldPriority, newPriority);
         addChange(new HistoryLogImpl(changeLog));
     }
 
     public void editSize(TaskSize newSize) {
         TaskSize oldSize = this.size;
-        this.size = newSize;
+        setSize(newSize);
         String changeLog = String.format(TASK_SIZE_CHANGED, oldSize, newSize);
         addChange(new HistoryLogImpl(changeLog));
     }
 
     public void editStatus(StatusStory newStatus) {
         StatusStory oldStatus = this.status;
-        this.status = newStatus;
+        setStatus(newStatus);
         String changeLog = String.format(STATUS_CHANGED, oldStatus, newStatus);
         addChange(new HistoryLogImpl(changeLog));
     }
@@ -147,7 +147,7 @@ public class StoryImpl extends TaskImpl implements Story {
         this.size = size;
     }
 
-    private void setStatus(StatusStory status) {
+    private void setStatus(StatusStory status) {//TODO
         if (status == null) {
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, STATUS));
         }
@@ -163,5 +163,10 @@ public class StoryImpl extends TaskImpl implements Story {
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, ASSIGNEE));
         }
         this.assignee = assignee;
+    }
+
+    @Override
+    public void updateAssignee(Person person) {
+        this.assignee = person;
     }
 }

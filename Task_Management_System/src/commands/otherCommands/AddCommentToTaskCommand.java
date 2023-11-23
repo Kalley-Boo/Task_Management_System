@@ -28,7 +28,7 @@ public class AddCommentToTaskCommand implements Command {
         expectedArguments.add(THE_NAME_OF_THE_AUTHOR);
     }
 
-    public String addCommentToTask(String taskName, Comment comment) {
+    private String addCommentToTask(String taskName, Comment comment) {
         Task foundTask = this.boardRepository.findTaskByTitle(taskName);
         foundTask.addComment(comment);
         return String.format(COMMENT_ADDED, taskName);

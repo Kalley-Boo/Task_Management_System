@@ -80,7 +80,7 @@ public class BugImpl extends TaskImpl implements Bug {
 
     public void editStatus(StatusBug newStatus) {
         StatusBug oldStatus = this.status;
-        this.status = newStatus;
+        setStatus(newStatus);
         String changeLog = String.format(STATUS_CHANGED, oldStatus, newStatus);
         addChange(new HistoryLogImpl(changeLog));
     }
@@ -94,7 +94,7 @@ public class BugImpl extends TaskImpl implements Bug {
 
     public void editAssignee(Person newAssignee) {
         Person oldAssignee = this.assignee;
-        this.assignee = newAssignee;
+        setAssignee(newAssignee);
         String changeLog = String.format(ASSIGNEE_CHANGED, oldAssignee.getName(), newAssignee.getName());
         addChange(new HistoryLogImpl(changeLog));
     }
@@ -120,7 +120,7 @@ public class BugImpl extends TaskImpl implements Bug {
         this.severity = severity;
     }
 
-    private void setStatus(StatusBug status) {
+    private void setStatus(StatusBug status) {//TODO
         if (status == null) {
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, STATUS));
         }
@@ -210,4 +210,8 @@ public class BugImpl extends TaskImpl implements Bug {
     }
 
 
+    @Override
+    public void updateAssignee(Person person) {
+        this.assignee = person;
+    }
 }

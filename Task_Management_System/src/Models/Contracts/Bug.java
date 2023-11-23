@@ -6,7 +6,7 @@ import Models.Enums.StatusBug;
 
 import java.util.List;
 
-public interface Bug {
+public interface Bug extends Assigneable{
     String getTitle();
     List<String> getStepsToReproduce();
     Priority getPriority();
