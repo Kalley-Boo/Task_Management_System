@@ -27,7 +27,7 @@ public class CreateNewStoryInBoardCommand implements Command {
     private final BoardRepository boardRepository;
 
 
-    public CreateNewStoryInBoardCommand(BoardRepository boardRepository){
+    public CreateNewStoryInBoardCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         expectedArguments = new ArrayList<>();
         expectedArguments.add("a title for the story (10-100 characters)");
@@ -37,19 +37,24 @@ public class CreateNewStoryInBoardCommand implements Command {
         expectedArguments.add("assignee(type unassigned to leave it unassigned)");
         expectedArguments.add("board on which this story should be");
     }
-    private boolean storyExists(String title){
-        for (Story story: boardRepository.getStories())
-        {if (story.getName().equals(title)){return true;}
 
-        } return false;
+    private boolean storyExists(String title) {
+        for (Story story : boardRepository.getStories()) {
+            if (story.getName().equals(title)) {
+                return true;
+            }
+
+        }
+        return false;
     }
-    private String creteAssignedStory(String title, String description, Priority priority, TaskSize taskSize, Person assignee, Board board){
+
+    private String creteAssignedStory(String title, String description, Priority priority, TaskSize taskSize, Person assignee, Board board) {
         boardRepository.createAssignedStory(title, description, priority, taskSize, assignee);
         board.addTask(boardRepository.findTaskByTitle(title));
         return String.format(ASSIGNED_STORY_CREATED, title, assignee.getName());
     }
 
-    private String createUnassignedStory(String title, String description, Priority priority, TaskSize taskSize, Board board){
+    private String createUnassignedStory(String title, String description, Priority priority, TaskSize taskSize, Board board) {
         boardRepository.createUnassignedStory(title, description, priority, taskSize);
         board.addTask(boardRepository.findTaskByTitle(title));
         return String.format(UNASSIGNED_STORY_CREATED, title);
@@ -60,20 +65,19 @@ public class CreateNewStoryInBoardCommand implements Command {
     public String execute(List<String> parameters) {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String title = parameters.get(0);
-//        if (storyExists(title)){
-//            throw new InvalidInputException(STORY_EXISTS);}
         Validator.validateStringLength(title, 10, 100, INVALID_TITLE_LENGTH);
-        if (storyExists(title)){
-            throw new InvalidInputException(STORY_EXISTS);}
+        if (storyExists(title)) {
+            throw new InvalidInputException(STORY_EXISTS);
+        }
         String description = parameters.get(1);
         Validator.validateStringLength(description, 10, 500, INVALID_DESCRIPTION_LENGTH);
         Priority priority = Parser.tryParseEnum(parameters.get(2), Priority.class);
         TaskSize taskSize = Parser.tryParseEnum(parameters.get(3), TaskSize.class);
         Board board = boardRepository.findBoardByName(parameters.get(5));
-        if (parameters.get(4).equalsIgnoreCase("unassigned")){
+        if (parameters.get(4).equalsIgnoreCase("unassigned")) {
             return this.createUnassignedStory(title, description, priority, taskSize, board);
 
-        }else {
+        } else {
             Person assignee = boardRepository.findPersonByName(parameters.get(4));
             return creteAssignedStory(title, description, priority, taskSize, assignee, board);
         }

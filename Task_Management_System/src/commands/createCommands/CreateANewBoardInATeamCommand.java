@@ -26,6 +26,7 @@ public class CreateANewBoardInATeamCommand implements Command {
         expectedArguments.add("a title for the board (5-10 characters)");
         expectedArguments.add("a team to which it will be assigned");
     }
+
     @Override
     public String execute(List<String> parameters) {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
@@ -35,20 +36,24 @@ public class CreateANewBoardInATeamCommand implements Command {
         //todo validate if the board already exists in the team
         return createANewBoardInATeam(boardName, teamName);
     }
+
     @Override
     public List<String> getExpectedArguments() {
         return expectedArguments;
     }
-    private boolean boardExists(String boardName, String teamName){
-       int number = boardRepository.getTeams().indexOf(boardName);
-        for (Board bord: boardRepository.findTeamByName(teamName).getBoards()
-             ) {if (bord.getName().equals(boardName)){return true;}
 
-        } return false;
+    private boolean boardExists(String boardName, String teamName) {
+        for (Board bord : boardRepository.findTeamByName(teamName).getBoards()) {
+            if (bord.getName().equals(boardName)) {
+                return true;
+            }
+
+        }
+        return false;
     }
 
     private String createANewBoardInATeam(String boardName, String teamName) {
-        if (boardExists(boardName, teamName)){
+        if (boardExists(boardName, teamName)) {
             throw new InvalidInputException(BOARD_EXISTS);
         }
         boardRepository.createANewBoardInATeam(boardName, teamName);
