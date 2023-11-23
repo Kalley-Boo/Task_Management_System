@@ -1,8 +1,6 @@
 package commands.createCommands;
 
-import Models.BugImpl;
 import Models.Contracts.Board;
-import Models.Contracts.Bug;
 import Models.Contracts.Person;
 import Models.Enums.Priority;
 import Models.Enums.Severity;
@@ -70,7 +68,7 @@ public class CreateNewBugInBoardCommand implements Command {
         List<String> steps = Arrays.asList(parameters.get(2).split(","));
         Priority priority = Parser.tryParseEnum(parameters.get(3), Priority.class);
         Severity severity = Parser.tryParseEnum(parameters.get(4), Severity.class);
-        Board board = boardRepository.findBoardByName(parameters.get(6));
+        Board board = boardRepository.findBoardByTitle(parameters.get(6));
 
         if (parameters.get(5).equalsIgnoreCase("unassigned")) {
             return this.createUnassignedBug(title, description, steps, priority, severity, board);

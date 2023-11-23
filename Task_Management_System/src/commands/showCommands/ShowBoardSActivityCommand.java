@@ -25,10 +25,10 @@ public class ShowBoardSActivityCommand implements Command {
     }
 
     private String showBoardSActivity(String boardName) {
-        if (boardRepository.findBoardByName(boardName).getHistoryLog().isEmpty()) {
+        if (boardRepository.findBoardByTitle(boardName).getHistoryLog().isEmpty()) {
             return THE_HISTORY_LOG_IS_EMPTY;
         }
-        return Printer.historyPrinter(boardRepository.findBoardByName(boardName).getHistoryLog());
+        return Printer.historyPrinter(boardRepository.findBoardByTitle(boardName).getHistoryLog());
     }
 
     @Override

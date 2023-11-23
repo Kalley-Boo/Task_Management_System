@@ -1,11 +1,8 @@
 package core.contracts;
 
 import Models.BoardImpl;
-import Models.CommentImpl;
 import Models.Contracts.*;
 import Models.Enums.*;
-import Models.PersonImpl;
-import Models.TeamImpl;
 
 import java.util.List;
 
@@ -30,7 +27,7 @@ public interface BoardRepository {
     Person findPersonByName(String name);
     Team findTeamByName(String name);
     Task findTaskByTitle(String title);
-    Board findBoardByName(String name);
+    Board findBoardByTitle(String name);
     Feedback findFeedbackByName(String feedbackName);
     Bug findBugByTitle(String bugTitle);
 }

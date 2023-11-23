@@ -2,7 +2,6 @@ package commands.createCommands;
 
 import Models.Contracts.Board;
 import Models.Contracts.Person;
-import Models.Contracts.Story;
 import Models.Enums.Priority;
 import Models.Enums.TaskSize;
 import commands.contracts.Command;
@@ -27,7 +26,7 @@ public class CreateNewStoryInBoardCommand implements Command {
     private static final String ASSIGNED_STORY_CREATED = "Story with title %s was created and assigned to %s!";
     private static final String UNASSIGNED_STORY_CREATED = "Story with title %s was created!";
     public static final String INVALID_TITLE_LENGTH = "The length of the title must be 10-100";
-    public static final String STORY_EXISTS = "Story with this name already exists.";
+    public static final String STORY_EXISTS = "Story with this title already exists.";
     public static final String INVALID_DESCRIPTION_LENGTH = "The length of the description must be 10-500";
     private final BoardRepository boardRepository;
 
@@ -72,7 +71,7 @@ public class CreateNewStoryInBoardCommand implements Command {
         Validator.validateStringLength(description, 10, 500, INVALID_DESCRIPTION_LENGTH);
         Priority priority = Parser.tryParseEnum(parameters.get(2), Priority.class);
         TaskSize taskSize = Parser.tryParseEnum(parameters.get(3), TaskSize.class);
-        Board board = boardRepository.findBoardByName(parameters.get(5));
+        Board board = boardRepository.findBoardByTitle(parameters.get(5));
 
         if (parameters.get(4).equalsIgnoreCase("unassigned")) {
             return this.createUnassignedStory(title, description, priority, taskSize, board);

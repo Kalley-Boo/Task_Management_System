@@ -168,7 +168,7 @@ public class BoardRepositoryImpl implements BoardRepository {
     }
 
     @Override
-    public Board findBoardByName(String name) {
+    public Board findBoardByTitle(String name) {
         for (Board board : this.boards) {
             if (board.getName().equals(name)) {
                 return board;
