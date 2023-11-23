@@ -44,4 +44,19 @@ public class CreateNewBugInBoardCommandTest {
         String result = createNewBugInBoardCommand.execute(Arrays.asList(title, description,steps,priority, severity, person,board));
         assertEquals(String.format(String.format(CreateNewBugInBoardCommand.ASSIGNED_BUG_CREATED, title, person)), result);
     }
+    //with assignee
+    @Test
+    public void execute_ShouldReturnCorrectResult_without_Assignee(){
+        String title = "new Bug with the system";
+        String description = "New bug that cause problems.";
+        String steps = "First see what is the root, Second - take actions.";
+        String priority = "HIGH";
+        String severity = "CRITICAL";
+        String board = "New Board";
+        String person = "unassigned";
+        boardRepository.createBoard(board);
+        String result = createNewBugInBoardCommand.execute(Arrays.asList(title, description,steps,priority, severity,person, board));
+        assertEquals(String.format(String.format(CreateNewBugInBoardCommand.UNASSIGNED_BUG_CREATED, title)), result);
+    }
+
 }
