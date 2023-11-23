@@ -19,7 +19,7 @@ public class ShowTaskActivityCommand implements Command {
         expectedArguments = new ArrayList<>();
         expectedArguments.add(THE_TASK);
     }
-    public String showTaskActivity(String title) {
+    private String showTaskActivity(String title) {
         return Printer.historyPrinter(this.boardRepository.findTaskByTitle(title).getHistory());
     }
 

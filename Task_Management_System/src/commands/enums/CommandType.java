@@ -31,7 +31,7 @@ public enum CommandType {
     SHOWALLTEAMBOARDS("Show Team's Boards"),
     SHOWBOARDSACTIVITY("Show Board's Activity"),
     SHOWTASKSACTIVITY("Show a Task's activity log"),
-    LISTALLTASKS("List all tasks"),
+    FILTERTASKS("Filter tasks by title"),
 
     ;
 
