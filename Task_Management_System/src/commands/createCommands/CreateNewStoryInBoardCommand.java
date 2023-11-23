@@ -1,7 +1,6 @@
 package commands.createCommands;
 
 import Models.Contracts.Board;
-import Models.Contracts.Feedback;
 import Models.Contracts.Person;
 import Models.Contracts.Story;
 import Models.Enums.Priority;
@@ -43,13 +42,8 @@ public class CreateNewStoryInBoardCommand implements Command {
         expectedArguments.add(BOARD);
     }
 
-    private boolean storyExists(String title) {//TODO stream
-        for (Story story : boardRepository.getStories()) {
-            if (story.getName().equals(title)) {
-                return true;
-            }
-        }
-        return false;
+    private boolean storyExists(String title) {
+        return boardRepository.getStories().stream().anyMatch(story -> story.getTitle().equals(title));
     }
 
     private String creteAssignedStory(String title, String description, Priority priority, TaskSize taskSize, Person assignee, Board board) {

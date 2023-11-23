@@ -9,7 +9,7 @@ public interface Story extends Assigneable{
      TaskSize getSize();
      StatusStory getStatus();
      Person getAssignee();
-     String getName();
+     String getTitle();
      void editAssignee(Person newAssignee);
      void editStatus(StatusStory newStatus);
      void editSize(TaskSize newSize);

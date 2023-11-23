@@ -140,7 +140,7 @@ public class StoryImpl extends TaskImpl implements Story {
         return assignee;
     }
     @Override
-    public String getName() {
+    public String getTitle() {
         return getTitle();
     }
 

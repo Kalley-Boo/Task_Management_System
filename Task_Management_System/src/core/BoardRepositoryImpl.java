@@ -160,7 +160,7 @@ public class BoardRepositoryImpl implements BoardRepository {
 
     public Story findStoryByName(String name) {
         for (Story story : this.stories) {
-            if (story.getName().equals(name)) {
+            if (story.getTitle().equals(name)) {
                 return story;
             }
         }
