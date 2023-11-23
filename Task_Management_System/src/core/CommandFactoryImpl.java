@@ -20,33 +20,33 @@ public class CommandFactoryImpl implements CommandFactory {
         return switch (commandNumber) {
             //-------------CREATE------------
             case 1 -> new CreatePersonCommand(boardRepository);
-            case 2, 3 -> new CreateNewBugInBoardCommand(boardRepository);
-            case 4 -> new CreateNewStoryInBoardCommand(boardRepository);
-            case 5 -> new CreateNewFeedbackInBoardCommand(boardRepository);
-            case 6 -> new CreateTeamCommand(boardRepository);
-            case 7 -> new CreateANewBoardInATeamCommand(boardRepository);
+            case 2 -> new CreateNewBugInBoardCommand(boardRepository);
+            case 3 -> new CreateNewStoryInBoardCommand(boardRepository);
+            case 4 -> new CreateNewFeedbackInBoardCommand(boardRepository);
+            case 5 -> new CreateTeamCommand(boardRepository);
+            case 6 -> new CreateANewBoardInATeamCommand(boardRepository);
             //-------------CHANGE-----------
-            case 8 -> new ChangeStoryPriorityCommand(boardRepository);
-            case 9 -> new ChangeStorySizeCommand(boardRepository);
-            case 10 -> new ChangeStoryStatusCommand(boardRepository);
-            case 11 -> new ChangeRatingOfAFeedbackCommand(boardRepository);
-            case 12 -> new ChangeStatusOfAFeedbackCommand(boardRepository);
-            case 13 -> new ChangePriorityOfABug(boardRepository);
-            case 14 -> new ChangeSeverityOfABug(boardRepository);
-            case 15 -> new ChangeStatusOfABug(boardRepository);
+            case 7 -> new ChangeStoryPriorityCommand(boardRepository);
+            case 8 -> new ChangeStorySizeCommand(boardRepository);
+            case 9 -> new ChangeStoryStatusCommand(boardRepository);
+            case 10 -> new ChangeRatingOfAFeedbackCommand(boardRepository);
+            case 11 -> new ChangeStatusOfAFeedbackCommand(boardRepository);
+            case 12 -> new ChangePriorityOfABug(boardRepository);
+            case 13 -> new ChangeSeverityOfABug(boardRepository);
+            case 14 -> new ChangeStatusOfABug(boardRepository);
             //------------OTHERS------------
-            case 16 -> new AddCommentToTaskCommand(boardRepository);
-            case 17 -> new AddPersonToATeamCommand(boardRepository);
-            case 18 -> new AssignTaskToAPersonCommand(boardRepository);
-            case 19 -> new UnassignTaskToAPersonCommand(boardRepository);
+            case 15 -> new AddCommentToTaskCommand(boardRepository);
+            case 16 -> new AddPersonToATeamCommand(boardRepository);
+            case 17 -> new AssignTaskToAPersonCommand(boardRepository);
+            case 18 -> new UnassignTaskToAPersonCommand(boardRepository);
             //------------SHOW---------------
-            case 20 -> new ShowTeamsActivityCommand(boardRepository);
-            case 21 -> new ShowAllPeopleCommand(boardRepository);
-            case 22 -> new ShowAllTeamsCommand(boardRepository);
-            case 23 -> new ShowPersonActivityCommand(boardRepository);
-            case 24 -> new ShowTeamMembersCommand(boardRepository);
-            case 25 -> new ShowAllTeamBoardsCommand(boardRepository);
-            case 26 -> new ShowBoardSActivityCommand(boardRepository);
+            case 19 -> new ShowTeamsActivityCommand(boardRepository);
+            case 20 -> new ShowAllPeopleCommand(boardRepository);
+            case 21 -> new ShowAllTeamsCommand(boardRepository);
+            case 22 -> new ShowPersonActivityCommand(boardRepository);
+            case 23 -> new ShowTeamMembersCommand(boardRepository);
+            case 24 -> new ShowAllTeamBoardsCommand(boardRepository);
+            case 25 -> new ShowBoardSActivityCommand(boardRepository);
             default ->
                     throw new UnsupportedOperationException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, commandNumber));
         };

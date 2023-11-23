@@ -121,7 +121,7 @@ public class EngineImpl implements Engine {
         CommandType[] commandTypes = CommandType.values();
 
         for (CommandType commandType : commandTypes) {
-            System.out.println(counter++ + ". " + commandType);
+            System.out.println(counter++ + ". " + commandType.getCommand());
         }
     }
 
