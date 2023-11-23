@@ -62,7 +62,7 @@ public class PersonImpl implements Person {
             throw new IllegalArgumentException(TASK_CANNOT_BE_NULL);
         }
         tasks.add(task);
-        logEvent(String.format(ADDED, task.getDescription()));
+        logEvent(String.format(ADDED, task.getTitle()));
     }
 
     public void removeTask(Task task) {
