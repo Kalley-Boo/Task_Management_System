@@ -12,7 +12,7 @@ public class TeamImpl implements Team, Printable {
     public static final String PERSON_EXISTS = "Person with the same name already exists in the team";
     public static final String BOARD_CANT_BE_NUL = "Board cannot be null";
     public static final String BOARD_EXISTS = "Board with the same name already exists";
-    public static final String EMPTY_TEAM = "No members in the team ";
+    public static final String EMPTY_TEAM = "No members in the team %s";
     public static final String NO_BOARDS_IN_TEAM = "No boards in team ";
     public static final String TEAM_HEADER = "---Team---";
     public static final String NO_MEMBERS_ERROR = "There are no members on this team.";
@@ -55,7 +55,7 @@ public class TeamImpl implements Team, Printable {
     public String displayMembers() {
         StringBuilder stringBuilder = new StringBuilder();
         if (members.isEmpty()) {
-            return new String(stringBuilder.append(EMPTY_TEAM).append(name));
+            return String.format(EMPTY_TEAM, this.name);
         } else {
             stringBuilder.append(MEMBERS);
             for (Person member : members) {
@@ -147,4 +147,3 @@ public class TeamImpl implements Team, Printable {
         return new String(stringBuilder);
     }
 }
-

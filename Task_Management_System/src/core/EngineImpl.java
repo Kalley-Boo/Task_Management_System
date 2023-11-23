@@ -7,7 +7,6 @@ import core.contracts.CommandFactory;
 import core.contracts.Engine;
 import exceptions.CommandInterruptedException;
 import util.Parser;
-import util.Printer;
 import util.Validator;
 
 import java.util.ArrayList;
@@ -30,6 +29,8 @@ public class EngineImpl implements Engine {
             2. Select command\s
             3. Exit
             -----------------------------------------------------------------------------""";
+    public static final String PROGRAM_INTERRUPTED_MESSAGE = "You exited the application";
+    public static final String INVALID_COMMAND = "Please enter a valid option";
     private final static int MIN_MENU_OPTION = 1;
     private final static int MAX_MENU_OPTION = 3;
 
@@ -45,10 +46,10 @@ public class EngineImpl implements Engine {
     public void start() {
         while (true) {
             try {
-                if (showMenu() == 3) {
-                    System.out.println(TERMINATION_COMMAND_MESSAGE);
-                    break;
-                }
+                selectFromMenu();
+            } catch (CommandInterruptedException ex) {
+                System.out.println(ex);
+                break;
             } catch (Exception ex) {
                 if (ex.getMessage() != null && !ex.getMessage().isEmpty()) {
                     System.out.println(ex.getMessage());
@@ -129,35 +130,35 @@ public class EngineImpl implements Engine {
         return Parser.tryParseInt(commandInput.trim(), COMMAND_ERROR);
     }
 
-    public int showMenu() {
-        System.out.println(MENU_OPTIONS);
+    public void selectFromMenu() {
         int command;
         while (true) {
+            System.out.println(MENU_OPTIONS);
             try {
                 Scanner sc = new Scanner(System.in);
                 command = sc.nextInt();
                 Validator.validateIntRange(command, MIN_MENU_OPTION, MAX_MENU_OPTION);
-                break;
+                menuCommandProcess(command);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        switch (command) {
+    }
+
+    private void menuCommandProcess(int menuCommandNumber) {
+        switch (menuCommandNumber) {
             case 1:
                 showCommandsOptions();
-                return 1;
+                break;
             case 2:
                 int commandNumber = selectCommand();
-                if (commandNumber == 0) {
-                    return 2;
-                }
                 processCommand(commandNumber);
-                return 2;
+                break;
             case 3:
-                return 3;
+                throw new CommandInterruptedException(PROGRAM_INTERRUPTED_MESSAGE);
             default:
-                return 4;
+                throw new IllegalArgumentException(INVALID_COMMAND);
         }
     }
 }
