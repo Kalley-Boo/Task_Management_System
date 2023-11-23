@@ -5,7 +5,6 @@ import Models.Contracts.*;
 import Models.Enums.*;
 import core.contracts.BoardRepository;
 import exceptions.*;
-import util.Printer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -181,7 +180,7 @@ public class BoardRepositoryImpl implements BoardRepository {
     @Override
     public Feedback findFeedbackByName(String feedbackName) {
         for (Feedback feedback : feedbacks) {
-            if (feedback.getName().equals(feedbackName)) {
+            if (feedback.getTitle().equals(feedbackName)) {
                 return feedback;
             }
         }

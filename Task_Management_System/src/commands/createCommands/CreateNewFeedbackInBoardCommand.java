@@ -1,6 +1,5 @@
 package commands.createCommands;
 
-import Models.Contracts.Bug;
 import Models.Contracts.Feedback;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
@@ -35,12 +34,7 @@ public class CreateNewFeedbackInBoardCommand implements Command {
     }
 
     private boolean feedbackExists(String title) {
-        for (Feedback feedback : boardRepository.getFeedbacks()) {//TODO stream
-            if (feedback.getName().equals(title)) {
-                return true;
-            }
-        }
-        return false;
+        return boardRepository.getFeedbacks().stream().anyMatch(feedback -> feedback.getTitle().equals(title));
     }
 
     private String createFeedback(String title, String description, int rating) {

@@ -97,7 +97,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     }
 
     @Override
-    public String getName() {
+    public String getTitle() {
         return getTitle();
     }
 

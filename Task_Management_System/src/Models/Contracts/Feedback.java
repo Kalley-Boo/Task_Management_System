@@ -7,5 +7,5 @@ public interface Feedback {
     void updateStatus(StatusFeedback newStatus);
     int getRating();
     StatusFeedback getStatus();
-    String getName();
+    String getTitle();
 }

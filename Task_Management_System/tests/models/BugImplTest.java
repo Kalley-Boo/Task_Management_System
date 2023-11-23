@@ -52,7 +52,7 @@ public class BugImplTest {
 //        BugImpl bug = new BugImpl(2, "Problem with the system", "Problems with logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, new PersonImpl("Ivan Petkov"));
 //        PersonImpl person = new PersonImpl("Petar Ivanov");
 //        bug.editAssignee(person);
-//        assertEquals(bug.getAssignee(), person.getName());
+//        assertEquals(bug.getAssignee(), person.getTitle());
 //    }
 
 //    @Test
