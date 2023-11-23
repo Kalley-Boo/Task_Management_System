@@ -26,7 +26,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     public static final String CHANGED_RATING = "Rating changed from %d to %d.";
     private int rating;
     private StatusFeedback status;
-
+    @Override
     public void updateRating(int newRating) {
         Validator.validateIntRange(newRating, MIN_RATING, MAX_RATING);
         int oldRating = this.rating;
@@ -34,6 +34,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         addChange(new HistoryLogImpl(String.format(CHANGED_RATING, oldRating, newRating)));
     }
 
+    @Override
     public void updateStatus(StatusFeedback newStatus) {
         StatusFeedback oldStatus = this.status;
         setStatus(newStatus);
@@ -46,13 +47,11 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         this.status = StatusFeedback.NEW;
     }
 
-    @Override
     public void setRating(int rating) {
         Validator.validateIntRange(rating, MIN_RATING, MAX_RATING);
         this.rating = rating;
     }
 
-    @Override
     public void setStatus(StatusFeedback taskStatus) {
         if (taskStatus == null) {
             throw new InvalidInputException(String.format(INVALID_INPUT_MESSAGE, "status"));

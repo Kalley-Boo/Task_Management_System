@@ -1,6 +1,8 @@
 package commands.changeCommands;
 
 import Models.BoardImpl;
+import Models.Contracts.Feedback;
+import Models.Contracts.Task;
 import Models.Enums.StatusFeedback;
 import commands.contracts.Command;
 import core.BoardRepositoryImpl;
@@ -16,7 +18,7 @@ public class ChangeStatusOfAFeedbackCommand implements Command {
     public static final String TITLE_OF_FEEDBACK = "title of feedback";
     public static final String NEW_STATUS = "new status (new, unscheduled, scheduled, done)";
     private final List<String> expectedArguments;
-    public static final String COMMAND_IS_DONE = "Feedback with title %s has changed its status to %s.";
+    public static final String COMMAND_IS_DONE = "The status of bug '%s' changed %s -> %s.";
 
     public static final int EXPECTED_PARAMETERS_COUNT = 2;
 
@@ -43,7 +45,8 @@ public class ChangeStatusOfAFeedbackCommand implements Command {
     }
 
     private String changeStatusOfAFeedback(String feedbackName, StatusFeedback status) {
-        boardRepository.findFeedbackByName(feedbackName).setStatus(status);
-        return String.format(COMMAND_IS_DONE, feedbackName, status);
+        Feedback old = boardRepository.findFeedbackByName(feedbackName);
+        old.updateStatus(status);
+        return String.format(COMMAND_IS_DONE, feedbackName, old.getStatus(), status);
     }
 }

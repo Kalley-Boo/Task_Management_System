@@ -27,11 +27,10 @@ public class ChangeStoryStatusCommand implements Command {
         expectedArguments.add(NEW_STATUS);
     }
 
-    public String changeStoryStatus(String storyName, String statusStr) {
-        StatusStory newStatus = Parser.tryParseEnum(statusStr, StatusStory.class);
+    public String changeStoryStatus(String storyName, StatusStory status) {
         Story story = boardRepository.findStoryByName(storyName);
-        story.editStatus(newStatus);
-        return String.format(STATUS_UPDATED, storyName, newStatus);
+        story.editStatus(status);
+        return String.format(STATUS_UPDATED, storyName, status);
     }
 
     @Override
@@ -39,7 +38,8 @@ public class ChangeStoryStatusCommand implements Command {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String storyName = parameters.get(0);
         String statusStr = parameters.get(1);
-        return changeStoryStatus(storyName, statusStr);
+        StatusStory newStatus = Parser.tryParseEnum(statusStr, StatusStory.class);
+        return changeStoryStatus(storyName, newStatus);
     }
 
     @Override

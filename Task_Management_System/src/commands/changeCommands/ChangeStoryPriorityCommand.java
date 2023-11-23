@@ -25,11 +25,10 @@ public class ChangeStoryPriorityCommand implements Command {
         expectedArguments.add(NEW_PRIORITY);
     }
 
-    public String changeStoryPriority(String storyName, String priorityStr) {
-        Priority newPriority = Parser.tryParseEnum(priorityStr, Priority.class);
+    public String changeStoryPriority(String storyName, Priority priority) {
         Story story = boardRepository.findStoryByName(storyName);
-        story.editPriority(newPriority);
-        return String.format(PRIORITY_UPDATED, storyName, newPriority);
+        story.editPriority(priority);
+        return String.format(PRIORITY_UPDATED, storyName, priority);
     }
 
     @Override
@@ -37,7 +36,8 @@ public class ChangeStoryPriorityCommand implements Command {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String storyName = parameters.get(0);
         String priorityStr = parameters.get(1);
-        return changeStoryPriority(storyName, priorityStr);
+        Priority newPriority = Parser.tryParseEnum(priorityStr, Priority.class);
+        return changeStoryPriority(storyName, newPriority);
     }
 
     @Override

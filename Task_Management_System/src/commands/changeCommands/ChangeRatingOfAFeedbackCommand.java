@@ -26,7 +26,7 @@ public class ChangeRatingOfAFeedbackCommand implements Command {
     }
 
     private String changeRatingOfAFeedback(String feedbackName, int rating) {
-        boardRepository.findFeedbackByName(feedbackName).setRating(rating);
+        boardRepository.findFeedbackByName(feedbackName).updateRating(rating);
         return String.format(COMMAND_IS_DONE, feedbackName, rating);
     }
 

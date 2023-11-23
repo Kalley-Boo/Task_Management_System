@@ -26,11 +26,10 @@ public class ChangeStorySizeCommand implements Command {
         expectedArguments.add(NEW_SIZE);
     }
 
-    public String changeStorySize(String storyName, String sizeStr) {
-        TaskSize newSize = Parser.tryParseEnum(sizeStr, TaskSize.class);
+    public String changeStorySize(String storyName, TaskSize size) {
         Story story = boardRepository.findStoryByName(storyName);
-        story.editSize(newSize);
-        return String.format(SIZE_UPDATED, storyName, newSize);
+        story.editSize(size);
+        return String.format(SIZE_UPDATED, storyName, size);
     }
 
     @Override
@@ -38,7 +37,8 @@ public class ChangeStorySizeCommand implements Command {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
         String storyName = parameters.get(0);
         String sizeStr = parameters.get(1);
-        return changeStorySize(storyName, sizeStr);
+        TaskSize newSize = Parser.tryParseEnum(sizeStr, TaskSize.class);
+        return changeStorySize(storyName, newSize);
     }
 
     @Override
