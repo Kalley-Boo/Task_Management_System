@@ -27,13 +27,8 @@ public class CreateTeamCommand implements Command {
         expectedArguments.add(A_NAME);
     }
 
-    private boolean teamExists(String name) {//TODo stream
-        for (Team team : teams) {
-            if (team.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
+    private boolean teamExists(String name) {
+        return boardRepository.getTeams().stream().anyMatch(team -> team.getName().equals(name));
     }
 
     private String createTeam(String name) {
