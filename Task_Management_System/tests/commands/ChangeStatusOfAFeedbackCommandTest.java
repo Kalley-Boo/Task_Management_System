@@ -26,6 +26,6 @@ public class ChangeStatusOfAFeedbackCommandTest {
             boardRepository.createFeedback(FEEDBACK_NAME, "Problem when logging", 3);
 
             String result = changeStatusOfAFeedbackCommand.execute(Arrays.asList(FEEDBACK_NAME, STATUS));
-            assertEquals(String.format(String.format(ChangeStatusOfAFeedbackCommand.COMMAND_IS_DONE,FEEDBACK_NAME, STATUS)), result);
+            assertEquals(String.format(String.format(ChangeStatusOfAFeedbackCommand.COMMAND_IS_DONE,STATUS)), result);
     }
 }
