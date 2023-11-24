@@ -42,6 +42,52 @@ History is a list of all changes (string messages) done to the feedback.
 Note
 IDs of tasks must be unique in the application.
 
+## Operations
 
+The application supports the following operations:
 
+## People
+Create a new person.
+Show all people.
+Show a person's activity.
+## Teams
+Create a new team.
+Show all teams.
+Show team activity.
+## Members and Teams
+Add a person to a team.
+Show all team members.
+## Boards
+Create a new board in a team.
+Show all team boards.
+Show board activity.
+## Tasks
+Create a new Bug/Story/Feedback in a board.
+Change the Priority/Severity/Status of a bug.
+Change the Priority/Size/Status of a story.
+Change the Rating/Status of a feedback.
+Assign/Unassign a task to a person.
+Add a comment to a task.
+## Listing
+List all tasks (display the most important info).
+Filters and Sorting
+## Generic
+
+Filter by title.
+Sort by title.
+Task-Specific
+
+List bugs/stories/feedback only.
+Bug-Specific
+
+Filter by status and/or assignee.
+Sort by title/priority/severity.
+Story-Specific
+
+Filter by status and/or assignee.
+Sort by title/priority/size.
+Feedback-Specific
+
+Filter by status and/or assignee.
+Sort by title/rating.
 
