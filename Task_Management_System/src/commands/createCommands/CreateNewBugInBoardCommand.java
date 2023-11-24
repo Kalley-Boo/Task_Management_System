@@ -43,7 +43,7 @@ public class CreateNewBugInBoardCommand implements Command {
     }
 
     private String createUnassignedBug(String title, String description, List<String> steps, Priority priority, Severity severity, Board board) {
-        boardRepository.createUnassignedAssignedBug(title, description, steps, priority, severity);
+        boardRepository.createUnassignedBug(title, description, steps, priority, severity);
         board.addTask(boardRepository.findTaskByTitle(title));
         return String.format(UNASSIGNED_BUG_CREATED, title);
     }

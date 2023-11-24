@@ -43,12 +43,6 @@ public class AssignTaskToAPersonCommand implements Command {
     private String assignTaskToAPerson(String personName, String task) {
         Person person = boardRepository.findPersonByName(personName);
         Bug bug = boardRepository.findBugByTitle(task);
-        if (bug != null){
-            bug.editAssignee(person);
-        }else {
-            Story story = boardRepository.findStoryByName(task);
-            story.editAssignee(person);
-        }
         person.addTask(boardRepository.findTaskByTitle(task));
         return String.format(COMMAND_IS_DONE, task, personName);
     }
