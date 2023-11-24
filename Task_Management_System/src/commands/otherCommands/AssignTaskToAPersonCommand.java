@@ -1,8 +1,8 @@
 package commands.otherCommands;
 
-import Models.Contracts.Bug;
-import Models.Contracts.Person;
-import Models.Contracts.Story;
+import models.contracts.Bug;
+import models.contracts.Person;
+import models.contracts.Story;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import exceptions.BugNotFoundException;

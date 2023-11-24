@@ -1,10 +1,10 @@
 package commands.createCommands;
 
-import Models.Contracts.Board;
-import Models.Contracts.Person;
-import Models.Contracts.Task;
-import Models.Enums.Priority;
-import Models.Enums.TaskSize;
+import models.contracts.Board;
+import models.contracts.Person;
+import models.contracts.Task;
+import models.enums.Priority;
+import models.enums.TaskSize;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;

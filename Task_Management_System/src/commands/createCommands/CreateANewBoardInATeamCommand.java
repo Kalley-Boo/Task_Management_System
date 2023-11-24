@@ -1,7 +1,6 @@
 package commands.createCommands;
 
-import Models.BoardImpl;
-import Models.Contracts.Board;
+import models.contracts.Board;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;

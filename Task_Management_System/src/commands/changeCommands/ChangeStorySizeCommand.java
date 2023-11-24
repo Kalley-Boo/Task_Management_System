@@ -1,10 +1,9 @@
 package commands.changeCommands;
 
-import Models.Contracts.Story;
-import Models.Enums.TaskSize;
+import models.contracts.Story;
+import models.enums.TaskSize;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
-import exceptions.InvalidInputException;
 import util.Parser;
 import util.Validator;
 

@@ -1,7 +1,7 @@
 package commands.changeCommands;
 
-import Models.Contracts.Bug;
-import Models.Enums.Severity;
+import models.contracts.Bug;
+import models.enums.Severity;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import util.Parser;

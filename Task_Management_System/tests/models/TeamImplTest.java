@@ -1,9 +1,6 @@
 package models;
 
-import Models.BoardImpl;
-import Models.Contracts.Person;
-import Models.PersonImpl;
-import Models.TeamImpl;
+import models.contracts.Person;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 

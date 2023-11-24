@@ -1,9 +1,9 @@
 package commands.otherCommands;
 
-import Models.CommentImpl;
-import Models.Contracts.Comment;
-import Models.Contracts.Person;
-import Models.Contracts.Task;
+import models.CommentImpl;
+import models.contracts.Comment;
+import models.contracts.Person;
+import models.contracts.Task;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import util.Validator;

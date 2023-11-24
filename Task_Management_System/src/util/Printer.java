@@ -1,7 +1,6 @@
 package util;
 
-import Models.Contracts.HistoryLog;
-import Models.HistoryLogImpl;
+import models.contracts.HistoryLog;
 
 import java.util.List;
 

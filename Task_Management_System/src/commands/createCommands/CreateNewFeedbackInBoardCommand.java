@@ -1,6 +1,5 @@
 package commands.createCommands;
 
-import Models.Contracts.Feedback;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;

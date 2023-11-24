@@ -1,18 +1,13 @@
 package models;
-import Models.BugImpl;
-import Models.CommentImpl;
-import Models.Contracts.Person;
-import Models.Enums.Priority;
-import Models.Enums.Severity;
-import Models.Enums.StatusBug;
+import models.enums.Priority;
+import models.enums.Severity;
+import models.enums.StatusBug;
 
-import Models.PersonImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class BugImplTest {

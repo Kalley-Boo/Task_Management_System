@@ -1,12 +1,11 @@
 package commands.showCommands;
 
-import Models.Contracts.Bug;
+import models.contracts.Bug;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class ListBugsWithAssigneeCommand implements Command{

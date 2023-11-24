@@ -1,6 +1,6 @@
 package commands.showCommands;
 
-import Models.Contracts.Person;
+import models.contracts.Person;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 
