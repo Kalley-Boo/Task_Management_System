@@ -1,6 +1,7 @@
 package commands;
 
 import commands.contracts.Command;
+import commands.createCommands.CreateNewFeedbackInBoardCommand;
 import commands.createCommands.CreatePersonCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
@@ -19,7 +20,7 @@ public class CreatePersonCommandTest {
     List<String> invalidInput;
 
     @BeforeEach
-    void setRepo(){
+    void setRepo() {
         this.boardRepository = new BoardRepositoryImpl();
         this.validInput = new ArrayList<>();
         validInput.add("Test1");
@@ -41,5 +42,20 @@ public class CreatePersonCommandTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             command.execute(invalidInput);
         });
-        }
     }
+
+    @Test
+    public void execute_Should_throwException_When_PersonAlreadyExists() {
+        Command command = new CreatePersonCommand(boardRepository);
+        command.execute(validInput);
+        Assertions.assertThrows(InvalidInputException.class, () -> {
+            command.execute(validInput);
+        });
+    }
+
+    @Test
+    public void getArguments_should_return_a_list(){
+        Command command = new CreatePersonCommand(boardRepository);
+        Assertions.assertEquals(command.getExpectedArguments().size(), 1);
+    }
+}
