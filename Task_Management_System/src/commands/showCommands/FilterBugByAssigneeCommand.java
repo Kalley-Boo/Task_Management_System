@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class FilterBugByAssigneeCommand implements Command {
 
     private final BoardRepository boardRepository;
@@ -44,7 +45,8 @@ public class FilterBugByAssigneeCommand implements Command {
 
     @Override
     public List<String> getExpectedArguments() {
-            return expectedArguments;
-        }
+        return expectedArguments;
     }
+
+}
 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class ListBugsWithAssigneeCommand {
     private final BoardRepository boardRepository;
     public static final String NO_TASKS_FOUND = "No bugs with assignee were found";
@@ -37,4 +38,5 @@ public class ListBugsWithAssigneeCommand {
         }
 
     }
+
 }

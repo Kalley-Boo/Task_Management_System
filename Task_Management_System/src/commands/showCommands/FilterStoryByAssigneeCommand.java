@@ -42,4 +42,5 @@ public class FilterStoryByAssigneeCommand implements Command {
     public List<String> getExpectedArguments() {
         return null;
     }
+
 }
