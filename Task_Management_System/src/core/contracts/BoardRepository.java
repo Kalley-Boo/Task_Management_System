@@ -1,8 +1,8 @@
 package core.contracts;
 
-import Models.BoardImpl;
-import Models.Contracts.*;
-import Models.Enums.*;
+import models.BoardImpl;
+import models.contracts.*;
+import models.enums.*;
 
 import java.util.List;
 

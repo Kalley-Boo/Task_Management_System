@@ -1,11 +1,8 @@
 package commands.showCommands;
 
-import Models.BoardImpl;
-import Models.Contracts.Board;
+import models.contracts.Board;
 import commands.contracts.Command;
-import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
-import exceptions.InvalidInputException;
 import util.Validator;
 
 import java.util.ArrayList;

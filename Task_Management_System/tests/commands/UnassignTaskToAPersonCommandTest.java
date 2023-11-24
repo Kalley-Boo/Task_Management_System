@@ -1,7 +1,7 @@
 package commands;
 
-import Models.Enums.Priority;
-import Models.Enums.TaskSize;
+import models.enums.Priority;
+import models.enums.TaskSize;
 import commands.otherCommands.UnassignTaskToAPersonCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;

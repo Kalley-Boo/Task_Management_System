@@ -1,10 +1,9 @@
 package commands.showCommands;
 
-import Models.Contracts.Task;
+import models.contracts.Task;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 

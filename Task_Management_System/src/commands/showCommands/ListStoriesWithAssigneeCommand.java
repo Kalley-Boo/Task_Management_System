@@ -1,7 +1,6 @@
 package commands.showCommands;
 
-import Models.Contracts.Bug;
-import Models.Contracts.Story;
+import models.contracts.Story;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 

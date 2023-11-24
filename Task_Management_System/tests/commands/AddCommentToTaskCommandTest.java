@@ -1,12 +1,12 @@
 package commands;
 
-import Models.CommentImpl;
-import Models.Contracts.Comment;
-import Models.Contracts.Person;
-import Models.Contracts.Task;
-import Models.Enums.Priority;
-import Models.Enums.TaskSize;
-import Models.PersonImpl;
+import models.CommentImpl;
+import models.contracts.Comment;
+import models.contracts.Person;
+import models.contracts.Task;
+import models.enums.Priority;
+import models.enums.TaskSize;
+import models.PersonImpl;
 import commands.otherCommands.AddCommentToTaskCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;

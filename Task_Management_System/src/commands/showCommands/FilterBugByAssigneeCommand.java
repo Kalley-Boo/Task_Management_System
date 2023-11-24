@@ -1,8 +1,6 @@
 package commands.showCommands;
 
-import Models.Contracts.Bug;
-import Models.Contracts.Person;
-import Models.Contracts.Task;
+import models.contracts.Bug;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import util.Validator;

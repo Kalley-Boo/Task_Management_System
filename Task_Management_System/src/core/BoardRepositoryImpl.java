@@ -1,8 +1,8 @@
 package core;
 
-import Models.*;
-import Models.Contracts.*;
-import Models.Enums.*;
+import models.*;
+import models.contracts.*;
+import models.enums.*;
 import core.contracts.BoardRepository;
 import exceptions.*;
 

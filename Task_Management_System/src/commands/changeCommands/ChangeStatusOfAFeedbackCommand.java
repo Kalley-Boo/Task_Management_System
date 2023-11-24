@@ -1,14 +1,9 @@
 package commands.changeCommands;
 
-import Models.BoardImpl;
-import Models.Contracts.Feedback;
-import Models.Contracts.Story;
-import Models.Contracts.Task;
-import Models.Enums.StatusFeedback;
+import models.contracts.Feedback;
+import models.enums.StatusFeedback;
 import commands.contracts.Command;
-import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
-import exceptions.InvalidInputException;
 import util.Parser;
 import util.Validator;
 

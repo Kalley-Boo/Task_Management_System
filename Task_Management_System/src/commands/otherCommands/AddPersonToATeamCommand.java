@@ -1,7 +1,7 @@
 package commands.otherCommands;
 
-import Models.Contracts.Person;
-import Models.Contracts.Team;
+import models.contracts.Person;
+import models.contracts.Team;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import util.Validator;
