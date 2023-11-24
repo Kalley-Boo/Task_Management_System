@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class ListBugsWithAssigneeCommand {
+public class ListBugsWithAssigneeCommand implements Command{
     private final BoardRepository boardRepository;
     public static final String NO_TASKS_FOUND = "No bugs with assignee were found";
 
     public ListBugsWithAssigneeCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
-    private String ListBugsWithAssignee() {
+    private String listBugsWithAssignee() {
         List<Bug> bugsWithAssignee = new ArrayList<>();
         for (Bug bug : boardRepository.getBugs()
         ) {
@@ -39,4 +39,13 @@ public class ListBugsWithAssigneeCommand {
 
     }
 
+    @Override
+    public String execute(List<String> parameters) {
+        return listBugsWithAssignee();
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return new ArrayList<>();
+    }
 }

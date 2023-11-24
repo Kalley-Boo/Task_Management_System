@@ -2,13 +2,14 @@ package commands.showCommands;
 
 import Models.Contracts.Bug;
 import Models.Contracts.Story;
+import commands.contracts.Command;
 import core.contracts.BoardRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListStoriesWithAssigneeCommand {
+public class ListStoriesWithAssigneeCommand implements Command {
 
     private BoardRepository boardRepository;
     public static final String NO_TASKS_FOUND = "No stories with assignee were found";
@@ -18,7 +19,7 @@ public class ListStoriesWithAssigneeCommand {
         this.boardRepository = boardRepository;
     }
 
-    private String ListStoriesWithAssignee() {
+    private String listStoriesWithAssignee() {
         List<Story> storiesWithAssignee = new ArrayList<>();
         for (Story story : boardRepository.getStories()
         ) {
@@ -40,4 +41,13 @@ public class ListStoriesWithAssigneeCommand {
         }
     }
 
+    @Override
+    public String execute(List<String> parameters) {
+        return listStoriesWithAssignee();
+    }
+
+    @Override
+    public List<String> getExpectedArguments() {
+        return new ArrayList<>();
+    }
 }
