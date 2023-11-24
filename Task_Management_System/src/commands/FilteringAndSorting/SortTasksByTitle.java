@@ -7,11 +7,11 @@ import core.contracts.BoardRepository;
 import java.util.Comparator;
 import java.util.List;
 
-public class SortTasksByTitleCommand implements Command {
+public class SortTasksByTitle implements Command {
     public static final String NO_TASKS_FOUND = "There are no tasks currently";
     private final BoardRepository boardRepository;
 
-    public SortTasksByTitleCommand(BoardRepository boardRepository) {
+    public SortTasksByTitle(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 

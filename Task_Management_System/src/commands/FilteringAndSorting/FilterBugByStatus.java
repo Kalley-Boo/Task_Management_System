@@ -8,14 +8,14 @@ import util.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilterBugsByStatus implements Command {
+public class FilterBugByStatus implements Command {
     public static final String TITLE = "Enter status (will show all bugs that are with this status)";
     public static final String NO_BUGS = "There are no bugs with this status currently.";
     private static final int EXPECTED_PARAMETERS_COUNT = 1;
     private final List<String> expectedArguments;
     private final BoardRepository boardRepository;
 
-    public FilterBugsByStatus(BoardRepository boardRepository) {
+    public FilterBugByStatus(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         this.expectedArguments = new ArrayList<>();
         expectedArguments.add(TITLE);

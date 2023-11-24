@@ -1,7 +1,6 @@
 package core;
 
-import commands.FilteringAndSorting.FilterTasksByTitleCommand;
-import commands.FilteringAndSorting.SortTasksByTitleCommand;
+import commands.FilteringAndSorting.*;
 import commands.createCommands.*;
 import commands.otherCommands.AddCommentToTaskCommand;
 import commands.changeCommands.*;
@@ -50,9 +49,24 @@ public class CommandFactoryImpl implements CommandFactory {
             case 24 -> new ShowAllTeamBoardsCommand(boardRepository);
             case 25 -> new ShowBoardSActivityCommand(boardRepository);
             case 26 -> new ShowTaskActivityCommand(boardRepository);
-            case 27 -> new FilterTasksByTitleCommand(boardRepository);
-            case 28 -> new SortTasksByTitleCommand(boardRepository);
+            case 27 -> new FilterTasksByTitle(boardRepository);
+            case 28 -> new SortTasksByTitle(boardRepository);
             case 29 -> new ShowAllTasksCommand(boardRepository);
+            //------------SORTING--------------
+            case 30 -> new FilterBugByAssignee(boardRepository);
+            case 31 -> new FilterBugByStatus(boardRepository);
+            case 32 -> new FilterFeedbackByStatus(boardRepository);
+            case 33 -> new FilterStoryByAssignee(boardRepository);
+            case 34 -> new FilterStoryByStatus(boardRepository);
+            case 35 -> new ListBugsWithAssignee(boardRepository);
+            case 36 -> new ListStoriesWithAssignee(boardRepository);
+            case 37 -> new SortBugsByPriority(boardRepository);
+            case 38 -> new SortBugsBySeverity(boardRepository);
+            case 39 -> new SortBugsByTitle(boardRepository);
+            case 40 -> new SortFeedbackByTitle(boardRepository);
+            case 41 -> new SortStoryByPriority(boardRepository);
+            case 42 -> new SortStoryBySize(boardRepository);
+            case 43 -> new SortStoryByTitle(boardRepository);
             default ->
                     throw new UnsupportedOperationException(String.format(COMMAND_NOT_SUPPORTED_MESSAGE, commandNumber));
         };

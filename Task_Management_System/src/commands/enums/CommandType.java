@@ -35,7 +35,20 @@ public enum CommandType {
     SORTTASKS("Sort tasks by title"),
     SHOWALLTASKS("Show all tasks"),
     //-
-
+    FILTERBUGBYASSIGNEE("Filter bug by assignee"),
+    FILTERBUGBYSTATUS("Filter bug by status"),
+    FILTERFEEDBACKBYSTATUS("Filter feedback by status"),
+    FILTERSTORYBYASSIGNEE("Filter story by assignee"),
+    FILTERSTORYBYSTATUS("Filter story by status"),
+    LISTBUGSWITHASSIGNEE("List bugs with assignee"),
+    LISTSTORIESWITHASSIGNEE("List stories with assignee"),
+    SORTBUGSBYPRIORITY("Sort bugs by priority"),
+    SORTBUGSBYSEVERITY("Sort bugs by severity"),
+    SORTBUGSBYTITLE("Sort bugs by title"),
+    SORTFEEDBACKBYTITLE("Sort feedback by title"),
+    SORTSTORYBYPRIORITY("Sort story by priority"),
+    SORTSTORYBYSIZE("Sort story by size"),
+    SORTSTORYBYTITLE("Sort story by title")
 
     ;
 

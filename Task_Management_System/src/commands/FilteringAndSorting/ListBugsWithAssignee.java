@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListBugsWithAssigneeCommand implements Command {
+public class ListBugsWithAssignee implements Command {
     private final BoardRepository boardRepository;
     public static final String NO_TASKS_FOUND = "No bugs with assignee were found";
 
-    public ListBugsWithAssigneeCommand(BoardRepository boardRepository) {
+    public ListBugsWithAssignee(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 

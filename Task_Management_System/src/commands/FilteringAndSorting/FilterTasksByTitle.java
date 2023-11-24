@@ -8,14 +8,14 @@ import util.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilterTasksByTitleCommand implements Command {
+public class FilterTasksByTitle implements Command {
     public static final String TITLE = "Enter sentence (will show all tasks that contain this sentence in their title)";
     public static final String NO_TASKS_FOUND = "No tasks with similar title found";
     private static final int EXPECTED_PARAMETERS_COUNT = 1;
     private final List<String> expectedArguments;
     private final BoardRepository boardRepository;
 
-    public FilterTasksByTitleCommand(BoardRepository boardRepository) {
+    public FilterTasksByTitle(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         this.expectedArguments = new ArrayList<>();
         expectedArguments.add(TITLE);

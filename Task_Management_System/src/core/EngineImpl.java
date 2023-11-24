@@ -81,6 +81,7 @@ public class EngineImpl implements Engine {
             System.out.println(executionResult);
             return;
         }
+        System.out.println("To interrupt the command type 'back'.");
         while (true) {
             try {
                 List<String> args = collectArguments(expectedArguments);
@@ -122,6 +123,12 @@ public class EngineImpl implements Engine {
 
         for (CommandType commandType : commandTypes) {
             System.out.println(counter++ + ". " + commandType.getCommand());
+
+//            if (counter % 2 == 1) {
+//                System.out.println();
+//            } else if (counter <= commandTypes.length) {
+//                System.out.print("                  ");
+//            }
         }
     }
 

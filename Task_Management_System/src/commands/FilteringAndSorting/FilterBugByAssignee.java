@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class FilterBugByAssigneeCommand implements Command {
+public class FilterBugByAssignee implements Command {
 
     private final BoardRepository boardRepository;
     private final List<String> expectedArguments;
@@ -18,7 +18,7 @@ public class FilterBugByAssigneeCommand implements Command {
     public static final String NO_TASKS_FOUND = "No bugs with this assignee were found";
     private static final int EXPECTED_PARAMETERS_COUNT = 1;
 
-    public FilterBugByAssigneeCommand(BoardRepository boardRepository) {
+    public FilterBugByAssignee(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         this.expectedArguments = new ArrayList<>();
         expectedArguments.add(TITLE);

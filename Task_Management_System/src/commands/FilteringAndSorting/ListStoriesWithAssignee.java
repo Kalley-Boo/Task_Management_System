@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListStoriesWithAssigneeCommand implements Command {
+public class ListStoriesWithAssignee implements Command {
 
     private BoardRepository boardRepository;
     public static final String NO_TASKS_FOUND = "No stories with assignee were found";
 
-    public ListStoriesWithAssigneeCommand(BoardRepository boardRepository) {
+    public ListStoriesWithAssignee(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
