@@ -1,6 +1,7 @@
 package commands;
 
 import Models.Enums.Priority;
+import Models.Enums.Severity;
 import Models.Enums.TaskSize;
 import commands.otherCommands.AssignTaskToAPersonCommand;
 import core.BoardRepositoryImpl;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,7 +28,7 @@ public class AssignTaskToAPersonCommandTest {
     public void execute_ShouldReturnCorrectResult(){
         String taskName = "New task name";
         String personName = "Dimitar";
-        boardRepository.createUnassignedStory(taskName, "Assign task to a person", Priority.MEDIUM, TaskSize.SMALL);
+        boardRepository.createUnassignedBug(taskName, "Assign task to a person", Collections.singletonList("Should create task,Should assign to person"), Priority.MEDIUM, Severity.CRITICAL);
         boardRepository.createPerson(personName);
         String result = assignTaskToAPersonCommand.execute(Arrays.asList(personName, taskName));
         assertEquals(String.format(String.format(AssignTaskToAPersonCommand.COMMAND_IS_DONE,taskName, personName)), result);
