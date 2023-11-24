@@ -90,7 +90,7 @@ Feedback-Specific
 
 Filter by status and/or assignee.
 Sort by title/rating.
-Contributors
+## Contributors
 
 Kalina B.
 Ivaylo V.
