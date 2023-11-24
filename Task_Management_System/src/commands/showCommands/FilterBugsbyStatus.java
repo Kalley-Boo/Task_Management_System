@@ -24,7 +24,7 @@ public class FilterBugsbyStatus implements Command {
     private String filterBugsByStatus(String status){
         List<Bug> filteredBugs = boardRepository.getBugs()
                 .stream()
-                .filter(bug -> bug.getTaskStatus().equals(status))
+                .filter(bug -> bug.getTaskStatus().toString().equalsIgnoreCase(status))
                 .toList();
         if(filteredBugs.isEmpty()){
             return NO_BUGS;
