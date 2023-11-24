@@ -90,4 +90,8 @@ Feedback-Specific
 
 Filter by status and/or assignee.
 Sort by title/rating.
+Contributors
 
+Kalina B.
+Ivaylo V.
+Siyana B.
