@@ -1,6 +1,6 @@
 package commands.showCommands;
 
-import Models.Contracts.Feedback;
+import models.contracts.Feedback;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import util.Validator;
