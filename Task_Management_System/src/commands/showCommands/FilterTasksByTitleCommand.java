@@ -22,7 +22,10 @@ public class FilterTasksByTitleCommand implements Command {
     }
 
     private String filterTasks(String sentence) {
-        List<Task> filteredTasks = boardRepository.getTasks().stream().filter(task -> task.getTitle().contains(sentence)).toList();
+        List<Task> filteredTasks = boardRepository.getTasks()
+                        .stream()
+                        .filter(task -> task.getTitle().contains(sentence))
+                        .toList();
         if (filteredTasks.isEmpty()) {
             return NO_TASKS_FOUND;
         }

@@ -1,6 +1,6 @@
 package commands.showCommands;
 
-import Models.Contracts.Bug;
+import Models.Contracts.Story;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import util.Validator;
@@ -8,40 +8,40 @@ import util.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilterBugsbyStatus implements Command {
-    public static final String TITLE = "Enter status (will show all bugs that are with this status)";
-    public static final String NO_BUGS = "There are no bugs currently.";
+public class FilterStoryByStatus implements Command {
+    public static final String TITLE = "Enter status (will show all stories that are with this status)";
+    public static final String NO_STORIES = "There are no stories with this status currently.";
     private static final int EXPECTED_PARAMETERS_COUNT = 1;
     private final List<String> expectedArguments;
     private final BoardRepository boardRepository;
 
-    public FilterBugsbyStatus(BoardRepository boardRepository) {
+    public FilterStoryByStatus(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
         this.expectedArguments = new ArrayList<>();
         expectedArguments.add(TITLE);
     }
 
-    private String filterBugsByStatus(String status){
-        List<Bug> filteredBugs = boardRepository.getBugs()
+    private String filterStoryByStatus(String status){
+        List<Story> filteredStories = boardRepository.getStories()
                 .stream()
-                .filter(bug -> bug.getTaskStatus().toString().equalsIgnoreCase(status))
+                .filter(story -> story.getStatus().toString().equalsIgnoreCase(status))
                 .toList();
-        if(filteredBugs.isEmpty()){
-            return NO_BUGS;
+        if(filteredStories.isEmpty()){
+            return NO_STORIES;
         }
-
         StringBuilder stringBuilder = new StringBuilder();
-        for(Bug bug : filteredBugs){
-            stringBuilder.append(bug.getTitle()).append("\n");
-            stringBuilder.append(bug.getTaskStatus());
+        for(Story story : filteredStories){
+            stringBuilder.append(story.getTitle()).append("\n");
+            stringBuilder.append(story.getStatus()).append("\n");
         }
         return new String(stringBuilder);
     }
 
+
     @Override
     public String execute(List<String> parameters) {
         Validator.validateArgumentsCount(parameters, EXPECTED_PARAMETERS_COUNT);
-        return filterBugsByStatus(parameters.get(0));
+        return filterStoryByStatus(parameters.get(0));
     }
 
     @Override
