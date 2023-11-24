@@ -5,6 +5,7 @@ import Models.Contracts.Person;
 import Models.Contracts.Story;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
+import exceptions.BugNotFoundException;
 import util.Validator;
 
 import java.util.ArrayList;
@@ -42,10 +43,10 @@ public class AssignTaskToAPersonCommand implements Command {
 
     private String assignTaskToAPerson(String personName, String task) {
         Person person = boardRepository.findPersonByName(personName);
-        Bug bug = boardRepository.findBugByTitle(task);
-        if (bug != null){
+        try {
+            Bug bug = boardRepository.findBugByTitle(task);
             bug.editAssignee(person);
-        }else {
+        }catch (BugNotFoundException e){
             Story story = boardRepository.findStoryByName(task);
             story.editAssignee(person);
         }

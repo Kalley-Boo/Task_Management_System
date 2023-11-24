@@ -96,8 +96,18 @@ public class BugImpl extends TaskImpl implements Bug {
 
     public void editAssignee(Person newAssignee) {
         Person oldAssignee = this.assignee;
-        setAssignee(newAssignee);
-        String changeLog = String.format(ASSIGNEE_CHANGED, oldAssignee.getName(), newAssignee.getName());
+        String oldName;
+        String newName;
+        if (oldAssignee == null) {
+            oldName = "unassigned";
+        } else oldName = oldAssignee.getName();
+        if (newAssignee == null) {
+            newName = "unassigned";
+        } else {
+            newName = newAssignee.getName();
+        }
+        this.assignee = newAssignee;
+        String changeLog = String.format(ASSIGNEE_CHANGED, oldName, newName);
         addChange(new HistoryLogImpl(changeLog));
     }
 

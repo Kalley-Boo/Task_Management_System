@@ -5,6 +5,7 @@ import Models.Contracts.Person;
 import Models.Contracts.Story;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
+import exceptions.BugNotFoundException;
 import util.Validator;
 
 import java.util.ArrayList;
@@ -38,18 +39,18 @@ public class UnassignTaskToAPersonCommand implements Command {
     }
 
     private String unassignTaskToAPerson(String taskName) {
-        Bug bug = boardRepository.findBugByTitle(taskName);
         Person oldAssignee;
-        if (bug != null){
+        try {
+            Bug bug = boardRepository.findBugByTitle(taskName);
             oldAssignee = bug.getAssignee();
             bug.editAssignee(null);
-            oldAssignee.removeTask(boardRepository.findTaskByTitle(taskName));
-        }else {
+        }catch (BugNotFoundException e){
             Story story = boardRepository.findStoryByName(taskName);
             oldAssignee = story.getAssignee();
             story.editAssignee(null);
-            oldAssignee.removeTask(boardRepository.findTaskByTitle(taskName));
         }
+        oldAssignee.removeTask(boardRepository.findTaskByTitle(taskName));
+
 
         return String.format(COMMAND_IS_DONE, taskName, oldAssignee.getName());
     }

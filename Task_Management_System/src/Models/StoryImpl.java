@@ -86,6 +86,7 @@ public class StoryImpl extends TaskImpl implements Story {
         }
         this.assignee = assignee;
     }
+
     @Override
     public void editPriority(Priority newPriority) {
         Priority oldPriority = this.priority;
@@ -93,6 +94,7 @@ public class StoryImpl extends TaskImpl implements Story {
         String changeLog = String.format(PRIORITY_CHANGED, oldPriority, newPriority);
         addChange(new HistoryLogImpl(changeLog));
     }
+
     @Override
     public void editSize(TaskSize newSize) {
         TaskSize oldSize = this.size;
@@ -100,6 +102,7 @@ public class StoryImpl extends TaskImpl implements Story {
         String changeLog = String.format(TASK_SIZE_CHANGED, oldSize, newSize);
         addChange(new HistoryLogImpl(changeLog));
     }
+
     @Override
     public void editStatus(StatusStory newStatus) {
         StatusStory oldStatus = this.status;
@@ -107,11 +110,22 @@ public class StoryImpl extends TaskImpl implements Story {
         String changeLog = String.format(STATUS_CHANGED, oldStatus, newStatus);
         addChange(new HistoryLogImpl(changeLog));
     }
+
     @Override
     public void editAssignee(Person newAssignee) {
         Person oldAssignee = this.assignee;
+        String oldName;
+        String newName;
+        if (oldAssignee == null) {
+            oldName = "unassigned";
+        } else oldName = oldAssignee.getName();
+        if (newAssignee == null) {
+            newName = "unassigned";
+        } else {
+            newName = newAssignee.getName();
+        }
         this.assignee = newAssignee;
-        String changeLog = String.format(ASSIGNEE_CHANGED, oldAssignee.getName(), newAssignee.getName());
+        String changeLog = String.format(ASSIGNEE_CHANGED, oldName, newName);
         addChange(new HistoryLogImpl(changeLog));
     }
 
@@ -139,9 +153,10 @@ public class StoryImpl extends TaskImpl implements Story {
     public Person getAssignee() {
         return assignee;
     }
+
     @Override
     public String getTitle() {
-        return getTitle();
+        return super.getTitle();
     }
 
     @Override
