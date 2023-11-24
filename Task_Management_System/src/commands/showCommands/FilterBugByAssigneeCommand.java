@@ -24,7 +24,10 @@ public class FilterBugByAssigneeCommand implements Command {
         expectedArguments.add(TITLE);
     }
     private String filterBugs(String sentence) {
-        List<Bug> filteredTasks = boardRepository.getBugs().stream().filter(bug -> bug.getAssignee().getName().equals(sentence)).collect(Collectors.toList());
+        List<Bug> filteredTasks = boardRepository.getBugs()
+                .stream()
+                .filter(bug -> bug.getAssignee().getName().equals(sentence))
+                .collect(Collectors.toList());
         if (filteredTasks.isEmpty()) {
             return NO_TASKS_FOUND;
         }
