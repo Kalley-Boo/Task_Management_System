@@ -1,4 +1,4 @@
-package commands.showCommands;
+package commands.FilteringAndSorting;
 
 import models.contracts.Task;
 import commands.contracts.Command;

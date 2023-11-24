@@ -1,4 +1,4 @@
-package commands.showCommands;
+package commands.FilteringAndSorting;
 
 import models.contracts.Bug;
 import commands.contracts.Command;
@@ -8,17 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListBugsWithAssigneeCommand implements Command{
+public class ListBugsWithAssigneeCommand implements Command {
     private final BoardRepository boardRepository;
     public static final String NO_TASKS_FOUND = "No bugs with assignee were found";
 
     public ListBugsWithAssigneeCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
+
     private String listBugsWithAssignee() {
         List<Bug> bugsWithAssignee = new ArrayList<>();
-        for (Bug bug : boardRepository.getBugs()
-        ) {
+        for (Bug bug : boardRepository.getBugs()) {
             if (bug.getAssignee() != null) {
                 bugsWithAssignee.add(bug);
             }

@@ -1,4 +1,4 @@
-package commands.showCommands;
+package commands.FilteringAndSorting;
 
 import models.contracts.Story;
 import commands.contracts.Command;
@@ -12,7 +12,6 @@ public class ListStoriesWithAssigneeCommand implements Command {
 
     private BoardRepository boardRepository;
     public static final String NO_TASKS_FOUND = "No stories with assignee were found";
-
 
     public ListStoriesWithAssigneeCommand(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;

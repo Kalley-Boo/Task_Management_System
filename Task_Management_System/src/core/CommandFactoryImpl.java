@@ -1,5 +1,7 @@
 package core;
 
+import commands.FilteringAndSorting.FilterTasksByTitleCommand;
+import commands.FilteringAndSorting.SortTasksByTitleCommand;
 import commands.createCommands.*;
 import commands.otherCommands.AddCommentToTaskCommand;
 import commands.changeCommands.*;

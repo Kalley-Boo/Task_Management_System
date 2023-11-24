@@ -1,4 +1,4 @@
-package commands.showCommands;
+package commands.FilteringAndSorting;
 
 import models.contracts.Bug;
 import commands.contracts.Command;
