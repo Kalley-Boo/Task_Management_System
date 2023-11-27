@@ -22,7 +22,6 @@ public class CreateNewBugInBoardTest {
     private static final String PRIORITY = "LOW";
     private static final String SEVERITY = "MINOR";
     private static final String ASSIGNEE = "Unassigned";
-    private static final String SEVERITY_NEW = "MAJOR";
     private final BoardRepository boardRepository = new BoardRepositoryImpl();
     private List<String> argsCreate;
 
@@ -58,7 +57,6 @@ public class CreateNewBugInBoardTest {
     public void CreateNewBugInBoard_ShouldThrowAnException_WhenBugAlreadyExists() {
         CreateNewBugInBoardCommand create = new CreateNewBugInBoardCommand(boardRepository);
         create.execute(argsCreate);
-        CreateNewBugInBoardCommand create2 = new CreateNewBugInBoardCommand(boardRepository);
         Assertions.assertThrows(InvalidInputException.class, () -> create.execute(argsCreate));
     }
 
