@@ -1,8 +1,10 @@
 package commands;
 
+import commands.changeCommands.ChangePriorityOfABug;
 import commands.contracts.Command;
 import commands.createCommands.CreatePersonCommand;
 import commands.createCommands.CreateTeamCommand;
+import commands.otherCommands.AddPersonToATeamCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import org.junit.jupiter.api.Assertions;
@@ -22,6 +24,7 @@ public class AddPersonToATeamCommandTest {
     @BeforeEach
     public void setUp(){
         boardRepository = new BoardRepositoryImpl();
+        args = new ArrayList<>();
         args.add("person");
         args.add("team1");
     }
@@ -36,7 +39,17 @@ public class AddPersonToATeamCommandTest {
         personArgs.add("Person");
         Command createPerson = new CreatePersonCommand(boardRepository);
         createPerson.execute(personArgs);
-//        Assertions.assertEquals(boardRepository.findTeamByName("Team1").get);// TODO
+        Command addPerson = new AddPersonToATeamCommand(boardRepository);
+        List<String> addPersonArgs = new ArrayList<>();
+        addPersonArgs.add("Person");
+        addPersonArgs.add("Team1");
+        addPerson.execute(addPersonArgs);
+        Assertions.assertEquals(1, boardRepository.findTeamByName("Team1").getMembers().size());
+    }
+
+    @Test
+    public void getArguments_should_return_a_list(){
+        Assertions.assertEquals(new AddPersonToATeamCommand(boardRepository).getExpectedArguments().size(), 2);
     }
 
 }

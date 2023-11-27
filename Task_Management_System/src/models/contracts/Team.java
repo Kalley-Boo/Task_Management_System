@@ -10,4 +10,5 @@ public interface Team {
      public String displayMembers();
      public void displayBoards();
      public List<Board> getBoards();
+     public List<Person> getMembers();
 }
