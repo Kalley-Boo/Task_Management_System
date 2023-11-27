@@ -1,8 +1,10 @@
 package commands.changeCommandsTests;
 
 import commands.changeCommands.ChangeRatingOfAFeedbackCommand;
+import commands.otherCommands.AddPersonToATeamCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,5 +29,10 @@ public class ChangeRatingOfAFeedbackCommandTest {
         boardRepository.createFeedback(FEEDBACK_NAME, "Problem when logging", 3);
         String result = changeRatingOfAFeedback.execute(Arrays.asList(FEEDBACK_NAME, RATING));
         assertEquals(String.format(String.format(ChangeRatingOfAFeedbackCommand.COMMAND_IS_DONE, FEEDBACK_NAME, 4)),result);
+    }
+
+    @Test
+    public void getArguments_should_return_a_list(){
+        Assertions.assertEquals(new ChangeRatingOfAFeedbackCommand(boardRepository).getExpectedArguments().size(), 2);
     }
 }

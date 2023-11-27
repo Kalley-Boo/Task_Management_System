@@ -1,10 +1,13 @@
 package commands.changeCommandsTests;
 
+import commands.changeCommands.ChangeStoryStatusCommand;
+import commands.otherCommands.AddPersonToATeamCommand;
 import models.enums.Priority;
 import models.enums.TaskSize;
 import commands.changeCommands.ChangeStorySizeCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +32,10 @@ public class ChangeStorySizeCommandTest {
         boardRepository.createUnassignedStory(STORY_NAME, "Description", Priority.LOW, TaskSize.SMALL);
         String result = changeStorySizeCommand.execute(Arrays.asList(STORY_NAME, SIZE));
         assertEquals(String.format(ChangeStorySizeCommand.SIZE_UPDATED, STORY_NAME, Priority.valueOf(SIZE)), result);
+    }
 
-
+    @Test
+    public void getArguments_should_return_a_list(){
+        Assertions.assertEquals(new ChangeStorySizeCommand(boardRepository).getExpectedArguments().size(), 2);
     }
 }

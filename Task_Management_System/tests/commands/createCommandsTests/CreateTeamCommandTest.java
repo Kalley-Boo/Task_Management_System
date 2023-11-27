@@ -2,6 +2,7 @@ package commands.createCommandsTests;
 
 import commands.contracts.Command;
 import commands.createCommands.CreateTeamCommand;
+import commands.otherCommands.AddPersonToATeamCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;
@@ -52,5 +53,10 @@ public class CreateTeamCommandTest {
         Assertions.assertThrows(InvalidInputException.class, () -> {
             command1.execute(validInput);
         });
+    }
+
+    @Test
+    public void getArguments_should_return_a_list(){
+        Assertions.assertEquals(new CreateTeamCommand(boardRepository).getExpectedArguments().size(), 1);
     }
 }

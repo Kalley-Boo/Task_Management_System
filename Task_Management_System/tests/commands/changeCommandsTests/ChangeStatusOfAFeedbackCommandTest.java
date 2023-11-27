@@ -1,8 +1,10 @@
 package commands.changeCommandsTests;
 
 import commands.changeCommands.ChangeStatusOfAFeedbackCommand;
+import commands.otherCommands.AddPersonToATeamCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,5 +29,10 @@ public class ChangeStatusOfAFeedbackCommandTest {
 
             String result = changeStatusOfAFeedbackCommand.execute(Arrays.asList(FEEDBACK_NAME, STATUS));
             assertEquals(String.format(String.format(ChangeStatusOfAFeedbackCommand.COMMAND_IS_DONE,STATUS)), result);
+    }
+
+    @Test
+    public void getArguments_should_return_a_list(){
+        Assertions.assertEquals(new ChangeStatusOfAFeedbackCommand(boardRepository).getExpectedArguments().size(), 2);
     }
 }
