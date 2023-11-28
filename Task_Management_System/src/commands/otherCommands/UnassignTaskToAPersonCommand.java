@@ -44,7 +44,7 @@ public class UnassignTaskToAPersonCommand implements Command {
             Bug bug = boardRepository.findBugByTitle(taskName);
             oldAssignee = bug.getAssignee();
             bug.editAssignee(null);
-        }catch (BugNotFoundException e){
+        } catch (BugNotFoundException e) {
             Story story = boardRepository.findStoryByName(taskName);
             oldAssignee = story.getAssignee();
             story.editAssignee(null);

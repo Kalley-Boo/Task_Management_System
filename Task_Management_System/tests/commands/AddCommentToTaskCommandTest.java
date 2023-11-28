@@ -1,5 +1,6 @@
 package commands;
 
+import commands.createCommands.CreateTeamCommand;
 import models.CommentImpl;
 import models.contracts.Comment;
 import models.contracts.Person;
@@ -10,6 +11,7 @@ import models.PersonImpl;
 import commands.otherCommands.AddCommentToTaskCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
@@ -37,6 +39,11 @@ public class AddCommentToTaskCommandTest {
         String result = addCommentToTaskCommand.execute(Arrays.asList(taskName, commentContent, "testT"));
 
         assertEquals(String.format(AddCommentToTaskCommand.COMMENT_ADDED, taskName), result);
+    }
+
+    @Test
+    public void getArguments_should_return_a_list(){
+        Assertions.assertEquals(new AddCommentToTaskCommand(boardRepository).getExpectedArguments().size(), 3);
     }
 }
 
