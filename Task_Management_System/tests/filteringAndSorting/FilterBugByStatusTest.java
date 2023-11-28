@@ -1,6 +1,6 @@
 package filteringAndSorting;
 
-import commands.FilteringAndSorting.FilterBugByAssignee;
+import commands.FilteringAndSorting.FilterBugByStatus;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import models.PersonImpl;
@@ -14,24 +14,25 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FilterBugByAssigneeTest {
+public class FilterBugByStatusTest {
     private BoardRepository boardRepository;
-    private FilterBugByAssignee filterBugByAssignee;
+    private FilterBugByStatus filterBugByStatus;
+
     @BeforeEach
     public void setUp(){
         this.boardRepository = new BoardRepositoryImpl();
-        this.filterBugByAssignee = new FilterBugByAssignee(boardRepository);
+        this.filterBugByStatus = new FilterBugByStatus(boardRepository);
     }
 
     @Test
-    public void testFilterBuysByAssignee(){
+    public void filterBugByStatus() {
         ArrayList<String> parameters = new ArrayList<>();
         parameters.add("Hello");
         Person person1 = new PersonImpl("IvanOne");
         Person person2 = new PersonImpl("IvanIvan");
         Person person3 = new PersonImpl("IvanOne");
 
-        boardRepository.createAssignedBug( "BugTestOne",
+        boardRepository.createAssignedBug("BugTestOne",
                 "Ajshdadjhfabdfk", parameters,
                 Priority.HIGH, Severity.MINOR, person1);
         boardRepository.createAssignedBug("BugTestTwo",
@@ -41,9 +42,10 @@ public class FilterBugByAssigneeTest {
                 "Ajshdadjhfabdfk", parameters,
                 Priority.HIGH, Severity.MINOR, person3);
 
-        ArrayList list = new ArrayList<>();
-        list.add("IvanOne");
-        String result = filterBugByAssignee.execute(list);
-        assertEquals("BugTestOne\nBugTestThree", result);
+        ArrayList param = new ArrayList<>();
+        param.add("Active");
+        String result = filterBugByStatus.execute(param);
+        assertEquals("BugTestOne\nACTIVE\nBugTestTwo\nACTIVE\nBugTestThree\nACTIVE\n", result);
+
     }
 }
