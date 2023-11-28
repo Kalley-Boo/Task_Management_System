@@ -29,6 +29,6 @@ public class CommentImpl implements Comment {
 
     @Override
     public String print() {
-        return String.format(COMMENT, getContent(), getAuthor());
+        return String.format(COMMENT, getContent(), getAuthor().getName());
     }
 }

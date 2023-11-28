@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class BugImplTest {
@@ -41,6 +42,16 @@ public class BugImplTest {
         bug.editStatus(StatusBug.DONE);
         assertEquals(bug.getTaskStatus(), StatusBug.DONE);
     }
+
+    @Test
+    public void EditStepsToReproduce_ShouldEditTheStepsToReproduce(){
+        BugImpl bug = new BugImpl(2, "Problem with the system", "Problems with logging", new ArrayList<String>(), Priority.LOW, Severity.MINOR, new PersonImpl("Ivan Petkov"));
+        List<String> newSteps = new ArrayList<>();
+        newSteps.add("test");
+        bug.editStepsToReproduce(newSteps);
+        Assertions.assertEquals(newSteps, bug.getStepsToReproduce());
+    }
+
 
 //    @Test
 //    public void testEditAssignee(){
