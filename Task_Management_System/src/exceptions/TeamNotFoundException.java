@@ -1,7 +1,7 @@
 package exceptions;
 
-public class TeamNotFoundException extends RuntimeException{
-    public TeamNotFoundException(String message){
+public class TeamNotFoundException extends RuntimeException {
+    public TeamNotFoundException(String message) {
         super(message);
     }
 }

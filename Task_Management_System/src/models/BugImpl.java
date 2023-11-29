@@ -35,7 +35,6 @@ public class BugImpl extends TaskImpl implements Bug {
     public static final String SEVERITY = "severity";
     public static final String STATUS = "status";
     public static final String ASSIGNEE = "assignee";
-    public static final String COMMENT = "comment";
     public static final String BUG_WAS_CREATED = "A bug with title %s was created.";
 
     private List<String> stepsToReproduce;

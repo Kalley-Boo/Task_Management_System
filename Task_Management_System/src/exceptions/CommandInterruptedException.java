@@ -1,8 +1,8 @@
 package exceptions;
 
-public class CommandInterruptedException extends RuntimeException{
+public class CommandInterruptedException extends RuntimeException {
 
-    public CommandInterruptedException(String message){
+    public CommandInterruptedException(String message) {
         super(message);
     }
 }

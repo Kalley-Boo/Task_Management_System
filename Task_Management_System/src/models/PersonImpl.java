@@ -15,7 +15,6 @@ public class PersonImpl implements Person {
     public static final String ADDED = "Task added: %s";
     public static final String REMOVED = "Task removed: %s";
     public static final String NO_TASKS = "No tasks available for ";
-    public static final String NAME_SET = "Name set to: %s";
     public static final String TASKS_FOR = "Tasks for ";
     public static final String HAS_TASKS = " has tasks: ";
     public static final String HAS_NO_TASKS_ASSIGNED_YET = " - has no tasks assigned yet.";

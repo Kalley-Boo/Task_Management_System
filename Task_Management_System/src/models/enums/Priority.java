@@ -1,5 +1,5 @@
 package models.enums;
 
 public enum Priority {
-    HIGH, MEDIUM, LOW;
+    HIGH, MEDIUM, LOW
 }

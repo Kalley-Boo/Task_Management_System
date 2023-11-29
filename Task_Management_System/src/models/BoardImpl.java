@@ -40,8 +40,8 @@ public class BoardImpl implements Board {
     public void addTask(Task task) {
         if (task != null) {
             this.tasks.add(task);
+            historyLog.add(new HistoryLogImpl(String.format(TASK_ADDED_TO_BOARD, task.getTitle())));
         }
-        historyLog.add(new HistoryLogImpl(String.format(TASK_ADDED_TO_BOARD, task.getTitle())));
     }
 
     @Override

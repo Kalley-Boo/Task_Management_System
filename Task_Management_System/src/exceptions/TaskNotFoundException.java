@@ -1,7 +1,7 @@
 package exceptions;
 
-public class TaskNotFoundException extends RuntimeException{
-    public TaskNotFoundException(String text){
-        super(text);
+public class TaskNotFoundException extends RuntimeException {
+    public TaskNotFoundException(String message) {
+        super(message);
     }
 }

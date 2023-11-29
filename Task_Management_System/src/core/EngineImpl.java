@@ -16,7 +16,6 @@ import java.util.Scanner;
 public class EngineImpl implements Engine {
 
     private static final String SELECT_COMMAND = "Please select a command number";
-    private static final String TERMINATION_COMMAND_MESSAGE = "You exited the application";
     private static final String EMPTY_COMMAND_ERROR = "Command cannot be empty.";
     private static final String COMMAND_ERROR = "You must select from the list of existing commands by typing in its number from the list of commands!";
     private static final String ENTER_ARGUMENT_MESSAGE = "Please enter %s:";
@@ -48,13 +47,13 @@ public class EngineImpl implements Engine {
             try {
                 selectFromMenu();
             } catch (CommandInterruptedException ex) {
-                System.out.println(ex);
+                System.out.println(ex.getMessage());
                 break;
             } catch (Exception ex) {
                 if (ex.getMessage() != null && !ex.getMessage().isEmpty()) {
                     System.out.println(ex.getMessage());
                 } else {
-                    System.out.println(ex);
+                    System.out.println(ex.getMessage());
                 }
             }
         }
@@ -95,7 +94,7 @@ public class EngineImpl implements Engine {
                 if (ex.getMessage() != null && !ex.getMessage().isEmpty()) {
                     System.out.println(ex.getMessage());
                 } else {
-                    System.out.println(ex);
+                    System.out.println(ex.getMessage());
                 }
             }
         }
@@ -105,7 +104,7 @@ public class EngineImpl implements Engine {
     public List<String> collectArguments(List<String> expectedArguments) {
         List<String> args = new ArrayList<>();
         for (String argument : expectedArguments) {
-            System.out.println(String.format(ENTER_ARGUMENT_MESSAGE, argument));
+            System.out.printf((ENTER_ARGUMENT_MESSAGE) + "%n", argument);
             Scanner sc = new Scanner(System.in);
             String arg = sc.nextLine().trim();
             if (arg.equalsIgnoreCase(INTERRUPT_COMMAND)) {
@@ -155,17 +154,13 @@ public class EngineImpl implements Engine {
 
     private void menuCommandProcess(int menuCommandNumber) {
         switch (menuCommandNumber) {
-            case 1:
-                showCommandsOptions();
-                break;
-            case 2:
+            case 1 -> showCommandsOptions();
+            case 2 -> {
                 int commandNumber = selectCommand();
                 processCommand(commandNumber);
-                break;
-            case 3:
-                throw new CommandInterruptedException(PROGRAM_INTERRUPTED_MESSAGE);
-            default:
-                throw new IllegalArgumentException(INVALID_COMMAND);
+            }
+            case 3 -> throw new CommandInterruptedException(PROGRAM_INTERRUPTED_MESSAGE);
+            default -> throw new IllegalArgumentException(INVALID_COMMAND);
         }
     }
 }

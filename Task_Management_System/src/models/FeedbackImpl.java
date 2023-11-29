@@ -59,7 +59,7 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     public void updateStatus(StatusFeedback newStatus) {
         StatusFeedback oldStatus = this.status;
         setStatus(newStatus);
-        addChange(new HistoryLogImpl(String.format(STATUS_UPDATED, oldStatus.toString(), newStatus.toString())));
+        addChange(new HistoryLogImpl(String.format(STATUS_UPDATED, oldStatus.toString(), newStatus)));
     }
 
     @Override
