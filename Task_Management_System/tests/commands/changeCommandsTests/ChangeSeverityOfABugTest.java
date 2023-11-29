@@ -1,14 +1,12 @@
 package commands.changeCommandsTests;
 
 import commands.changeCommands.ChangeSeverityOfABug;
-import commands.changeCommands.ChangeStatusOfABug;
 import commands.createCommands.CreateANewBoardInATeamCommand;
 import commands.createCommands.CreateNewBugInBoardCommand;
 import commands.createCommands.CreateTeamCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import models.enums.Severity;
-import models.enums.StatusBug;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

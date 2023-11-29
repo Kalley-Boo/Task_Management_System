@@ -1,12 +1,15 @@
 package commands.showCommandsTests;
+
 import commands.contracts.Command;
 import commands.showCommands.ShowAllTeamsCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class ShowAllTeamsCommandTest {
 
@@ -26,13 +29,13 @@ public class ShowAllTeamsCommandTest {
 
         String result = showAllTeamsCommand.execute(null);
         String expected = ShowAllTeamsCommand.ALL_TEAMS_BANNER + "Team 1 Team 2 ";
-        assertEquals(expected, result);
+        Assertions.assertEquals(expected, result);
     }
 
     @Test
     void execute_Should_ReturnEmptyString_When_NoTeamsExist() {
         String result = showAllTeamsCommand.execute(List.of());
-        assertEquals("---All teams--- \n", result);
+        Assertions.assertEquals("---All teams--- \n", result);
     }
 
 }

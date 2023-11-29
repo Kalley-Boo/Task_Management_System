@@ -1,6 +1,5 @@
 package commands.createCommandsTests;
 
-import commands.changeCommands.ChangeSeverityOfABug;
 import commands.createCommands.CreateANewBoardInATeamCommand;
 import commands.createCommands.CreateNewBugInBoardCommand;
 import commands.createCommands.CreateTeamCommand;

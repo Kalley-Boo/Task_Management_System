@@ -7,12 +7,13 @@ import models.PersonImpl;
 import models.contracts.Person;
 import models.enums.Priority;
 import models.enums.TaskSize;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortStoryBySizeTest {
     private BoardRepository boardRepository;
@@ -32,19 +33,21 @@ public class SortStoryBySizeTest {
 
         boardRepository.createAssignedStory("StoryStory", "hjssadadgfajf",
                 Priority.HIGH, TaskSize.MEDIUM, person1);
-        boardRepository.createAssignedStory("2StoryKtory", "hjs21erdgfajf",
+        boardRepository.createAssignedStory("2StoryStory", "hjs21erdgfajf",
                 Priority.HIGH, TaskSize.SMALL, person2);
         boardRepository.createAssignedStory("ThirdStory", "hjsdfewfewgfajf",
                 Priority.HIGH, TaskSize.LARGE, person3);
 
-        ArrayList param = new ArrayList<>();
+        List<String> param = new ArrayList<>();
         String result = sortStoryBySize.execute(param);
-        assertEquals("Story's title: ThirdStory\n" +
-                        "Size: LARGE\n" +
-                        "Story's title: StoryStory\n" +
-                        "Size: MEDIUM\n" +
-                        "Story's title: 2StoryKtory\n" +
-                        "Size: SMALL\n"
+        Assertions.assertEquals("""
+                        Story's title: ThirdStory
+                        Size: LARGE
+                        Story's title: StoryStory
+                        Size: MEDIUM
+                        Story's title: 2StoryStory
+                        Size: SMALL
+                        """
                 , result);
     }
 }

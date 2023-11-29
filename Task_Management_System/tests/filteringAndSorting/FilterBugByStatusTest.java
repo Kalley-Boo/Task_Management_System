@@ -7,12 +7,13 @@ import models.PersonImpl;
 import models.contracts.Person;
 import models.enums.Priority;
 import models.enums.Severity;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FilterBugByStatusTest {
     private BoardRepository boardRepository;
@@ -42,10 +43,10 @@ public class FilterBugByStatusTest {
                 "Ajshdadjhfabdfk", parameters,
                 Priority.HIGH, Severity.MINOR, person3);
 
-        ArrayList param = new ArrayList<>();
+        List<String> param = new ArrayList<>();
         param.add("Active");
         String result = filterBugByStatus.execute(param);
-        assertEquals("BugTestOne\nACTIVE\nBugTestTwo\nACTIVE\nBugTestThree\nACTIVE\n", result);
+        Assertions.assertEquals("BugTestOne\nACTIVE\nBugTestTwo\nACTIVE\nBugTestThree\nACTIVE\n", result);
 
     }
 }

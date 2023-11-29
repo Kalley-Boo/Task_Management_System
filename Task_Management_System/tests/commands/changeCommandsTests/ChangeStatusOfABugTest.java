@@ -1,12 +1,9 @@
 package commands.changeCommandsTests;
 
 import commands.changeCommands.ChangeStatusOfABug;
-import commands.contracts.Command;
 import commands.createCommands.CreateANewBoardInATeamCommand;
 import commands.createCommands.CreateNewBugInBoardCommand;
-import commands.createCommands.CreatePersonCommand;
 import commands.createCommands.CreateTeamCommand;
-import commands.createCommandsTests.CreateNewBugInBoardCommandTest;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import models.enums.StatusBug;

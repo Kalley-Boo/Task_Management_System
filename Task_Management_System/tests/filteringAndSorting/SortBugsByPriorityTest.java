@@ -7,12 +7,13 @@ import models.PersonImpl;
 import models.contracts.Person;
 import models.enums.Priority;
 import models.enums.Severity;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortBugsByPriorityTest {
     private BoardRepository boardRepository;
@@ -23,9 +24,10 @@ public class SortBugsByPriorityTest {
         this.boardRepository = new BoardRepositoryImpl();
         this.sortBugsByPriority = new SortBugsByPriority(boardRepository);
     }
+
     @Test
-    public void testSortBugsByPriority(){
-        ArrayList<String> parameters = new ArrayList<>();
+    public void testSortBugsByPriority() {
+        List<String> parameters = new ArrayList<>();
         parameters.add("Hello");
         Person person1 = new PersonImpl("IvanOne");
         Person person2 = new PersonImpl("IvanIvan");
@@ -41,12 +43,13 @@ public class SortBugsByPriorityTest {
                 "Ajshdadjhfabdfk", parameters,
                 Priority.MEDIUM, Severity.MINOR, person3);
         String result = sortBugsByPriority.execute(new ArrayList<>());
-        assertEquals("Bug's title: BugTestOne\n" +
-                "The bug's priority: HIGH\n" +
-                "Bug's title: BugTestThree\n" +
-                "The bug's priority: MEDIUM\n" +
-                "Bug's title: BugTestTwo\n" +
-                "The bug's priority: LOW", result.trim());
+        Assertions.assertEquals("""
+                Bug's title: BugTestOne
+                The bug's priority: HIGH
+                Bug's title: BugTestThree
+                The bug's priority: MEDIUM
+                Bug's title: BugTestTwo
+                The bug's priority: LOW""", result.trim());
     }
 
 }

@@ -1,6 +1,5 @@
 package commands;
 
-import commands.createCommands.CreateTeamCommand;
 import models.CommentImpl;
 import models.contracts.Comment;
 import models.contracts.Person;
@@ -14,8 +13,9 @@ import core.contracts.BoardRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class AddCommentToTaskCommandTest {
     BoardRepository boardRepository = new BoardRepositoryImpl();
@@ -26,6 +26,7 @@ public class AddCommentToTaskCommandTest {
         this.boardRepository = new BoardRepositoryImpl();
         this.addCommentToTaskCommand = new AddCommentToTaskCommand(boardRepository);
     }
+
     @Test
     public void testExecute_ShouldReturnCorrectResult_WhenCalledWithValidParameters() {
         String taskName = "taskTestTest";
@@ -38,11 +39,11 @@ public class AddCommentToTaskCommandTest {
         foundTask.addComment(comment);
         String result = addCommentToTaskCommand.execute(Arrays.asList(taskName, commentContent, "testT"));
 
-        assertEquals(String.format(AddCommentToTaskCommand.COMMENT_ADDED, taskName), result);
+        Assertions.assertEquals(String.format(AddCommentToTaskCommand.COMMENT_ADDED, taskName), result);
     }
 
     @Test
-    public void getArguments_should_return_a_list(){
+    public void getArguments_should_return_a_list() {
         Assertions.assertEquals(new AddCommentToTaskCommand(boardRepository).getExpectedArguments().size(), 3);
     }
 }

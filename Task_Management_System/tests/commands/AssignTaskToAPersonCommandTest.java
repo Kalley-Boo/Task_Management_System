@@ -1,6 +1,5 @@
 package commands;
 
-import commands.createCommands.CreateTeamCommand;
 import models.enums.Priority;
 import models.enums.Severity;
 import commands.otherCommands.AssignTaskToAPersonCommand;
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AssignTaskToAPersonCommandTest {
     BoardRepository boardRepository = new BoardRepositoryImpl();
@@ -33,7 +31,7 @@ public class AssignTaskToAPersonCommandTest {
         boardRepository.createUnassignedBug(taskName, "Assign task to a person", Collections.singletonList("Should create task,Should assign to person"), Priority.MEDIUM, Severity.CRITICAL);
         boardRepository.createPerson(personName);
         String result = assignTaskToAPersonCommand.execute(Arrays.asList(personName, taskName));
-        assertEquals(String.format(String.format(AssignTaskToAPersonCommand.COMMAND_IS_DONE,taskName, personName)), result);
+        Assertions.assertEquals(String.format(String.format(AssignTaskToAPersonCommand.COMMAND_IS_DONE,taskName, personName)), result);
     }
 
     @Test
@@ -43,7 +41,7 @@ public class AssignTaskToAPersonCommandTest {
         boardRepository.createUnassignedStory(taskName, "Assign task to a person", Priority.MEDIUM, TaskSize.MEDIUM);
         boardRepository.createPerson(personName);
         String result = assignTaskToAPersonCommand.execute(Arrays.asList(personName, taskName));
-        assertEquals(String.format(String.format(AssignTaskToAPersonCommand.COMMAND_IS_DONE,taskName, personName)), result);
+        Assertions.assertEquals(String.format(String.format(AssignTaskToAPersonCommand.COMMAND_IS_DONE,taskName, personName)), result);
     }
 
     @Test

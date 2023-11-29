@@ -68,6 +68,7 @@ public class CreateNewStoryInBoardCommandTest {
         create.execute(argsCreateAssigned);
         Assertions.assertEquals(1, boardRepository.getStories().size());
     }
+
     @Test
     public void CreateNewStoryInBoard_ShouldThrowAnException_WhenBugAlreadyExists() {
         Command create = new CreateNewStoryInBoardCommand(boardRepository);
@@ -76,7 +77,7 @@ public class CreateNewStoryInBoardCommandTest {
     }
 
     @Test
-    public void getArguments_should_return_a_list(){
+    public void getArguments_should_return_a_list() {
         Assertions.assertEquals(new CreateNewStoryInBoardCommand(boardRepository).getExpectedArguments().size(), 6);
     }
 }

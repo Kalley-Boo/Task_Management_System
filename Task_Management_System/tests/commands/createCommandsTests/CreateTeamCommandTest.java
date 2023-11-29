@@ -2,7 +2,6 @@ package commands.createCommandsTests;
 
 import commands.contracts.Command;
 import commands.createCommands.CreateTeamCommand;
-import commands.otherCommands.AddPersonToATeamCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;
@@ -39,9 +38,9 @@ public class CreateTeamCommandTest {
     @Test
     public void execute_Should_throwException_When_InvalidParameters() {
         Command command = new CreateTeamCommand(boardRepository);
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            command.execute(invalidInput);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () ->
+                command.execute(invalidInput)
+        );
         Assertions.assertEquals(0, boardRepository.getTeams().size());
     }
 
@@ -50,13 +49,13 @@ public class CreateTeamCommandTest {
         Command command = new CreateTeamCommand(boardRepository);
         command.execute(validInput);
         Command command1 = new CreateTeamCommand(boardRepository);
-        Assertions.assertThrows(InvalidInputException.class, () -> {
-            command1.execute(validInput);
-        });
+        Assertions.assertThrows(InvalidInputException.class, () ->
+                command1.execute(validInput)
+        );
     }
 
     @Test
-    public void getArguments_should_return_a_list(){
+    public void getArguments_should_return_a_list() {
         Assertions.assertEquals(new CreateTeamCommand(boardRepository).getExpectedArguments().size(), 1);
     }
 }

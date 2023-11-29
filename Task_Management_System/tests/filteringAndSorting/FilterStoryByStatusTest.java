@@ -7,12 +7,13 @@ import models.PersonImpl;
 import models.contracts.Person;
 import models.enums.Priority;
 import models.enums.TaskSize;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FilterStoryByStatusTest {
     private BoardRepository boardRepository;
@@ -37,15 +38,17 @@ public class FilterStoryByStatusTest {
         boardRepository.createAssignedStory("ThirdStory", "hjsdfewfewgfajf",
                 Priority.HIGH, TaskSize.MEDIUM, person3);
 
-        ArrayList param = new ArrayList<>();
+        List<String> param = new ArrayList<>();
         param.add("NOT_DONE");
         String result = filterStoryByStatus.execute(param);
-        assertEquals("StoryStory\n" +
-                        "NOT_DONE\n" +
-                        "2StoryKtory\n" +
-                        "NOT_DONE\n" +
-                        "ThirdStory\n" +
-                        "NOT_DONE\n"
+        Assertions.assertEquals("""
+                        StoryStory
+                        NOT_DONE
+                        2StoryKtory
+                        NOT_DONE
+                        ThirdStory
+                        NOT_DONE
+                        """
                 , result);
 
     }

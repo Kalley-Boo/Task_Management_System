@@ -1,7 +1,6 @@
 package commands.createCommandsTests;
 
 import commands.createCommands.CreateANewBoardInATeamCommand;
-import commands.otherCommands.AddPersonToATeamCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreateANewBoardInATeamCommandTest {
 
@@ -30,7 +28,7 @@ public class CreateANewBoardInATeamCommandTest {
         String teamName = "Power5";
         boardRepository.createTeam(teamName);
         String result = createANewBoardInATeamCommand.execute(Arrays.asList(boardName, teamName));
-        assertEquals(String.format(String.format(CreateANewBoardInATeamCommand.BOARD_CREATED, boardName, teamName)), result);
+        Assertions.assertEquals(String.format(String.format(CreateANewBoardInATeamCommand.BOARD_CREATED, boardName, teamName)), result);
     }
 
     @Test

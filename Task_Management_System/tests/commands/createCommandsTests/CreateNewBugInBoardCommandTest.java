@@ -3,12 +3,12 @@ package commands.createCommandsTests;
 import commands.createCommands.CreateNewBugInBoardCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class CreateNewBugInBoardCommandTest {
@@ -33,7 +33,7 @@ public class CreateNewBugInBoardCommandTest {
         String board = "New Board";
         boardRepository.createBoard(board);
         String result = createNewBugInBoardCommand.execute(Arrays.asList(title, description,steps,priority, severity, person,board));
-        assertEquals(String.format(String.format(CreateNewBugInBoardCommand.ASSIGNED_BUG_CREATED, title, person)), result);
+        Assertions.assertEquals(String.format(String.format(CreateNewBugInBoardCommand.ASSIGNED_BUG_CREATED, title, person)), result);
     }
     //with assignee
     @Test
@@ -47,7 +47,7 @@ public class CreateNewBugInBoardCommandTest {
         String person = "unassigned";
         boardRepository.createBoard(board);
         String result = createNewBugInBoardCommand.execute(Arrays.asList(title, description,steps,priority, severity,person, board));
-        assertEquals(String.format(String.format(CreateNewBugInBoardCommand.UNASSIGNED_BUG_CREATED, title)), result);
+        Assertions.assertEquals(String.format(String.format(CreateNewBugInBoardCommand.UNASSIGNED_BUG_CREATED, title)), result);
     }
 
 }

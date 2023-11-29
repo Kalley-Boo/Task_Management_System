@@ -6,10 +6,10 @@ import models.PersonImpl;
 import commands.showCommands.ShowTeamMembersCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.Arrays;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
 
 public class ShowAllTeamMembersCommandTest {
     BoardRepository boardRepository = new BoardRepositoryImpl();
@@ -31,8 +31,8 @@ public class ShowAllTeamMembersCommandTest {
         team1.addMember(member1);
         team1.addMember(member2);
 
-        String result = showTeamMembersCommand.execute(Arrays.asList(teamName));
-        assertEquals("---Members---\nPersontest PersonAaaa ", result);
+        String result = showTeamMembersCommand.execute(List.of(teamName));
+        Assertions.assertEquals("---Members---\nPersontest PersonAaaa ", result);
 
     }
 }

@@ -7,12 +7,12 @@ import models.PersonImpl;
 import models.contracts.Person;
 import models.enums.Priority;
 import models.enums.Severity;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortBugsByTitleTest {
     private BoardRepository boardRepository;
@@ -41,8 +41,9 @@ public class SortBugsByTitleTest {
                 "Ajshdadjhfabdfk", parameters,
                 Priority.MEDIUM, Severity.MINOR, person3);
         String result = sortBugsByTitle.execute(new ArrayList<>());
-        assertEquals("Bug's title: BugTestOne\n" +
-                "Bug's title: BugTestThree\n" +
-                "Bug's title: BugTestTwo", result.trim());
+        Assertions.assertEquals("""
+                Bug's title: BugTestOne
+                Bug's title: BugTestThree
+                Bug's title: BugTestTwo""", result.trim());
     }
 }

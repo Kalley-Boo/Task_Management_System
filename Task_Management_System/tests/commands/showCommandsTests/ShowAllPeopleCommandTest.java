@@ -5,7 +5,6 @@ import commands.createCommands.CreatePersonCommand;
 import commands.showCommands.ShowAllPeopleCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
-//import org.testng.annotations.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +25,7 @@ public class ShowAllPeopleCommandTest {
     public void executeShouldReturnThePersonInTheRepository(){
         Command create = new CreatePersonCommand(boardRepository);
         List<String> args = new ArrayList<>();
-        args.add("aaaaa");
+        args.add("test");
         create.execute(args);
         Command show = new ShowAllPeopleCommand(boardRepository);
         StringBuilder expected = new StringBuilder();

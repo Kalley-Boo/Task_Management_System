@@ -7,12 +7,13 @@ import models.PersonImpl;
 import models.contracts.Person;
 import models.enums.Priority;
 import models.enums.TaskSize;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortSoryByPriorityTest {
     private BoardRepository boardRepository;
@@ -37,15 +38,17 @@ public class SortSoryByPriorityTest {
         boardRepository.createAssignedStory("ThirdStory", "hjsdfewfewgfajf",
                 Priority.LOW, TaskSize.MEDIUM, person3);
 
-        ArrayList param = new ArrayList<>();
+        List<String> param = new ArrayList<>();
         param.add("High");
         String result = sortStoryByPriority.execute(param);
-        assertEquals("Story's title: StoryStory\n" +
-                        "Story's priority: HIGH\n" +
-                        "Story's title: 2StoryKtory\n" +
-                        "Story's priority: HIGH\n" +
-                        "Story's title: ThirdStory\n" +
-                        "Story's priority: LOW\n"
+        Assertions.assertEquals("""
+                        Story's title: StoryStory
+                        Story's priority: HIGH
+                        Story's title: 2StoryStory
+                        Story's priority: HIGH
+                        Story's title: ThirdStory
+                        Story's priority: LOW
+                        """
                 , result);
     }
 }

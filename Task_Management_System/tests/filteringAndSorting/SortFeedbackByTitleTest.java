@@ -1,15 +1,15 @@
 package filteringAndSorting;
 
-import commands.FilteringAndSorting.SortBugsByTitle;
 import commands.FilteringAndSorting.SortFeedbackByTitle;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortFeedbackByTitleTest {
     private BoardRepository boardRepository;
@@ -27,11 +27,13 @@ public class SortFeedbackByTitleTest {
         boardRepository.createFeedback("Feedback2000", "jahdfakfhak", 2);
         boardRepository.createFeedback("Feedback3000", "jahdfakfhak", 2);
 
-        ArrayList param = new ArrayList<>();
+        List<String> param = new ArrayList<>();
         String result = sortFeedbackByTitle.execute(param);
-        assertEquals("Feedback's title: Feedback1000\n" +
-                        "Feedback's title: Feedback2000\n" +
-                        "Feedback's title: Feedback3000\n",
+        Assertions.assertEquals("""
+                        Feedback's title: Feedback1000
+                        Feedback's title: Feedback2000
+                        Feedback's title: Feedback3000
+                        """,
                 result);
     }
 }

@@ -7,10 +7,12 @@ import models.PersonImpl;
 import models.contracts.Person;
 import models.enums.Priority;
 import models.enums.Severity;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,7 +27,7 @@ public class FilterBugByAssigneeTest {
 
     @Test
     public void testFilterBuysByAssignee(){
-        ArrayList<String> parameters = new ArrayList<>();
+        List<String> parameters = new ArrayList<>();
         parameters.add("Hello");
         Person person1 = new PersonImpl("IvanOne");
         Person person2 = new PersonImpl("IvanIvan");
@@ -41,9 +43,9 @@ public class FilterBugByAssigneeTest {
                 "Ajshdadjhfabdfk", parameters,
                 Priority.HIGH, Severity.MINOR, person3);
 
-        ArrayList list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         list.add("IvanOne");
         String result = filterBugByAssignee.execute(list);
-        assertEquals("BugTestOne\nBugTestThree", result);
+        Assertions.assertEquals("BugTestOne\nBugTestThree", result);
     }
 }

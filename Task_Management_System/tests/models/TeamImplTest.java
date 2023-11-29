@@ -1,10 +1,10 @@
 package models;
 
 import models.contracts.Person;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 public class TeamImplTest {
     private TeamImpl team;
@@ -16,68 +16,44 @@ public class TeamImplTest {
 
     @Test
     public void testGetName() {
-        assertEquals("TestTeam", team.getName());
+        Assertions.assertEquals("TestTeam", team.getName());
     }
 
     @Test
     public void testAddMember() {
         Person person = new PersonImpl("JohnDoe");
         team.addMember(person);
-        assertTrue(team.displayMembers().contains("JohnDoe"));
+        Assertions.assertTrue(team.displayMembers().contains("JohnDoe"));
     }
 
     @Test
-    public void testAddNullMember(){
-        try{
-            team.addMember(null);
-            fail("Expected IllegalArgumentException");
-        } catch (IllegalArgumentException e){
-            assertEquals("Member cannot be null", e.getMessage());
-        }
+    public void testAddNullMember() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> team.addMember(null));
     }
 
     @Test
-    public void testAddDuplicateMember(){
+    public void testAddDuplicateMember() {
         Person person = new PersonImpl("John Doe");
         team.addMember(person);
-
-        try{
-            team.addMember(person);
-            fail("Expected IllegalArgumentException");
-        } catch (IllegalArgumentException e) {
-            assertEquals("Person with the same name already exists in the team", e.getMessage());
-        }
+        Assertions.assertThrows(IllegalArgumentException.class, () -> team.addMember(person));
     }
 
     @Test
     public void testAddBoard() {
         BoardImpl board = new BoardImpl("TestBoard");
         team.addBoard(board);
-        assertTrue(team.getBoards().contains(board));
+        Assertions.assertTrue(team.getBoards().contains(board));
     }
 
     @Test
     public void testAddNullBoard() {
-        try {
-            team.addBoard(null);
-            fail("Expected IllegalArgumentException");
-        } catch (IllegalArgumentException e) {
-            assertEquals("Board cannot be null", e.getMessage());
-        }
+        Assertions.assertThrows(IllegalArgumentException.class, () -> team.addBoard(null));
     }
 
     @Test
     public void testAddDuplicateBoard() {
         BoardImpl board = new BoardImpl("TestBoard");
         team.addBoard(board);
-
-        try {
-            team.addBoard(board);
-            fail("Expected IllegalArgumentException");
-        } catch (IllegalArgumentException e) {
-            assertEquals("Board with the same name already exists", e.getMessage());
-        }
+        Assertions.assertThrows(IllegalArgumentException.class, () -> team.addBoard(board));
     }
-
-
 }

@@ -1,6 +1,5 @@
 package commands.changeCommandsTests;
 
-import commands.otherCommands.AddPersonToATeamCommand;
 import models.enums.Priority;
 import models.enums.TaskSize;
 import commands.changeCommands.ChangeStoryPriorityCommand;
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ChangeStoryPriorityCommandTest {
     BoardRepository boardRepository = new BoardRepositoryImpl();
@@ -29,7 +27,7 @@ public class ChangeStoryPriorityCommandTest {
         boardRepository.createUnassignedStory(STORY_NAME, "Description", Priority.LOW,
                 TaskSize.MEDIUM);
         String result = changeStoryPriorityCommand.execute(Arrays.asList(STORY_NAME, PRIORITY));
-        assertEquals(String.format(ChangeStoryPriorityCommand.PRIORITY_UPDATED, STORY_NAME, Priority.valueOf(PRIORITY)), result);
+        Assertions.assertEquals(String.format(ChangeStoryPriorityCommand.PRIORITY_UPDATED, STORY_NAME, Priority.valueOf(PRIORITY)), result);
     }
 
     @Test

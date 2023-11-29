@@ -1,7 +1,6 @@
 package commands.changeCommandsTests;
 
 import commands.changeCommands.ChangeStatusOfAFeedbackCommand;
-import commands.otherCommands.AddPersonToATeamCommand;
 import core.BoardRepositoryImpl;
 import core.contracts.BoardRepository;
 import org.junit.jupiter.api.Assertions;
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ChangeStatusOfAFeedbackCommandTest {
     BoardRepository boardRepository = new BoardRepositoryImpl();
@@ -28,7 +26,7 @@ public class ChangeStatusOfAFeedbackCommandTest {
             boardRepository.createFeedback(FEEDBACK_NAME, "Problem when logging", 3);
 
             String result = changeStatusOfAFeedbackCommand.execute(Arrays.asList(FEEDBACK_NAME, STATUS));
-            assertEquals(String.format(String.format(ChangeStatusOfAFeedbackCommand.COMMAND_IS_DONE,STATUS)), result);
+            Assertions.assertEquals(String.format(String.format(ChangeStatusOfAFeedbackCommand.COMMAND_IS_DONE,STATUS)), result);
     }
 
     @Test
