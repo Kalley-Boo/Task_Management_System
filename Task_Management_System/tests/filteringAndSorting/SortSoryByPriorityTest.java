@@ -33,7 +33,7 @@ public class SortSoryByPriorityTest {
 
         boardRepository.createAssignedStory("StoryStory", "hjssadadgfajf",
                 Priority.HIGH, TaskSize.MEDIUM, person1);
-        boardRepository.createAssignedStory("2StoryKtory", "hjs21erdgfajf",
+        boardRepository.createAssignedStory("2StoryStory", "hjs21erdgfajf",
                 Priority.HIGH, TaskSize.MEDIUM, person2);
         boardRepository.createAssignedStory("ThirdStory", "hjsdfewfewgfajf",
                 Priority.LOW, TaskSize.MEDIUM, person3);

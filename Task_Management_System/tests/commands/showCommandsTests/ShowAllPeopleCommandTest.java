@@ -25,7 +25,7 @@ public class ShowAllPeopleCommandTest {
     public void executeShouldReturnThePersonInTheRepository(){
         Command create = new CreatePersonCommand(boardRepository);
         List<String> args = new ArrayList<>();
-        args.add("test");
+        args.add("test1");
         create.execute(args);
         Command show = new ShowAllPeopleCommand(boardRepository);
         StringBuilder expected = new StringBuilder();
