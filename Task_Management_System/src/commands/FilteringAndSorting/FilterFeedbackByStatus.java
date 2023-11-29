@@ -46,6 +46,6 @@ public class FilterFeedbackByStatus implements Command {
 
     @Override
     public List<String> getExpectedArguments() {
-        return null;
+        return expectedArguments;
     }
 }

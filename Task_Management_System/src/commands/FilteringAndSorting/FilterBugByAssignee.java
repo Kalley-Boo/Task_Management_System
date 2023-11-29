@@ -7,7 +7,6 @@ import util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class FilterBugByAssignee implements Command {
@@ -27,7 +26,7 @@ public class FilterBugByAssignee implements Command {
         List<Bug> filteredTasks = boardRepository.getBugs()
                 .stream()
                 .filter(bug -> bug.getAssignee().getName().equals(sentence))
-                .collect(Collectors.toList());
+                .toList();
         if (filteredTasks.isEmpty()) {
             return NO_TASKS_FOUND;
         }

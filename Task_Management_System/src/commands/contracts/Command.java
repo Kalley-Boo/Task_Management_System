@@ -6,5 +6,5 @@ public interface Command {
 
     String execute(List<String> parameters);
 
-    public List<String> getExpectedArguments();
+    List<String> getExpectedArguments();
 }

@@ -44,6 +44,6 @@ public class FilterStoryByAssignee implements Command {
 
     @Override
     public List<String> getExpectedArguments() {
-        return null;
+        return expectedArguments;
     }
 }

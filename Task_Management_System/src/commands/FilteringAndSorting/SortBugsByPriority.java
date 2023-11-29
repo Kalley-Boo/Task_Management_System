@@ -16,16 +16,16 @@ public class SortBugsByPriority implements Command {
         this.boardRepository = boardRepository;
     }
 
-    private String sortBugByPriority(){
+    private String sortBugByPriority() {
         List<Bug> sortedBugs = boardRepository.getBugs()
                 .stream()
                 .sorted(Comparator.comparing(Bug::getPriority))
                 .toList();
-        if(sortedBugs.isEmpty()){
+        if (sortedBugs.isEmpty()) {
             return NO_TASKS_FOUND;
         }
         StringBuilder stringBuilder = new StringBuilder();
-        for(Bug bug : sortedBugs){
+        for (Bug bug : sortedBugs) {
             stringBuilder.append(BUG_S_TITLE);
             stringBuilder.append(bug.getTitle()).append("\n");
             stringBuilder.append("The bug's priority: ").append(bug.getPriority()).append("\n");

@@ -25,7 +25,7 @@ public class SortStoryByPriority implements Command {
             return NO_TASKS_FOUND;
         }
         StringBuilder stringBuilder = new StringBuilder();
-        for(Story story : sortedStories){
+        for (Story story : sortedStories) {
             stringBuilder.append("Story's title: ").append(story.getTitle()).append("\n");
             stringBuilder.append("Story's priority: ").append(story.getPriority()).append("\n");
         }

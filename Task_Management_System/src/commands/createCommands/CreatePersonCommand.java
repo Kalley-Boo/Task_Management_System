@@ -3,7 +3,6 @@ package commands.createCommands;
 import commands.contracts.Command;
 import core.contracts.BoardRepository;
 import exceptions.InvalidInputException;
-import exceptions.PersonNotFoundException;
 import util.Validator;
 
 import java.util.ArrayList;
